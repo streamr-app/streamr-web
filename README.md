@@ -8,10 +8,18 @@
 ```
 npm install -g yarn
 yarn
-npm start
+yarn start
 ```
 
 Then visit [localhost:4000](http://localhost:4000).
+
+## Testing
+
+```
+yarn test
+```
+
+Note that running the test command will also lint the project using `standard`.
 
 ## Contributing
 
