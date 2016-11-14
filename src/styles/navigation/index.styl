@@ -1,0 +1,37 @@
+nav-link-padding = 30px 40px
+
+nav[role='main']
+  ul
+    list-style none
+    display flex
+    align-items center
+
+    li:last-child
+      margin-right -(nav-link-padding[1])
+
+  a
+    color navigation-link-color
+    font-weight 400
+    position relative
+    padding nav-link-padding
+
+    &, &:after
+      transition all 0.2s ease
+
+    &:after
+      content ' '
+      display block
+      position absolute
+      border-radius 1px
+      left nav-link-padding[1]
+      right nav-link-padding[1]
+      bottom (nav-link-padding[0] - 4px)
+      height 2px
+      background link-color
+      transform scaleX(0)
+
+    &:hover
+      color darken(navigation-link-color, 50%)
+
+      &:after
+        transform scaleY(1)
