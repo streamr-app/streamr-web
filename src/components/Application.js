@@ -10,7 +10,11 @@ export default ({
   <div className='application'>
     <Helmet
       titleTemplate='Streamr — %s'
-      defaultTitle='Streamr — Learn by Doodling' />
+      defaultTitle='Streamr — Learn by Doodling'
+      link={[
+        { rel: 'shortcut icon', href: require('../images/favicon.ico') }
+      ]}
+     />
 
     <Header />
 
