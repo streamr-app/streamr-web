@@ -6,7 +6,9 @@
     "build": "webpack --config webpack.config.dev.js",
     "start": "webpack-dev-server --config webpack.config.dev.js --inline --hot",
     "test": "npm run lint && jest",
-    "lint": "standard"
+    "lint": "standard",
+    "storybook": "start-storybook -p 6006 --config-dir src/components/.storybook",
+    "build-storybook": "build-storybook"
   },
   "author": "Steven Petryk <me@stevenpetryk.com>",
   "license": "MIT",
@@ -34,7 +36,8 @@
     "webpack": "^1.13.3",
     "webpack-dev-middleware": "^1.8.4",
     "webpack-dev-server": "^1.16.2",
-    "webpack-hot-middleware": "^2.13.2"
+    "webpack-hot-middleware": "^2.13.2",
+    "@kadira/storybook": "^2.21.0"
   },
   "dependencies": {
     "history": "^4.4.0",
