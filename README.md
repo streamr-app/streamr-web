@@ -1,5 +1,8 @@
 # Streamr Web Application
 
+[![Standard - JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
+[![CircleCI](https://circleci.com/gh/zebras-filming-videos/streamr-web.svg?style=shield)](https://circleci.com/gh/zebras-filming-videos/streamr-web)
+
 ## Up and Running
 
 ```

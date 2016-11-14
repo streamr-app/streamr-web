@@ -5,7 +5,8 @@
   "scripts": {
     "build": "webpack --config webpack.config.dev.js",
     "start": "webpack-dev-server --config webpack.config.dev.js --inline --hot",
-    "test": "jest"
+    "test": "npm run lint && jest",
+    "lint": "standard"
   },
   "author": "Steven Petryk <me@stevenpetryk.com>",
   "license": "MIT",
@@ -24,6 +25,7 @@
     "postcss": "^5.2.5",
     "poststylus": "^0.2.3",
     "react-hot-loader": "3.0.0-beta.6",
+    "standard": "^8.5.0",
     "style-loader": "^0.13.1",
     "stylus": "^0.54.5",
     "stylus-loader": "^2.3.1",
