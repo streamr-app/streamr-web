@@ -4,12 +4,12 @@ import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router'
 import configureStore from './configureStore'
 
-import MessageContainer from './containers/MessageContainer'
+import Application from './components/Application'
 
 export default () => (
   <BrowserRouter>
     <Provider store={configureStore()}>
-      <MessageContainer />
+      <Application />
     </Provider>
   </BrowserRouter>
 )
