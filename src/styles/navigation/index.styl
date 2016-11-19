@@ -10,7 +10,7 @@ nav[role='main']
       margin-right -(nav-link-padding[1])
 
   a
-    color navigation-link-color
+    color $navigation-link-color
     font-weight 400
     position relative
     padding nav-link-padding
@@ -27,11 +27,11 @@ nav[role='main']
       right nav-link-padding[1]
       bottom (nav-link-padding[0] - 4px)
       height 2px
-      background link-color
+      background $link-color
       transform scaleX(0)
 
     &:hover
-      color darken(navigation-link-color, 50%)
+      color darken($navigation-link-color, 50%)
 
       &:after
         transform scaleY(1)
