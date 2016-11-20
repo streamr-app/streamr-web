@@ -12,7 +12,7 @@ export const Button = ({
   className = '',
   ...rest
 }: PropTypes) => (
-  <a className={`button ${className}`} {...rest}>
+  <button className={`button ${className}`} {...rest}>
     {children}
-  </a>
+  </button>
 )
