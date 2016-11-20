@@ -48,5 +48,8 @@
     "react-redux": "^4.4.5",
     "react-router": "4.0.0-alpha.5",
     "redux": "^3.6.0"
+  },
+  "optionalDependencies": {
+    "fsevents": "^1.0.15"
   }
 }
