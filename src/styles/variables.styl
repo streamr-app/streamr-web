@@ -1,20 +1,27 @@
-site-width = 1000px
-site-gutter = 20px
+$site-width = 1000px
+$site-gutter = 20px
 
-yellow = #ffd71e
-blue = #57b8ff
-green = #96ff57
-purple = #de57ff
-red = #ff5757
-dark-gray = #7E7E7E
-light-gray = #B4B4B4
+$yellow = #ffd71e
+$blue = #57b8ff
+$green = #96ff57
+$purple = #de57ff
+$red = #ff5757
+$dark-gray = #7E7E7E
+$light-gray = #B4B4B4
 
-link-color = blue
-navigation-link-color = dark-gray
+$link-color = $blue
+$navigation-link-color = $dark-gray
 
-button-color = blue
+$button-color = $blue
+
+$error-color = darken($red, 30%)
+
+$active-field-color = $blue
+$field-box-shadow = inset 0px 1px 3px rgba(0, 0, 0, 0.09)
+$active-field-box-shadow = $field-box-shadow, 0px 0px 4px lighten($active-field-color, 20%)
+$error-active-field-box-shadow = $field-box-shadow, 0px 0px 4px lighten($error-color, 20%)
 
 container()
-  max-width site-width
+  max-width $site-width
   margin 0 auto
-  padding 0 site-gutter
+  padding 0 $site-gutter

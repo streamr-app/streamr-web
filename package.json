@@ -13,6 +13,7 @@
   "author": "Steven Petryk <me@stevenpetryk.com>",
   "license": "MIT",
   "devDependencies": {
+    "@kadira/storybook": "^2.21.0",
     "autoprefixer": "^6.5.3",
     "babel-core": "^6.18.0",
     "babel-loader": "^6.2.7",
@@ -36,10 +37,10 @@
     "webpack": "^1.13.3",
     "webpack-dev-middleware": "^1.8.4",
     "webpack-dev-server": "^1.16.2",
-    "webpack-hot-middleware": "^2.13.2",
-    "@kadira/storybook": "^2.21.0"
+    "webpack-hot-middleware": "^2.13.2"
   },
   "dependencies": {
+    "classnames": "^2.2.5",
     "history": "^4.4.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
