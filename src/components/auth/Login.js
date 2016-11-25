@@ -3,6 +3,8 @@ import { Link } from 'react-router'
 
 import { Banner } from '../common/banners'
 
+import { Field } from 'redux-form'
+
 import {
   Button
 } from '../buttons'
@@ -13,27 +15,35 @@ import {
 
 import {
   TextField,
-  CheckboxField
+  CheckboxField,
+  reduxFormWrapper
 } from '../fields'
 
-export default () => (
+const emailField = reduxFormWrapper(<TextField label='Email Address' />)
+const passwordField = reduxFormWrapper(<TextField type='Password' label='Password' />)
+const rememberField = reduxFormWrapper(<CheckboxField label='Remember me' id='remember' />)
+
+export default ({
+  handleSubmit,
+  onSubmit
+}) => (
   <div className='login'>
     <Banner>
       <h2>Log In</h2>
     </Banner>
 
-    <form>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <FormRow>
-        <TextField id='email' label='Email Address' />
+        <Field name='email' component={emailField} />
       </FormRow>
 
       <FormRow>
-        <TextField id='password' type='password' label='Password' />
+        <Field name='password' component={passwordField} />
       </FormRow>
 
       <FormRow>
         <Button>Log in</Button>
-        <CheckboxField id='remember' label='Remember me' />
+        <Field name='remember' component={rememberField} />
       </FormRow>
 
       <p className='subtle'>Or, <Link to='signup'>create an account</Link>.</p>

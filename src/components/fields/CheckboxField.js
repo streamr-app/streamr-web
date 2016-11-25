@@ -16,6 +16,7 @@ export default ({
   label,
   description,
   className,
+  errors = [],
   children,
   ...rest
 }: PropTypes) => (

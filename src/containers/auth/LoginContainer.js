@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import { reduxForm } from 'redux-form'
 
 import Login from '../../components/auth/Login'
 
@@ -7,7 +8,18 @@ function mapStateToProps (state, ownProps) {
 }
 
 function mapDispatchToProps (dispatch, ownProps) {
-  return {}
+  return {
+    onSubmit (data) {
+      console.log(data)
+    }
+  }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(
+  reduxForm({
+    form: 'login'
+  })(Login)
+)
