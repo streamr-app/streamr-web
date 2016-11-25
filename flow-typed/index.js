@@ -9,3 +9,7 @@ declare module 'react-helmet' {
 declare module 'react-router' {
   declare module.exports: any
 }
+
+declare module 'redux' {
+  declare module.exports: any
+}
