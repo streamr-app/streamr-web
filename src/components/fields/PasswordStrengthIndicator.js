@@ -1,7 +1,5 @@
 // @flow
 
-import times from 'lodash/times'
-
 import React, { PropTypes } from 'react'
 
 import cx from 'classnames'

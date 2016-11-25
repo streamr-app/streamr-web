@@ -6,10 +6,6 @@ declare module 'humps' {
   declare module.exports: any
 }
 
-declare module 'lodash/times' {
-  declare module.exports: any
-}
-
 declare module 'react-helmet' {
   declare module.exports: any
 }
