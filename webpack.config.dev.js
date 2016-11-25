@@ -1,5 +1,9 @@
+var webpack = require('webpack')
 var path = require('path')
 var poststylus = require('poststylus')
+
+const dotenv = require('dotenv')
+dotenv.config({ silent: true })
 
 module.exports = {
   entry: [
@@ -11,7 +15,7 @@ module.exports = {
     filename: 'bundle.js'
   },
   devServer: {
-    port: 4000,
+    port: 5000,
     historyApiFallback: {
       index: './src/index.html'
     }
@@ -40,6 +44,11 @@ module.exports = {
       }
     ]
   },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.API_ENDPOINT': JSON.stringify(process.env.API_ENDPOINT || '')
+    })
+  ],
   stylus: {
     use: [
       poststylus([ 'autoprefixer', 'lost' ])
