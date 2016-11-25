@@ -1,10 +1,17 @@
+// @flow
+
 import React from 'react'
+
+type PropTypes = {
+  children: ?any,
+  className: string
+}
 
 export const Button = ({
   children,
-  className,
+  className = '',
   ...rest
-}) => (
+}: PropTypes) => (
   <a className={`button ${className}`} {...rest}>
     {children}
   </a>

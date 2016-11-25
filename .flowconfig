@@ -1,0 +1,11 @@
+[ignore]
+.*node_modules/.*
+
+[include]
+./node_modules
+
+[options]
+suppress_comment= \\(.\\|\n\\)*\\$flow-ignore
+
+[libs]
+flow-typed

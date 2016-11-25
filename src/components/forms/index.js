@@ -1,3 +1,5 @@
+// @flow
+
 import FormRow from './FormRow'
 
 export default {
