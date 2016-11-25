@@ -22,6 +22,10 @@ declare module 'redux-api-middleware' {
   declare module.exports: any
 }
 
+declare module 'redux-form' {
+  declare module.exports: any
+}
+
 declare module 'query-string' {
   declare module.exports: any
 }

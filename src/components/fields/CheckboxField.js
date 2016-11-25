@@ -8,6 +8,7 @@ type PropTypes = {
   label: string,
   description: ?string,
   className: ?string,
+  errors: any[],
   children: ?any
 }
 

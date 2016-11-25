@@ -19,6 +19,11 @@ import {
   reduxFormWrapper
 } from '../fields'
 
+type PropTypes = {
+  handleSubmit: Function,
+  onSubmit: Function
+}
+
 const emailField = reduxFormWrapper(<TextField label='Email Address' />)
 const passwordField = reduxFormWrapper(<TextField type='Password' label='Password' />)
 const rememberField = reduxFormWrapper(<CheckboxField label='Remember me' id='remember' />)
@@ -26,7 +31,7 @@ const rememberField = reduxFormWrapper(<CheckboxField label='Remember me' id='re
 export default ({
   handleSubmit,
   onSubmit
-}) => (
+}: PropTypes) => (
   <div className='login'>
     <Banner>
       <h2>Log In</h2>
