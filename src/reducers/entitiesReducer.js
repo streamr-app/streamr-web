@@ -1,7 +1,9 @@
 import update from 'react-addons-update'
 import fromPairs from 'lodash/fromPairs'
 
-const entities = []
+const entities = [
+  'user'
+]
 
 export default (state = {}, action) => {
   entities.forEach((entityName) => {

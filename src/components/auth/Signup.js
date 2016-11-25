@@ -23,15 +23,20 @@ import {
 
 type PropTypes = {
   handleSubmit: Function,
-  onSubmit: Function
+  onSubmit: Function,
+  submitting: boolean,
+  valid: boolean
 }
 
+const nameField = reduxFormWrapper(<TextField id='name' label='Name' />)
 const emailField = reduxFormWrapper(<TextField id='email' label='Email Address' />)
 const passwordField = reduxFormWrapper(<CreatePasswordField id='password' label='Password' />)
 
 export default ({
   handleSubmit,
-  onSubmit
+  onSubmit,
+  submitting,
+  valid
 }: PropTypes) => (
   <div className='login'>
     <Banner>
@@ -39,6 +44,10 @@ export default ({
     </Banner>
 
     <form onSubmit={handleSubmit(onSubmit)}>
+      <FormRow>
+        <Field name='name' component={nameField} />
+      </FormRow>
+
       <FormRow>
         <Field name='email' component={emailField} />
       </FormRow>
@@ -48,7 +57,7 @@ export default ({
       </FormRow>
 
       <FormRow>
-        <Button>Sign Up</Button>
+        <Button disabled={submitting || !valid}>Sign Up</Button>
       </FormRow>
 
       <p className='subtle'>Or, <Link to='login'>log in</Link>.</p>

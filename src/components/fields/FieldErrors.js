@@ -10,8 +10,8 @@ export default ({
   errors
 }: PropTypes) => (
   <ul className='field-errors'>
-    {errors.map(error =>
-      <li className='field-error'>{error}</li>
+    {errors.map((error, index) =>
+      <li className='field-error' key={index}>{error}</li>
     )}
   </ul>
 )

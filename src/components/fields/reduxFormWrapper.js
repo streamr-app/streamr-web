@@ -3,14 +3,14 @@ import React from 'react'
 export default function (component) {
   return ({
     input,
-    meta,
+    meta: { touched, error },
     ...rest
   }) => (
     React.cloneElement(
       component,
       {
         ...input,
-        errors: meta.error,
+        errors: touched && error ? [error] : [],
         ...rest
       }
     )
