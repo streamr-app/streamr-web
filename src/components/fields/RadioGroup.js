@@ -1,8 +1,12 @@
-import React, { cloneElement } from 'react'
+// @flow
 
-var uuid = 0
+import React, { PropTypes, cloneElement } from 'react'
+
+var uuid: number = 0
 
 export default class RadioGroup extends React.Component {
+  state: Object
+
   componentWillMount () {
     this.setState({
       uuid: `radio-group-${uuid++}`
@@ -30,4 +34,9 @@ export default class RadioGroup extends React.Component {
       </div>
     )
   }
+}
+
+RadioGroup.propTypes = {
+  onChange: PropTypes.func,
+  children: PropTypes.any
 }
