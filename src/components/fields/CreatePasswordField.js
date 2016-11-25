@@ -1,15 +1,30 @@
 // @flow
 
-import React, { PropTypes } from 'react'
+import React from 'react'
 import cx from 'classnames'
 
 import PasswordStrengthIndicator from './PasswordStrengthIndicator'
 import CheckboxField from './CheckboxField'
 
-export default class CreatePasswordField extends React.Component {
-  state: Object
+type Props = {
+  id: number | string,
+  label: string,
+  value?: string,
 
-  constructor (props: Object) {
+  className?: string,
+
+  errors?: any[],
+
+  children?: any
+}
+
+export default class CreatePasswordField extends React.Component {
+  props: Props
+  state: {
+    showPassword: boolean
+  }
+
+  constructor (props: Props) {
     super(props)
 
     this.state = {
@@ -54,15 +69,4 @@ export default class CreatePasswordField extends React.Component {
       </div>
     )
   }
-}
-
-CreatePasswordField.propTypes = {
-  id: PropTypes.string.isRequired,
-  label: PropTypes.string.isRequired,
-  className: PropTypes.string,
-  value: PropTypes.string,
-
-  errors: PropTypes.arrayOf(PropTypes.any),
-
-  children: PropTypes.node
 }

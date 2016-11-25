@@ -14,6 +14,10 @@ declare module 'react-helmet' {
   declare module.exports: any
 }
 
+declare module 'react-redux' {
+  declare module.exports: any
+}
+
 declare module 'react-router' {
   declare module.exports: any
 }
