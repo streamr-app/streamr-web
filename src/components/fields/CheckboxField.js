@@ -6,10 +6,10 @@ import cx from 'classnames'
 type PropTypes = {
   id: number | string,
   label: string,
-  description: ?string,
-  className: ?string,
-  errors: any[],
-  children: ?any
+  description?: string,
+  className?: string,
+  errors?: any[],
+  children?: any
 }
 
 export default ({

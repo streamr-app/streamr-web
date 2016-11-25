@@ -6,7 +6,7 @@ import Helmet from 'react-helmet'
 import { Match } from 'react-router'
 
 import Header from './Header'
-import LoginContainer from '../containers/auth/LoginContainer'
+import SignupContainer from '../containers/auth/SignupContainer'
 
 type PropTypes = {
   children: any
@@ -28,7 +28,7 @@ export default ({
     <Header />
 
     <main>
-      <Match pattern='/login' component={LoginContainer} />
+      <Match pattern='/signup' component={SignupContainer} />
     </main>
   </div>
 )

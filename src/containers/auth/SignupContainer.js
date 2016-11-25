@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
 
-import Login from '../../components/auth/Login'
+import Signup from '../../components/auth/Signup'
 
 function mapStateToProps (state, ownProps) {
   return {}
@@ -20,6 +20,6 @@ export default connect(
   mapDispatchToProps
 )(
   reduxForm({
-    form: 'login'
-  })(Login)
+    form: 'signup'
+  })(Signup)
 )

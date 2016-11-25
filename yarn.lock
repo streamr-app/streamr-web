@@ -6923,3 +6923,7 @@ yauzl@^2.2.1:
   dependencies:
     buffer-crc32 "~0.2.3"
     fd-slicer "~1.0.1"
+
+zxcvbn@^4.4.1:
+  version "4.4.1"
+  resolved "https://registry.yarnpkg.com/zxcvbn/-/zxcvbn-4.4.1.tgz#2381aadd7f078a25a86b215327562647b80aa8ac"

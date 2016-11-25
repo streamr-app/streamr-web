@@ -20,6 +20,7 @@ module.exports = {
       index: './src/index.html'
     }
   },
+  devtool: 'eval',
   module: {
     loaders: [
       {
