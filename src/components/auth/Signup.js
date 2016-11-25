@@ -1,3 +1,5 @@
+// @flow
+
 import React from 'react'
 import { Link } from 'react-router'
 
@@ -15,7 +17,7 @@ import {
 
 import {
   TextField,
-  PasswordField,
+  CreatePasswordField,
   reduxFormWrapper
 } from '../fields'
 
@@ -24,8 +26,8 @@ type PropTypes = {
   onSubmit: Function
 }
 
-const emailField = reduxFormWrapper(<TextField label='Email Address' />)
-const passwordField = reduxFormWrapper(<PasswordField label='Password' />)
+const emailField = reduxFormWrapper(<TextField id='email' label='Email Address' />)
+const passwordField = reduxFormWrapper(<CreatePasswordField id='password' label='Password' />)
 
 export default ({
   handleSubmit,

@@ -2,6 +2,4 @@
 
 import FormRow from './FormRow'
 
-export default {
-  FormRow
-}
+exports.FormRow = FormRow

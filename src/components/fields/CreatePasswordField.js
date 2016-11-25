@@ -6,7 +6,7 @@ import cx from 'classnames'
 import PasswordStrengthIndicator from './PasswordStrengthIndicator'
 import CheckboxField from './CheckboxField'
 
-export default class PasswordField extends React.Component {
+export default class CreatePasswordField extends React.Component {
   state: Object
 
   constructor (props: Object) {
@@ -56,7 +56,7 @@ export default class PasswordField extends React.Component {
   }
 }
 
-PasswordField.propTypes = {
+CreatePasswordField.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   className: PropTypes.string,
