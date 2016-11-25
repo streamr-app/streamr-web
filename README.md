@@ -11,7 +11,7 @@ yarn
 yarn start
 ```
 
-Then visit [localhost:4000](http://localhost:4000).
+Then visit [localhost:5000](http://localhost:5000).
 
 ## Testing
 
