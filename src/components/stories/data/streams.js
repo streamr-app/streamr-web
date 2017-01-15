@@ -6,7 +6,7 @@ export default [
     thumbnail: 'http://placehold.it/150x100'
   }, {
     title: 'Tie a Noose',
-    description: 'Learn how to tie a noose to end your life.',
+    description: 'Learn how to tie a noose to end your life. This is a long description to hopefully be truncated correctly.',
     userId: 2,
     thumbnail: 'http://placehold.it/150x100'
   }, {
