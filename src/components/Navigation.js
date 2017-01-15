@@ -11,7 +11,7 @@ export default () => (
         <Link to='explore'>Explore</Link>
       </li>
       <li>
-        <Link to='sign-in'>Sign In</Link>
+        <Link to='signup'>Sign up</Link>
       </li>
       <li className='record'>
         <Link to='record'>Record</Link>

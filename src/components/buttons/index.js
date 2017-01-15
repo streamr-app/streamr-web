@@ -3,8 +3,8 @@
 import React from 'react'
 
 type PropTypes = {
-  children: ?any,
-  className: string
+  children?: ?any,
+  className?: string
 }
 
 export const Button = ({
@@ -12,7 +12,7 @@ export const Button = ({
   className = '',
   ...rest
 }: PropTypes) => (
-  <a className={`button ${className}`} {...rest}>
+  <button className={`button ${className}`} {...rest}>
     {children}
-  </a>
+  </button>
 )

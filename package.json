@@ -62,7 +62,10 @@
     "react-router": "4.0.0-alpha.5",
     "redux": "^3.6.0",
     "redux-api-middleware": "^1.0.2",
-    "redux-thunk": "^2.1.0"
+    "redux-form": "^6.2.0",
+    "redux-form": "^6.2.0",
+    "redux-thunk": "^2.1.0",
+    "zxcvbn": "^4.4.1"
   },
   "optionalDependencies": {
     "fsevents": "^1.0.15"

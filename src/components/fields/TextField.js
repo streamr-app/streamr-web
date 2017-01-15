@@ -8,12 +8,12 @@ import FieldErrors from './FieldErrors'
 type PropTypes = {
   id: number | string,
   label: string,
-  className: ?string,
-  type: string,
+  className?: string,
+  type?: string,
 
-  errors: any[],
+  errors?: any[],
 
-  children: ?any,
+  children?: any,
 }
 
 export default ({

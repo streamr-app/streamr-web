@@ -6,9 +6,10 @@ import cx from 'classnames'
 type PropTypes = {
   id: number | string,
   label: string,
-  description: ?string,
-  className: ?string,
-  children: ?any
+  description?: string,
+  className?: string,
+  errors?: any[],
+  children?: any
 }
 
 export default ({
@@ -16,6 +17,7 @@ export default ({
   label,
   description,
   className,
+  errors = [],
   children,
   ...rest
 }: PropTypes) => (

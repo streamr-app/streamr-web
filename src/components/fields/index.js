@@ -4,10 +4,12 @@ import TextField from './TextField'
 import CheckboxField from './CheckboxField'
 import RadioField from './RadioField'
 import RadioGroup from './RadioGroup'
+import CreatePasswordField from './CreatePasswordField'
+import reduxFormWrapper from './reduxFormWrapper'
 
-export default {
-  TextField,
-  CheckboxField,
-  RadioField,
-  RadioGroup
-}
+exports.TextField = TextField
+exports.CheckboxField = CheckboxField
+exports.RadioField = RadioField
+exports.RadioGroup = RadioGroup
+exports.CreatePasswordField = CreatePasswordField
+exports.reduxFormWrapper = reduxFormWrapper
