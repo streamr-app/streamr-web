@@ -6,6 +6,7 @@ function loadStories () {
   require('../stories/buttons')
   require('../stories/fields')
   require('../stories/forms')
+  require('../stories/streams')
 }
 
 configure(loadStories, module)
