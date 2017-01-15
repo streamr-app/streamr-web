@@ -1,4 +1,5 @@
 import React from 'react'
+import Helmet from 'react-helmet'
 import { Link } from 'react-router'
 
 import { Banner } from '../common/banners'
@@ -30,6 +31,8 @@ export default ({
   valid
 }) => (
   <div className='login'>
+    <Helmet title='Log In' />
+
     <Banner>
       <h2>Log In</h2>
     </Banner>
