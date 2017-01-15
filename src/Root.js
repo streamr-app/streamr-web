@@ -1,15 +1,12 @@
 import React from 'react'
 
 import { Provider } from 'react-redux'
-import { BrowserRouter } from 'react-router'
 import configureStore from './configureStore'
 
-import Application from './components/Application'
+import Routes from './Routes'
 
 export default () => (
-  <BrowserRouter>
-    <Provider store={configureStore()}>
-      <Application />
-    </Provider>
-  </BrowserRouter>
+  <Provider store={configureStore()}>
+    {Routes}
+  </Provider>
 )
