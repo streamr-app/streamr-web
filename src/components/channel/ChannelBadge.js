@@ -10,10 +10,10 @@ export const ChannelBadge = ({
 }) => (
   <div className={`channel-badge ${className}`} {...rest}>
     <div className='thumbnail-wrapper'>
-      <img className='thumbnail' src='http://placehold.it/60x60' />
+      <img className='thumbnail' src={channel.profileImage} />
     </div>
     <div className='information-wrapper'>
-      <div className='channel-name'>{channel.channel_name || channel.name}</div>
+      <div className='channel-name'>{channel.channelName || channel.name}</div>
       <div className='channel-bio'>{channel.bio}</div>
 
       <SubscribeButton />

@@ -10,7 +10,7 @@ export const SubscribeButton = ({
 }) => (
   <div className={`subscribe-button ${className}`} {...rest}>
     {showSubscribers &&
-      <div className='subscriber-count'>{channel.subscriber_count} subscribers</div>
+      <div className='subscriber-count'>{channel.subscriberCount} subscribers</div>
     }
     <button onClick={action('Subscribing')}>Subscribe</button>
   </div>

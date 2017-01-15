@@ -4,10 +4,10 @@ import '../../styles/index.styl'
 
 function loadStories () {
   require('../stories/buttons')
+  require('../stories/channel')
   require('../stories/fields')
   require('../stories/forms')
   require('../stories/streams')
-  require('../stories/channel')
 }
 
 configure(loadStories, module)
