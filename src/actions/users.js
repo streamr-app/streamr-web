@@ -8,7 +8,7 @@ import {
 
 export function createUser (payload: Object): APIAction {
   return createResource({
-    url: 'users/new',
+    url: 'users',
     types: [ 'CREATE_USER_REQUEST', 'CREATE_USER_SUCCESS', 'CREATE_USER_FAILURE' ],
     key: 'user',
     body: payload
