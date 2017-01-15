@@ -1,11 +1,10 @@
 import { connect } from 'react-redux'
-import { reduxForm } from 'redux-form'
+import { reduxForm, SubmissionError } from 'redux-form'
 
 import { login } from '../../actions/auth'
 import { push } from 'react-router-redux'
 
 import Login from '../../components/auth/Login'
-import { SubmissionError } from 'redux-form'
 
 function validate (values) {
   const errors = {}
