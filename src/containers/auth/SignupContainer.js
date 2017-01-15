@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
 
+import { push } from 'react-router-redux'
 import { createUser } from '../../actions/users'
 
 import { EMAIL_REGEX } from '../../utils/regexes'
@@ -15,7 +16,7 @@ function mapDispatchToProps (dispatch, ownProps) {
   return {
     onSubmit (data) {
       dispatch(createUser(data))
-      window.history.pushState(null, null, '/')
+        .then(() => dispatch(push('/')))
     }
   }
 }
