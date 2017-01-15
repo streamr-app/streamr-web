@@ -10,6 +10,7 @@ import {
 } from '../buttons'
 
 import {
+  FormError,
   FormRow
 } from '../forms'
 
@@ -22,6 +23,7 @@ const emailField = reduxFormWrapper(<TextField id='email' label='Email Address' 
 const passwordField = reduxFormWrapper(<TextField type='password' id='password' label='Password' />)
 
 export default ({
+  error,
   handleSubmit,
   onSubmit,
   submitting,
@@ -33,6 +35,9 @@ export default ({
     </Banner>
 
     <form onSubmit={handleSubmit(onSubmit)}>
+      {error &&
+        <FormError>{error}</FormError>}
+
       <FormRow>
         <Field name='email' component={emailField} />
       </FormRow>

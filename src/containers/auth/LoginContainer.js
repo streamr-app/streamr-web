@@ -5,6 +5,7 @@ import { login } from '../../actions/auth'
 import { push } from 'react-router-redux'
 
 import Login from '../../components/auth/Login'
+import { SubmissionError } from 'redux-form'
 
 function validate (values) {
   const errors = {}
@@ -27,8 +28,14 @@ function mapStateToProps (state, ownProps) {
 function mapDispatchToProps (dispatch, ownProps) {
   return {
     onSubmit (data) {
-      dispatch(login(data))
-        .then(() => dispatch(push('/')))
+      return dispatch(login(data))
+        .then((action) => {
+          if (action.type === 'LOGIN_SUCCESS') {
+            dispatch(push('/'))
+          } else {
+            throw new SubmissionError({ _error: 'Incorrect email address or password.' })
+          }
+        })
     }
   }
 }
