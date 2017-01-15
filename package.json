@@ -5,9 +5,8 @@
   "scripts": {
     "build": "webpack --config webpack.config.dev.js",
     "start": "webpack-dev-server --config webpack.config.dev.js --inline --hot",
-    "test": "jest && npm run lint && npm run flow",
+    "test": "jest && npm run lint",
     "lint": "eslint .",
-    "flow": "flow",
     "storybook": "start-storybook -p 6006 --config-dir src/components/.storybook",
     "build-storybook": "build-storybook"
   },
@@ -28,12 +27,10 @@
     "eslint": "^3.10.2",
     "eslint-config-standard": "^6.2.1",
     "eslint-config-standard-react": "^4.2.0",
-    "eslint-plugin-flowtype": "^2.25.0",
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-react": "^6.7.1",
     "eslint-plugin-standard": "^2.0.1",
     "file-loader": "^0.9.0",
-    "flow-bin": "^0.36.0",
     "image-webpack-loader": "^3.0.0",
     "jest": "^16.0.2",
     "lost": "^7.1.1",

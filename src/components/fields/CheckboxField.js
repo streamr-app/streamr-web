@@ -1,16 +1,5 @@
-// @flow
-
 import React from 'react'
 import cx from 'classnames'
-
-type PropTypes = {
-  id: number | string,
-  label: string,
-  description?: string,
-  className?: string,
-  errors?: any[],
-  children?: any
-}
 
 export default ({
   id,
@@ -20,7 +9,7 @@ export default ({
   errors = [],
   children,
   ...rest
-}: PropTypes) => (
+}) => (
   <div className={cx('field horizontal-field checkbox-field', className)}>
     {children ||
       <input type='checkbox' id={id} {...rest} />

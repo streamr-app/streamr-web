@@ -1,30 +1,11 @@
-// @flow
-
 import React from 'react'
 import cx from 'classnames'
 
 import PasswordStrengthIndicator from './PasswordStrengthIndicator'
 import CheckboxField from './CheckboxField'
 
-type Props = {
-  id: number | string,
-  label: string,
-  value?: string,
-
-  className?: string,
-
-  errors?: any[],
-
-  children?: any
-}
-
 export default class CreatePasswordField extends React.Component {
-  props: Props
-  state: {
-    showPassword: boolean
-  }
-
-  constructor (props: Props) {
+  constructor (props) {
     super(props)
 
     this.state = {
@@ -32,7 +13,7 @@ export default class CreatePasswordField extends React.Component {
     }
   }
 
-  toggleShowPassword (event: Object) {
+  toggleShowPassword (event) {
     this.setState({
       showPassword: event.target.checked
     })

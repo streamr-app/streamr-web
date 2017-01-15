@@ -1,5 +1,3 @@
-// @flow
-
 import React from 'react'
 import { Link } from 'react-router'
 
@@ -21,13 +19,6 @@ import {
   reduxFormWrapper
 } from '../fields'
 
-type PropTypes = {
-  handleSubmit: Function,
-  onSubmit: Function,
-  submitting: boolean,
-  valid: boolean
-}
-
 const nameField = reduxFormWrapper(<TextField id='name' label='Name' />)
 const emailField = reduxFormWrapper(<TextField id='email' label='Email Address' />)
 const passwordField = reduxFormWrapper(<CreatePasswordField id='password' label='Password' />)
@@ -37,7 +28,7 @@ export default ({
   onSubmit,
   submitting,
   valid
-}: PropTypes) => (
+}) => (
   <div className='login'>
     <Banner>
       <h2>Sign Up</h2>
