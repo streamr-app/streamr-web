@@ -1,16 +1,5 @@
-// @flow
-
 import React from 'react'
 import cx from 'classnames'
-
-type PropTypes = {
-  id: number | string,
-  label: string,
-  value: string,
-  description: ?string,
-  className: ?string,
-  children: any
-}
 
 export default ({
   id,
@@ -20,7 +9,7 @@ export default ({
   className,
   children,
   ...rest
-}: PropTypes) => (
+}) => (
   <div className={cx('field horizontal-field radio-field', className)}>
     {children ||
       <input type='radio' id={id || value} value={value} {...rest} />

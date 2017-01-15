@@ -1,15 +1,10 @@
 {
   "parser": "babel-eslint",
-  "plugins": [
-    "flowtype"
-  ],
   "extends": [
     "standard",
     "standard-react"
   ],
-  "settings": {
-    "flowtype": {
-      "onlyFilesWithFlowAnnotation": false
-    }
+  "rules": {
+    "react/prop-types": 0
   }
 }

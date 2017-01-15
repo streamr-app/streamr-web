@@ -1,13 +1,9 @@
-// @flow
-
 import React, { PropTypes } from 'react'
 
 import cx from 'classnames'
 
 export default class PasswordStrengthIndicator extends React.Component {
-  state: Object
-
-  constructor (props: Object) {
+  constructor (props) {
     super(props)
 
     this.state = {

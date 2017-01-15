@@ -1,5 +1,3 @@
-// @flow
-
 import { CALL_API, getJSON } from 'redux-api-middleware'
 import path from 'path'
 import queryString from 'query-string'
@@ -10,33 +8,14 @@ import humps from 'humps'
 
 import deserialize from '../utils/deserialize'
 
-import type {
-  Dispatch,
-  GetState
-} from './types'
-
-type RequestParameters = {
-  url: string,
-  types: [string, string, string],
-  action?: string,
-  key?: string,
-  headers?: Object,
-  body?: Object | string,
-  query?: Object,
-  actionPayload?: Object,
-  authenticated?: boolean,
-  responseInterceptor?: (o: Object) => any,
-  errorInterceptor?: (o: Object) => any
-}
-
-export function fetch (options: RequestParameters) {
+export function fetch (options) {
   return baseRequest({
     method: 'GET',
     ...options
   })
 }
 
-export function createResource ({ body, key, ...options }: RequestParameters) {
+export function createResource ({ body, key, ...options }) {
   if (body && key) {
     body = { [key]: body }
   }
@@ -48,7 +27,7 @@ export function createResource ({ body, key, ...options }: RequestParameters) {
   })
 }
 
-export function updateResource ({ body, key, ...options }: RequestParameters) {
+export function updateResource ({ body, key, ...options }) {
   if (body && key) {
     body = { [key]: body }
   }
@@ -61,14 +40,14 @@ export function updateResource ({ body, key, ...options }: RequestParameters) {
   })
 }
 
-export function deleteResource (options: RequestParameters) {
+export function deleteResource (options) {
   return baseRequest({
     method: 'DELETE',
     ...options
   })
 }
 
-export function performActionOnResource ({ url, action, ...options }: RequestParameters) {
+export function performActionOnResource ({ url, action, ...options }) {
   return baseRequest({
     method: 'POST',
     url: path.join(url, action || ''),
@@ -93,8 +72,8 @@ export function baseRequest ({
   errorInterceptor = e => e,
 
   ...options
-}: RequestParameters) {
-  return function (dispatch: Dispatch, getState: GetState) {
+}) {
+  return function (dispatch, getState) {
     var headers = {}
 
     if (query) {
