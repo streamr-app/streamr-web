@@ -2,18 +2,22 @@ export default [
   {
     title: 'Doggos and You',
     description: 'Learn about how you can best relate to your doggo.',
-    user_id: 1
+    userId: 1,
+    thumbnail: 'http://placehold.it/150x100'
   }, {
     title: 'Tie a Noose',
-    description: 'Learn how to tie a noose to end your life.',
-    user_id: 2
+    description: 'Learn how to tie a noose to end your life. This is a long description to hopefully be truncated correctly.',
+    userId: 2,
+    thumbnail: 'http://placehold.it/150x100'
   }, {
     title: 'Papa Bless!',
     description: 'We talk about how Papa John is the god we need.',
-    user_id: 3
+    userId: 3,
+    thumbnail: 'http://placehold.it/150x100'
   }, {
     title: 'Ethan Bradberry',
     description: 'The man. The myth. The legend. Ethan Bradberry!',
-    user_id: 2
+    userId: 2,
+    thumbnail: 'http://placehold.it/150x100'
   }
 ]
