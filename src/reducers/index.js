@@ -4,11 +4,13 @@ import { reducer as formReducer } from 'redux-form'
 import entitiesReducer, { stubbedEntityReducers } from './entitiesReducer'
 
 import auth from './auth'
+import user from './user'
 
 const rootReducer = combineReducers({
   ...stubbedEntityReducers,
   auth,
-  form: formReducer
+  form: formReducer,
+  user
 })
 
 export default (state, action) => {

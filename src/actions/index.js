@@ -89,7 +89,7 @@ export function baseRequest ({
     }
 
     if (authenticated) {
-      headers['X-Auth-Token'] = getState().auth.session.token || undefined
+      headers['Authorization'] = `Bearer ${getState().auth.access_token}`
     }
 
     const request = {

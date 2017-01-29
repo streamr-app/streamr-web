@@ -1,13 +1,28 @@
 import store from 'store'
 
-export default function (state = {}, action) {
+export default function (state = null, action) {
   switch (action.type) {
     case 'LOGIN_SUCCESS': {
       store.set('auth', action.payload)
 
-      return state
+      return action.payload
+    }
+    case 'CURRENT_USER_SUCCESS': {
+      const userId = action.payload.result.user[0]
+
+      store.set('auth', {
+        ...store.get('auth'),
+        userId
+      })
+
+      return { ...state, userId }
+    }
+    case 'LOGOUT': {
+      store.clear()
+
+      return {}
     }
   }
 
-  return store.get('auth', {})
+  return state || store.get('auth', {})
 }

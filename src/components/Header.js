@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Link } from 'react-router'
-import Navigation from './Navigation'
+import NavigationContainer from '../containers/NavigationContainer'
 
 export default () => (
   <header role='main'>
@@ -11,6 +11,6 @@ export default () => (
       </Link>
     </h1>
 
-    <Navigation />
+    <NavigationContainer />
   </header>
 )
