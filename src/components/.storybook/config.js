@@ -8,6 +8,7 @@ function loadStories () {
   require('../stories/fields')
   require('../stories/forms')
   require('../stories/streams')
+  require('../stories/topics')
 }
 
 configure(loadStories, module)
