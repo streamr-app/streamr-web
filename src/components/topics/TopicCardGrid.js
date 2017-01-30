@@ -10,7 +10,7 @@ var listCards = (topics) => {
   })
 }
 
-export const TopicCardGrid = ({
+export default ({
   children,
   className = '',
   topics,

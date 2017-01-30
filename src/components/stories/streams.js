@@ -7,8 +7,9 @@ import streams from './data/streams'
 import { Comment } from '../streams/Comment'
 import { CommentList } from '../streams/CommentList'
 import { ThumbButtons } from '../streams/ThumbButtons'
-import { StreamCard } from '../streams/StreamCard'
-import { StreamList } from '../streams/StreamList'
+
+import StreamCard from '../streams/StreamCard'
+import StreamList from '../streams/StreamList'
 
 function listStreamCards (streams) {
   return streams.map((stream) => (
