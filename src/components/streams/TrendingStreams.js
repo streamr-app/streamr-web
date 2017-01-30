@@ -1,14 +1,14 @@
 import React from 'react'
 
-import { StreamList } from './StreamList'
-import { StreamCard } from './StreamCard'
+import StreamList from './StreamList'
+import StreamCardContainer from '../../containers/streams/StreamCardContainer'
 
 export default ({
   streams
 }) => (
   <StreamList>
     {streams.map((stream) => (
-      <StreamCard stream={stream} key={stream.id} />
+      <StreamCardContainer streamId={stream.id} key={stream.id} />
     ))}
   </StreamList>
 )
