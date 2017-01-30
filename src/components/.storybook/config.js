@@ -1,5 +1,7 @@
 import { configure } from '@kadira/storybook'
 
+import '../../config/moment.config.js'
+
 import '../../styles/index.styl'
 
 function loadStories () {
