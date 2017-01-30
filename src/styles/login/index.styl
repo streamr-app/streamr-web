@@ -1,25 +1,19 @@
 .login
-  .login-container
-    box-sizing border-box
-    color $dark-gray
+  .login-split
+    display flex
 
-    &.left
-      width 55%
-      float left
-      padding-left 150px
+    > div
+      flex 1
+      color $dark-gray
 
-    &.right
-      width 45%
-      float right
-      padding 65px 150px 70px 0
+      &:first-child
+        margin-right 30px
 
-      div
-        margin-top 40px
-      div:first-child
-        margin-top 0
+      &:last-child
+        margin-top 50px
 
-
-
+        p
+          margin-bottom 30px
 
   form
     max-width 520px

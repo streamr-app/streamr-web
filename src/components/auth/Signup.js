@@ -34,42 +34,43 @@ export default ({
       <h2>Create an Account</h2>
     </Banner>
 
-    <span className='login-container left'>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <FormRow>
-          <Field name='name' component={nameField} />
-        </FormRow>
+    <div className='login-split container'>
+      <div className='login-form'>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <FormRow>
+            <Field name='name' component={nameField} />
+          </FormRow>
 
-        <FormRow>
-          <Field name='email' component={emailField} />
-        </FormRow>
+          <FormRow>
+            <Field name='email' component={emailField} />
+          </FormRow>
 
-        <FormRow>
-          <Field name='password' component={passwordField} />
-        </FormRow>
+          <FormRow>
+            <Field name='password' component={passwordField} />
+          </FormRow>
 
-        <FormRow>
-          <Button disabled={submitting || !valid}>Sign Up</Button>
-        </FormRow>
+          <FormRow>
+            <Button disabled={submitting || !valid}>Sign Up</Button>
+          </FormRow>
 
-        <p className='subtle'>Or, <Link to='login'>log in</Link>.</p>
-      </form>
-    </span>
-    <span className='login-container right'>
-      <div>
-        Your email address will be used to send you information
-        about changes to your account. We will never share it
-        or send spam.
+          <p className='subtle'>Or, <Link to='login'>log in</Link>.</p>
+        </form>
       </div>
-      <br />
-      <div>
-        For a password, we recommend using a phrase of 4 or 5
-        words. Something like "vibrato-cellophane-remote-treehouse".
+
+      <div className='login-information'>
+        <p>
+          Your email address will be used to send you information
+          about changes to your account. We will never share it
+          or send spam.
+        </p>
+        <p>
+          For a password, we recommend using a phrase of 4 or 5
+          words. Something like "vibrato-cellophane-remote-treehouse".
+        </p>
+        <p>
+          By creating an account, you agree to our <u>Terms and Conditions</u>.
+        </p>
       </div>
-      <br />
-      <div>
-        By creating an account, you agree to our <u>Terms and Conditions</u>.
-      </div>
-    </span>
+    </div>
   </div>
 )
