@@ -2,6 +2,8 @@ import update from 'react-addons-update'
 import fromPairs from 'lodash/fromPairs'
 
 const entities = [
+  'stream',
+  'topic',
   'user'
 ]
 

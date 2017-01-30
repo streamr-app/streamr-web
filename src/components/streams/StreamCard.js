@@ -8,7 +8,7 @@ export const StreamCard = ({
 }) => (
   <div className={`stream-card ${className}`} {...rest}>
     <div className='thumbnail-wrapper'>
-      <img className='thumbnail' src={stream.thumbnail} />
+      <img className='thumbnail' src={stream.image} />
     </div>
     <div className='information-wrapper'>
       <div className='title'>{stream.title}</div>

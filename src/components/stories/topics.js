@@ -4,7 +4,7 @@ import { storiesOf } from '@kadira/storybook'
 import topics from './data/topics'
 
 import { TopicCard } from '../topics/TopicCard'
-import { TopicCardGrid } from '../topics/TopicCardGrid'
+import TopicCardGrid from '../topics/TopicCardGrid'
 
 storiesOf('Topics', module)
   .add('Topic Card', () => (
