@@ -1,8 +1,9 @@
 import React from 'react'
-import { storiesOf } from '@kadira/storybook'
+import { storiesOf, action } from '@kadira/storybook'
 
 import streams from './data/streams'
 
+import { ThumbButtons } from '../streams/ThumbButtons'
 import { StreamCard } from '../streams/StreamCard'
 import { StreamList } from '../streams/StreamList'
 
@@ -29,4 +30,9 @@ storiesOf('Streams', module)
         {listCards(streams)}
       </StreamList>
     </div>
+  ))
+  .add('Likes / Dislikes', () => (
+    <ThumbButtons likes={420} dislikes={71}
+      onLike={action('Like')}
+      onDislike={action('Dislike')} />
   ))
