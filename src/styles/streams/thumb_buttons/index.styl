@@ -1,0 +1,22 @@
+.thumb-buttons-container
+  .thumb-container
+    text-align center
+    display inline-block
+    color $dark-gray
+    padding 1px
+    background-color transparent
+    border none
+
+    &:focus
+      outline none
+    &:hover
+      color darken($dark-gray, 35%)
+      transition color 0.1s linear
+    &:last-child
+      margin-left 15px
+
+    i
+      font-size 1.5rem
+    .count
+      margin-top 4px
+      font-size 0.8rem
