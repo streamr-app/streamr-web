@@ -31,27 +31,45 @@ export default ({
 }) => (
   <div className='login'>
     <Banner>
-      <h2>Sign Up</h2>
+      <h2>Create an Account</h2>
     </Banner>
 
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <FormRow>
-        <Field name='name' component={nameField} />
-      </FormRow>
+    <span className='login-container left'>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <FormRow>
+          <Field name='name' component={nameField} />
+        </FormRow>
 
-      <FormRow>
-        <Field name='email' component={emailField} />
-      </FormRow>
+        <FormRow>
+          <Field name='email' component={emailField} />
+        </FormRow>
 
-      <FormRow>
-        <Field name='password' component={passwordField} />
-      </FormRow>
+        <FormRow>
+          <Field name='password' component={passwordField} />
+        </FormRow>
 
-      <FormRow>
-        <Button disabled={submitting || !valid}>Sign Up</Button>
-      </FormRow>
+        <FormRow>
+          <Button disabled={submitting || !valid}>Sign Up</Button>
+        </FormRow>
 
-      <p className='subtle'>Or, <Link to='login'>log in</Link>.</p>
-    </form>
+        <p className='subtle'>Or, <Link to='login'>log in</Link>.</p>
+      </form>
+    </span>
+    <span className='login-container right'>
+      <div>
+        Your email address will be used to send you information
+        about changes to your account. We will never share it
+        or send spam.
+      </div>
+      <br />
+      <div>
+        For a password, we recommend using a phrase of 4 or 5
+        words. Something like "vibrato-cellophane-remote-treehouse".
+      </div>
+      <br />
+      <div>
+        By creating an account, you agree to our <u>Terms and Conditions</u>.
+      </div>
+    </span>
   </div>
 )
