@@ -29,7 +29,7 @@ function mapDispatchToProps (dispatch, ownProps) {
     onSubmit (data) {
       return dispatch(login(data))
         .then((action) => {
-          if (action.type === 'LOGIN_SUCCESS') {
+          if (action.type.includes('SUCCESS')) {
             dispatch(push('/'))
           } else {
             throw new SubmissionError({ _error: 'Incorrect email address or password.' })

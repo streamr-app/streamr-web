@@ -9,16 +9,17 @@ nav[role='main']
     li:last-child
       margin-right -(nav-link-padding[1])
 
-  a
-    color $navigation-link-color
-    font-weight 400
-    position relative
-    padding nav-link-padding
+  li:not(.profile-preview)
+    a
+      color $navigation-link-color
+      font-weight 400
+      position relative
+      padding nav-link-padding
 
-    &, &:after
-      transition all 0.2s ease
+      &, &:after
+        transition all 0.2s ease
 
-    &:after
+    a:after
       content ' '
       display block
       position absolute
@@ -30,8 +31,15 @@ nav[role='main']
       background $link-color
       transform scaleX(0)
 
-    &:hover
+    a:hover
       color darken($navigation-link-color, 50%)
 
       &:after
         transform scaleY(1)
+
+  .profile-preview
+    p
+      margin 0
+
+    a
+      font-size 0.8rem
