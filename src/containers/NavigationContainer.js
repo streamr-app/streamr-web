@@ -1,16 +1,13 @@
 import { connect } from 'react-redux'
+
 import Navigation from '../components/Navigation'
 
 function mapStateToProps (state, ownProps) {
-  const currentUser = state.user[state.auth.userId]
+  const isSignedIn = state.auth.userId
 
   return {
-    currentUser
+    isSignedIn
   }
 }
 
-function mapDispatchToProps (dispatch, ownProps) {
-  return {}
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Navigation)
+export default connect(mapStateToProps)(Navigation)
