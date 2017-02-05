@@ -9,14 +9,14 @@ export default ({
   <nav role='main'>
     <ul>
       <li>
-        <Link to='explore'>Explore</Link>
+        <Link to='explore' activeClassName='active'>Explore</Link>
+      </li>
+
+      <li className='record'>
+        <Link to='record' activeClassName='active'>Record</Link>
       </li>
 
       {showUserOrSignUp(isSignedIn)}
-
-      <li className='record'>
-        <Link to='record'>Record</Link>
-      </li>
     </ul>
   </nav>
 )
@@ -27,7 +27,7 @@ function showUserOrSignUp (isSignedIn) {
   } else {
     return (
       <li>
-        <Link to='signup'>Sign up</Link>
+        <Link to='signup' activeClassName='active'>Sign up</Link>
       </li>
     )
   }
