@@ -1,3 +1,7 @@
+export const API_ENDPOINT = `${process.env.API_ENDPOINT || ''}`
+
+import { CALL_API } from 'redux-api-middleware'
+
 import {
   createResource
 } from './index'
@@ -9,4 +13,16 @@ export function createUser (payload) {
     key: 'user',
     body: payload
   })
+}
+
+export function checkEmailAvailability (email) {
+  return (dispatch, getState) => {
+    return dispatch({
+      [CALL_API]: {
+        endpoint: `${API_ENDPOINT}/users/email_available?email=${email}`,
+        method: 'get',
+        types: [ 'CHECK_EMAIL_REQUEST', 'CHECK_EMAIL_SUCCESS', 'CHECK_EMAIL_FAILURE' ]
+      }
+    })
+  }
 }
