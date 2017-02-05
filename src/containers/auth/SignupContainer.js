@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
 
 import { push } from 'react-router-redux'
-import { createUser } from '../../actions/users'
+import { checkEmailAvailability, createUser } from '../../actions/users'
 
 import { EMAIL_REGEX } from '../../utils/regexes'
 
@@ -41,12 +41,22 @@ function validate (values) {
   return errors
 }
 
+function asyncValidate (object, dispatch) {
+  return dispatch(checkEmailAvailability(object.email)).then((action) => {
+    if (!action.payload.email_available) {
+      /* eslint-disable no-throw-literal */
+      throw { email: 'This email is currently being used.' }
+    }
+  })
+}
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(
   reduxForm({
     form: 'signup',
-    validate
+    validate,
+    asyncValidate
   })(Signup)
 )
