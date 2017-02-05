@@ -1,15 +1,14 @@
 import React from 'react'
 import { action } from '@kadira/storybook'
 
-export const SubscribeButton = ({
-  children,
+export default ({
   className = '',
   channel,
   showSubscribers,
   ...rest
 }) => (
   <div className={`subscribe-button ${className}`} {...rest}>
-    {showSubscribers &&
+    {showSubscribers && channel.subscriberCount &&
       <div className='subscriber-count'>{channel.subscriberCount} subscribers</div>
     }
     <button onClick={action('Subscribing')}>Subscribe</button>
