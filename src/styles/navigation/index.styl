@@ -6,9 +6,6 @@ nav[role='main']
     display flex
     align-items center
 
-    li:last-child
-      margin-right -(nav-link-padding[1])
-
   li:not(.profile-preview)
     a
       color $navigation-link-color
@@ -31,7 +28,7 @@ nav[role='main']
       background $link-color
       transform scaleX(0)
 
-    a:hover
+    a:hover, a.active
       color darken($navigation-link-color, 50%)
 
       &:after
