@@ -13,8 +13,8 @@ export default ({
     </div>
     <div className='information-wrapper'>
       <div className='title'>{stream.title}</div>
-      <div className='description'>{stream.description}</div>
       <div className='author'>{user.name}</div>
+      <div className='description'>{stream.description}</div>
     </div>
   </Link>
 )
