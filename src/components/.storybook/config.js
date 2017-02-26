@@ -7,9 +7,11 @@ import '../../styles/index.styl'
 function loadStories () {
   require('../stories/buttons')
   require('../stories/channel')
+  require('../stories/drawing-board')
   require('../stories/fields')
   require('../stories/forms')
   require('../stories/streams')
+  require('../stories/stream-renderer')
   require('../stories/topics')
 }
 
