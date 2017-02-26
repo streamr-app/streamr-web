@@ -3,6 +3,7 @@ export const API_ENDPOINT = `${process.env.API_ENDPOINT || ''}`
 import { CALL_API } from 'redux-api-middleware'
 
 import {
+  fetch,
   createResource
 } from './index'
 
@@ -25,4 +26,11 @@ export function checkEmailAvailability (email) {
       }
     })
   }
+}
+
+export function fetchUser (userId) {
+  return fetch({
+    url: 'users/' + userId,
+    types: [ 'USER_REQUEST', 'USER_SUCCESS', 'USER_FAILURE' ]
+  })
 }

@@ -82,3 +82,10 @@ export function endCurrentStream () {
     }))
   }
 }
+
+export function fetchStreamsByUser (userId) {
+  return fetch({
+    url: 'users/' + userId + '/streams',
+    types: [ 'STREAMS_REQUEST', 'STREAMS_SUCCESS', 'STREAMS_FAILURE' ]
+  })
+}
