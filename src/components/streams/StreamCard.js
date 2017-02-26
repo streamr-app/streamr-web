@@ -13,7 +13,7 @@ export default ({
     </div>
     <div className='information-wrapper'>
       <div className='title'>{stream.title}</div>
-      <div className='author'>{user.name}</div>
+      <div className='author'><Link to={`/profile/${user.id}`}>{user.name}</Link></div>
       <div className='description'>{stream.description}</div>
     </div>
   </Link>
