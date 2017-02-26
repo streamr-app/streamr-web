@@ -1,12 +1,11 @@
 .stream-card
   position relative
-
-  img
-    width 100%
-
+  
   .thumbnail-wrapper
     border-radius 3px
     overflow hidden
+    img
+      width 100%
 
   .information-wrapper
     .title
@@ -26,11 +25,18 @@
 
   // Horizontal layout for the card
   &.horizontal
+    display block
+    width 100%
+    clear both
+    overflow hidden
+
     .thumbnail-wrapper
+      float left
       display inline-block
       width 33%
 
     .information-wrapper
+      float left
       display inline-block
       position absolute
       top 5px
