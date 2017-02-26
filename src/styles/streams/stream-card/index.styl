@@ -1,4 +1,6 @@
 .stream-card
+  position relative
+
   img
     width 100%
 
@@ -10,7 +12,6 @@
     .title
       font-weight 400
       font-size 0.9rem
-      margin-top 10px
 
     .description
       font-size 0.7rem
@@ -22,3 +23,23 @@
 
     .author
       font-size 0.65rem
+
+  // Horizontal layout for the card
+  &.horizontal
+    .thumbnail-wrapper
+      display inline-block
+      width 33%
+
+    .information-wrapper
+      display inline-block
+      position absolute
+      top 5px
+      margin-left 15px
+
+      .title
+        font-size 1.3rem
+      .description
+        font-size 1.0rem
+        line-height 1.0rem
+        max-height 2.0rem
+        margin-top 8px
