@@ -30,10 +30,9 @@ export default ({
         <div className='bottom-wrapper'>
           <StreamList style={{width: '100%', display: 'block'}}>
             {
-              streams && streams.length > 0 ?
-                listStreamCards(streams, user) : (
-                  <div className='no-streams'>This channel has not posted any streams.</div>
-                )
+              streams && streams.length > 0 ? listStreamCards(streams, user) : (
+                <div className='no-streams'>This channel has not posted any streams.</div>
+              )
             }
           </StreamList>
         </div>
