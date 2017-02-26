@@ -1,0 +1,21 @@
+.draw-view
+  position relative
+
+  .color-picker
+    position absolute
+    top 0
+    bottom 0
+    left 20px
+    display flex
+    flex-direction column
+    justify-content center
+    opacity 0.2
+    transition opacity 0.2s ease
+    pointer-events none
+    z-index 3
+
+    &.visible
+      pointer-events all !important
+
+    &:hover
+      opacity 1

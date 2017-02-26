@@ -31,9 +31,9 @@ export default React.createClass({
       path = this.state.currentPath
     } else {
       path = this.svg.append('path')
-        .attr('stroke', 'red')
-        .attr('stroke-width', 4)
-        .attr('stroke-linecap', 'round')
+        .attr('stroke', this.props.currentColor)
+        .attr('stroke-width', 3)
+        .attr('stroke-linecap', this.props.currentColor)
         .attr('fill', 'none')
 
       this.setState({ currentPath: path })

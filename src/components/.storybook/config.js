@@ -7,6 +7,7 @@ import '../../styles/index.styl'
 function loadStories () {
   require('../stories/buttons')
   require('../stories/channel')
+  require('../stories/color-pickers')
   require('../stories/drawing-board')
   require('../stories/fields')
   require('../stories/forms')

@@ -1,0 +1,23 @@
+.color-picker
+  size = 40px
+
+  .color-well
+    height size
+    width size
+    border-radius 50%
+    margin-bottom 10px
+    cursor pointer !important
+    transition all 0.2s ease
+    border 3px solid transparent
+
+    &:last-child
+      margin-bottom 0
+
+    &:hover
+      transform scale(1.1)
+
+    &.selected
+      transform scale(1.2)
+
+    &.selected
+      border-color white

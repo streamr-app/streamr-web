@@ -6,7 +6,7 @@ import Application from './components/Application'
 import Feed from './components/Feed'
 import LoginContainer from './containers/auth/LoginContainer'
 import SignupContainer from './containers/auth/SignupContainer'
-import DrawTestContainer from './containers/draw/DrawTestContainer'
+import DrawViewContainer from './containers/draw/DrawViewContainer'
 
 module.exports = (
   <Router history={browserHistory}>
@@ -14,7 +14,7 @@ module.exports = (
       <Route path='/explore' component={Feed} />
       <Route path='/login' component={LoginContainer} />
       <Route path='/signup' component={SignupContainer} />
-      <Route path='/draw-test' component={DrawTestContainer} />
+      <Route path='/draw-test' component={DrawViewContainer} />
     </Route>
   </Router>
 )

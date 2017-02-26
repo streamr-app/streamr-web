@@ -1,12 +1,16 @@
 import { connect } from 'react-redux'
 
-import DrawTest from '../../components/draw/DrawTest'
+import { persistCurrentLine } from '../../actions/lines'
+
+import DrawView from '../../components/draw/DrawView'
 
 function mapStateToProps (state, ownProps) {
   const currentLine = state.drawing.currentLine
+  const currentColor = state.drawing.colors[state.drawing.currentColor].normal
 
   return {
-    currentLine
+    currentLine,
+    currentColor
   }
 }
 
@@ -25,6 +29,8 @@ function mapDispatchToProps (dispatch, ownProps) {
       })
     },
     onLineEnd (coordinates) {
+      dispatch(persistCurrentLine(27))
+
       dispatch({
         type: 'LINE_END',
         payload: coordinates
@@ -39,4 +45,4 @@ function mapDispatchToProps (dispatch, ownProps) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DrawTest)
+export default connect(mapStateToProps, mapDispatchToProps)(DrawView)

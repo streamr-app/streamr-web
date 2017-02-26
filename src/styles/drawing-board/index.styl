@@ -1,11 +1,11 @@
 .drawing-board
   user-select: none
-  background: #eee
+  background: rgb(33, 37, 43)
   cursor: crosshair
 
-  svg
+  &, svg
     width: 100vw
-    height: 56.25vw
+    height: (100 * 1080/1920)vw
 
-  .click-zone *
+  .click-zone svg
     pointer-events: none
