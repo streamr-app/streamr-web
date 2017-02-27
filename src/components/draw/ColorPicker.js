@@ -10,6 +10,7 @@ export default ({
   <div className={cx('color-picker', { visible })}>
     {colors.map(color => (
       <div
+        key={color.id}
         className={cx('color-well', { selected: selectedColor === color.id })}
         style={{ backgroundColor: color.normal }}
         onClick={() => onSelectColor(color.id)} />

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import DrawingBoard from '../drawing-board/DrawingBoard'
+import MouseDrawingHandler from '../draw/MouseDrawingHandler'
 import StreamRenderer from '../stream-renderer/StreamRenderer'
 import ColorPickerContainer from '../../containers/draw/ColorPickerContainer'
 
@@ -13,9 +13,8 @@ export default ({
   currentColor
 }) => (
   <div className='draw-view'>
-    <DrawingBoard {...{ onCursorMove, onLineStart, onLineEnd, onPointCreate }}>
-      <StreamRenderer currentLine={currentLine} currentColor={currentColor} />
-    </DrawingBoard>
+    <StreamRenderer currentLine={currentLine} currentColor={currentColor} />
+    <MouseDrawingHandler {...{ onCursorMove, onLineStart, onLineEnd, onPointCreate }} />
     <ColorPickerContainer />
   </div>
 )

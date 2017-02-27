@@ -20,7 +20,7 @@ export default function (
     case 'LINE_START':
       return {
         ...state,
-        currentLine: { points: [] }
+        currentLine: { points: [], colorId: state.currentColor }
       }
     case 'LINE_END':
       return {

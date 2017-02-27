@@ -19,9 +19,9 @@ export default React.createClass({
 
   lineFunction: d3.svg.line().x(d => d.x * WIDTH).y(d => d.y * HEIGHT).interpolate('cardinal'),
 
-  componentWillUpdate () {
+  componentDidUpdate () {
     if (!this.props.currentLine) {
-      this.setState({ currentPath: null })
+      setTimeout(() => this.setState({ currentPath: null }))
       return
     }
 

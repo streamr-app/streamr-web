@@ -60,7 +60,7 @@ export default React.createClass({
     } = this.props
 
     return (
-      <div className='drawing-board'>
+      <div className='mouse-drawing-handler'>
         <Measure>
           {(measurements) => (
             <div className='click-zone'

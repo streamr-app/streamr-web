@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf } from '@kadira/storybook'
 
-import ColorPicker from '../drawing-board/ColorPicker'
+import ColorPicker from '../draw/ColorPicker'
 
 var colors = [
   { id: '1', normal: '#61afef' },
