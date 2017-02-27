@@ -25,25 +25,26 @@ export default React.createClass({
       return
     }
 
-    var path
-
     if (this.state.currentPath) {
-      path = this.state.currentPath
+      var path = this.state.currentPath
     } else {
-      path = this.svg.append('path')
-        .attr('stroke', this.props.currentColor)
-        .attr('stroke-width', 3)
-        .attr('stroke-linecap', 'round')
-        .attr('fill', 'none')
-
+      path = this.buildPath()
       this.setState({ currentPath: path })
     }
 
-    const points = this.props.currentLine.points
+    this.redrawLine(path)
+  },
 
-    if (points.length) {
-      path.attr('d', this.lineFunction(points))
-    }
+  buildPath () {
+    return this.svg.append('path')
+      .attr('stroke', this.props.currentColor)
+      .attr('stroke-width', 3)
+      .attr('stroke-linecap', 'round')
+      .attr('fill', 'none')
+  },
+
+  redrawLine (path) {
+    path.attr('d', this.lineFunction(this.props.currentLine.points))
   },
 
   render () {
