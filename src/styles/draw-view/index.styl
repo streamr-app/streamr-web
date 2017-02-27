@@ -12,33 +12,29 @@
     justify-content center
     opacity 0.4
     transition opacity 0.2s ease
-    pointer-events none
-    z-index 3
 
-    &.visible
-      pointer-events all
+    &.disabled
+      pointer-events none
 
     &:hover
       opacity 1
 
-.mouse-drawing-handler
-  user-select none
-  cursor crosshair
-  top 0px
-  height 100%
-  position absolute
-  z-index 2
-
-  &, svg
+  .mouse-drawing-handler
+    cursor crosshair
+    position absolute
+    top 0
     width 100vw
     height (100 * 1080/1920)vw
 
-  .click-zone
-    position absolute
-    top 0
-    left 0
-    height 100%
-    width 100%
+    .click-zone
+      position absolute
+      user-select none
+      top 0
+      left 0
+      height 100%
+      width 100%
 
     svg
+      height 100%
+      width 100%
       pointer-events none

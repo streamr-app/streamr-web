@@ -7,10 +7,12 @@ import { setColor } from '../../actions/colors'
 import ColorPicker from '../../components/draw/ColorPicker'
 
 function mapStateToProps (state, ownProps) {
+  const sortedColors = sortBy(values(state.drawing.colors), 'order')
+
   return {
     selectedColor: state.drawing.currentColor,
-    visible: state.drawing.currentLine == null,
-    colors: sortBy(values(state.drawing.colors), 'order')
+    disabled: state.drawing.currentLine != null,
+    colors: sortedColors
   }
 }
 

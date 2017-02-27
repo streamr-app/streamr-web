@@ -2,7 +2,7 @@ export default function (
   state = {
     lines: [],
     colors: {
-      1: { id: '1', normal: '#abb2bf', order: '1' },
+      1: { id: '1', normal: '#eee', order: '1' },
       2: { id: '2', normal: '#e06c75', order: '2' },
       3: { id: '3', normal: '#d19a66', order: '3' },
       4: { id: '4', normal: '#98c379', order: '4' },

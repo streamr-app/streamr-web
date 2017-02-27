@@ -5,9 +5,9 @@ export default ({
   colors,
   selectedColor,
   onSelectColor,
-  visible
+  disabled
 }) => (
-  <div className={cx('color-picker', { visible })}>
+  <div className={cx('color-picker', { disabled })}>
     {colors.map(color => (
       <div
         key={color.id}
