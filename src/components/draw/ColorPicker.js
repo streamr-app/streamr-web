@@ -1,6 +1,8 @@
 import React from 'react'
 import cx from 'classnames'
 
+import Mousetrap from '../Mousetrap'
+
 export default ({
   colors,
   selectedColor,
@@ -15,5 +17,16 @@ export default ({
         style={{ backgroundColor: color.normal }}
         onClick={() => onSelectColor(color.id)} />
     ))}
+
+    <Mousetrap
+      bindings={{
+        '1': () => onSelectColor('1'),
+        '2': () => onSelectColor('2'),
+        '3': () => onSelectColor('3'),
+        '4': () => onSelectColor('4'),
+        '5': () => onSelectColor('5'),
+        '6': () => onSelectColor('6')
+      }}
+    />
   </div>
 )
