@@ -12,7 +12,6 @@ function loadStories () {
   require('../stories/fields')
   require('../stories/forms')
   require('../stories/streams')
-  require('../stories/stream-renderer')
   require('../stories/topics')
 }
 
