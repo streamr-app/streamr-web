@@ -3,6 +3,7 @@ import React from 'react'
 import Helmet from 'react-helmet'
 
 import Header from './Header'
+import ColorLoader from '../containers/draw/ColorLoader'
 
 export default ({
   children
@@ -21,5 +22,7 @@ export default ({
     <main>
       {children}
     </main>
+
+    <ColorLoader />
   </div>
 )

@@ -4,7 +4,7 @@ import DrawView from '../../components/draw/DrawView'
 
 function mapStateToProps (state, ownProps) {
   const currentLine = state.drawing.currentLine
-  const currentColor = state.drawing.colors[state.drawing.currentColor].normal
+  const currentColor = (state.color[state.drawing.currentColor] || {}).normal
 
   return {
     currentLine,
