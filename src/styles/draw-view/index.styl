@@ -1,0 +1,56 @@
+.draw-view
+  position relative
+  background rgb(33, 37, 43)
+
+  .color-picker
+    position absolute
+    top 0
+    bottom 0
+    padding 0 20px
+    display flex
+    flex-direction column
+    justify-content center
+
+    .color-well
+      opacity 0.4
+      transition all 0.2s ease
+
+      &.selected
+        animation pulse 1s 1 forwards
+
+    &.disabled
+      pointer-events none
+
+    &:hover .color-well
+      opacity 1
+      animation none
+
+  .mouse-drawing-handler
+    cursor crosshair
+    position absolute
+    top 0
+    width 100vw
+    height (100 * 1080/1920)vw
+
+    .click-zone
+      position absolute
+      user-select none
+      top 0
+      left 0
+      height 100%
+      width 100%
+
+    svg
+      height 100%
+      width 100%
+      pointer-events none
+
+@keyframes pulse
+  0%
+    opacity 1
+
+  66%
+    opacity 1
+
+  100%
+    opacity 0.4
