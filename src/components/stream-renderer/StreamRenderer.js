@@ -19,8 +19,8 @@ export default React.createClass({
 
   lineFunction: d3.svg.line().x(d => d.x * WIDTH).y(d => d.y * HEIGHT).interpolate('cardinal'),
 
-  componentDidUpdate () {
-    if (!this.props.currentLine) {
+  componentWillReceiveProps (nextProps) {
+    if (!nextProps.currentLine) {
       setTimeout(() => this.setState({ currentPath: null }))
       return
     }
@@ -32,7 +32,7 @@ export default React.createClass({
       this.setState({ currentPath: path })
     }
 
-    this.redrawLine(path)
+    this.redrawLine(path, nextProps.currentLine)
   },
 
   buildPath () {
@@ -43,8 +43,8 @@ export default React.createClass({
       .attr('fill', 'none')
   },
 
-  redrawLine (path) {
-    path.attr('d', this.lineFunction(this.props.currentLine.points))
+  redrawLine (path, line) {
+    path.attr('d', this.lineFunction(line.points))
   },
 
   render () {
