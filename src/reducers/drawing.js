@@ -2,7 +2,8 @@ export default function (
   state = {
     lines: [],
     currentLine: null,
-    currentColor: 1
+    currentColor: 1,
+    brushThickness: 2
   },
   action
 ) {
@@ -32,6 +33,11 @@ export default function (
       return {
         ...state,
         currentColor: action.payload
+      }
+    case 'SET_THICKNESS':
+      return {
+        ...state,
+        brushThickness: action.payload
       }
   }
 

@@ -5,10 +5,12 @@ import DrawView from '../../components/draw/DrawView'
 function mapStateToProps (state, ownProps) {
   const currentLine = state.drawing.currentLine
   const currentColor = (state.color[state.drawing.currentColor] || {}).normal
+  const currentThickness = state.drawing.brushThickness
 
   return {
     currentLine,
-    currentColor
+    currentColor,
+    currentThickness
   }
 }
 

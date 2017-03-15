@@ -2,7 +2,7 @@ import React from 'react'
 
 import MouseDrawingHandler from '../draw/MouseDrawingHandler'
 import StreamRenderer from '../stream-renderer/StreamRenderer'
-import ColorPickerContainer from '../../containers/draw/ColorPickerContainer'
+import DrawingSidebar from './DrawingSidebar'
 
 export default ({
   onCursorMove,
@@ -10,11 +10,13 @@ export default ({
   onLineEnd,
   onPointCreate,
   currentLine,
-  currentColor
+  currentColor,
+  currentThickness
 }) => (
   <div className='draw-view'>
-    <StreamRenderer currentLine={currentLine} currentColor={currentColor} />
+    <StreamRenderer currentLine={currentLine} currentColor={currentColor} brushThickness={currentThickness} />
     <MouseDrawingHandler {...{ onCursorMove, onLineStart, onLineEnd, onPointCreate }} />
-    <ColorPickerContainer />
+
+    <DrawingSidebar />
   </div>
 )
