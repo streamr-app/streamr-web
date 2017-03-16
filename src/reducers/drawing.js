@@ -1,16 +1,9 @@
 export default function (
   state = {
     lines: [],
-    colors: {
-      1: { id: '1', normal: '#eee', order: '1' },
-      2: { id: '2', normal: '#e06c75', order: '2' },
-      3: { id: '3', normal: '#d19a66', order: '3' },
-      4: { id: '4', normal: '#98c379', order: '4' },
-      5: { id: '5', normal: '#61afef', order: '5' },
-      6: { id: '6', normal: '#c678dd', order: '6' }
-    },
     currentLine: null,
-    currentColor: '1'
+    currentColor: 1,
+    brushThickness: 2
   },
   action
 ) {
@@ -20,7 +13,7 @@ export default function (
     case 'LINE_START':
       return {
         ...state,
-        currentLine: { points: [], colorId: state.currentColor }
+        currentLine: { points: [], colorId: state.currentColor, thickness: state.brushThickness }
       }
     case 'LINE_END':
       return {
@@ -40,6 +33,11 @@ export default function (
       return {
         ...state,
         currentColor: action.payload
+      }
+    case 'SET_THICKNESS':
+      return {
+        ...state,
+        brushThickness: action.payload
       }
   }
 

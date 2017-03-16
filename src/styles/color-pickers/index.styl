@@ -1,6 +1,10 @@
 .color-picker
   size = 40px
 
+  display flex
+  flex-direction column
+  justify-content center
+
   .color-well
     height size
     width size
@@ -9,6 +13,8 @@
     cursor pointer
     transition all 0.2s ease
     border 3px solid transparent
+    opacity 0.4
+    transition all 0.2s ease
 
     &:last-child
       margin-bottom 0
@@ -21,3 +27,21 @@
 
     &.selected
       border-color white
+      animation pulse 1s 1 forwards
+
+  &.disabled
+    pointer-events none
+
+  &:hover .color-well
+    opacity 1
+    animation none
+
+@keyframes pulse
+  0%
+    opacity 1
+
+  66%
+    opacity 1
+
+  100%
+    opacity 0.4

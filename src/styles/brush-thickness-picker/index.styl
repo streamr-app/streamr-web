@@ -1,0 +1,73 @@
+.brush-thickness-picker
+  margin-top 20px
+  display flex
+  cursor pointer
+
+  circle
+    transition all 0.3s ease
+
+  .sidebar-button
+    display flex
+    align-items center
+    justify-content center
+
+  > .sidebar-button
+    border 1px solid rgba(255, 255, 255, 0.6)
+    background none
+
+  .width-buttons
+    position absolute
+    left 50px
+
+    display flex
+    align-items center
+    justify-content center
+    pointer-events none
+    padding-left 23px
+    height 40px
+
+    .width-button-container
+      margin-right 10px
+      transform rotate(-180deg)
+      opacity 0
+      transition all 0.1s ease
+      position relative
+      height 30px
+
+    .width-button
+      transition all 0.1s ease
+      cursor pointer
+      height 30px
+      width 30px
+
+      &:hover
+        background rgba(255, 255, 255, 0.8)
+        transform: scale(1.05)
+
+      &.selected
+        background white
+        transform: scale(1.2)
+
+  for num in 1..10
+    .width-button-container:nth-child({num})
+      left -40px * num
+      transition-delay num * 0.04s
+
+  .width-buttons:hover
+    pointer-events auto
+
+    .width-button-container
+      opacity 1
+      transform rotate(0deg)
+      left 0
+      right 0
+
+  &:hover
+    .width-buttons
+      pointer-events auto
+
+    .width-button-container
+      opacity 1
+      transform rotate(0deg)
+      left 0
+      right 0

@@ -7,6 +7,7 @@ export default ({
   colors,
   selectedColor,
   onSelectColor,
+  onSelectColorOrder,
   disabled
 }) => (
   <div className={cx('color-picker', { disabled })}>
@@ -20,12 +21,12 @@ export default ({
 
     <Mousetrap
       bindings={{
-        '1': () => onSelectColor('1'),
-        '2': () => onSelectColor('2'),
-        '3': () => onSelectColor('3'),
-        '4': () => onSelectColor('4'),
-        '5': () => onSelectColor('5'),
-        '6': () => onSelectColor('6')
+        '1': () => onSelectColorOrder(1),
+        '2': () => onSelectColorOrder(2),
+        '3': () => onSelectColorOrder(3),
+        '4': () => onSelectColorOrder(4),
+        '5': () => onSelectColorOrder(5),
+        '6': () => onSelectColorOrder(6)
       }}
     />
   </div>
