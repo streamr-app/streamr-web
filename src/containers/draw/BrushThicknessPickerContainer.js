@@ -8,7 +8,7 @@ function mapStateToProps (state, ownProps) {
   const currentColor = (state.color[state.drawing.currentColor] || {}).normal
 
   return {
-    selectedThickness: state.drawing.brushThickness,
+    currentThickness: state.drawing.brushThickness,
     currentColor
   }
 }

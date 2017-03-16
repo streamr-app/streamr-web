@@ -51,7 +51,11 @@ export default React.createClass({
     const x = (event.pageX - measurements.left) / measurements.width
     const y = (event.pageY - measurements.top) / measurements.height
 
-    return { x, y }
+    return { x: this.round(x, 5), y: this.round(y, 5) }
+  },
+
+  round (number, precision) {
+    return Math.round(number * Math.pow(10, precision)) / Math.pow(10, precision)
   },
 
   render () {

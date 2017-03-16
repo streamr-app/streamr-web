@@ -13,7 +13,7 @@ export default function (
     case 'LINE_START':
       return {
         ...state,
-        currentLine: { points: [], colorId: state.currentColor }
+        currentLine: { points: [], colorId: state.currentColor, thickness: state.brushThickness }
       }
     case 'LINE_END':
       return {
