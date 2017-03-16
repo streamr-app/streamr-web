@@ -15,9 +15,8 @@ export default ({
 
     <div className='width-buttons'>
       {[2, 3, 4, 6, 8].map(thickness => (
-        <div className='width-button-container'>
+        <div className='width-button-container' key={thickness}>
           <div
-            key={thickness}
             onClick={() => onSelectThickness(thickness)}
             className={cx('sidebar-button width-button', { selected: thickness === currentThickness })}
           >

@@ -14,7 +14,7 @@ export default ({
   currentThickness
 }) => (
   <div className='draw-view'>
-    <StreamRenderer currentLine={currentLine} currentColor={currentColor} brushThickness={currentThickness} />
+    <StreamRenderer {...{ currentLine, currentColor, currentThickness }} />
     <MouseDrawingHandler {...{ onCursorMove, onLineStart, onLineEnd, onPointCreate }} />
 
     <DrawingSidebar />
