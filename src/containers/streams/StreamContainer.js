@@ -4,7 +4,7 @@ import StreamView from '../../components/streams/StreamView'
 
 function mapStateToProps (state, ownProps) {
   const streamSlug = ownProps.params.streamSlug
-  
+
   return {
     streamSlug
   }
