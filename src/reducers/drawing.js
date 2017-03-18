@@ -3,7 +3,8 @@ export default function (
     lines: [],
     currentLine: null,
     currentColor: 1,
-    brushThickness: 2
+    brushThickness: 2,
+    currentStreamId: null
   },
   action
 ) {
@@ -26,7 +27,9 @@ export default function (
         ...state,
         currentLine: {
           ...state.currentLine,
-          points: state.currentLine.points.concat([ action.payload ])
+          points: state.currentLine.points.concat([
+            { ...action.payload, time: Math.round(performance.now() - state.streamStart) }
+          ])
         }
       }
     case 'COLOR_SET':
@@ -39,7 +42,15 @@ export default function (
         ...state,
         brushThickness: action.payload
       }
+    case 'SET_CURRENT_STREAM':
+      return {
+        ...state,
+        currentStreamId: action.payload,
+        streamStart: performance.now()
+      }
   }
 
   return state
 }
+
+/* global performance */

@@ -1,9 +1,13 @@
+@import 'recording'
+
 header[role='main']
-  container()
+  .container
+    display flex
+    align-items center
+    justify-content space-between
 
-  display flex
-  align-items center
-  justify-content space-between
-
-  img
+  img:first-child
     width (image-size('../../images/header-logo.png')[0] / 2)
+
+  img:last-child
+    width (image-size('../../images/header-logo-text.png')[0] / 2)

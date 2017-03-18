@@ -17,7 +17,8 @@ export default ({
   <div className={cx('field text-field', className, { errors: errors.length > 0 })}>
     <label htmlFor={id}>{label}</label>
 
-    {children ||
+    {
+      children && React.cloneElement(children, { id, type, ...rest }) ||
       <input type={type} id={id} {...rest} />
     }
 

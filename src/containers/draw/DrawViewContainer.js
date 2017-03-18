@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 
 import DrawView from '../../components/draw/DrawView'
 
-// import { persistCurrentLine } from '../../actions/lines'
+import { persistCurrentLine } from '../../actions/lines'
 
 function mapStateToProps (state, ownProps) {
   const currentLine = state.drawing.currentLine
@@ -31,7 +31,7 @@ function mapDispatchToProps (dispatch, ownProps) {
       })
     },
     onLineEnd (coordinates) {
-      // TODO: dispatch(persistCurrentLine(streamId))
+      dispatch(persistCurrentLine())
 
       dispatch({
         type: 'LINE_END',
