@@ -29,7 +29,6 @@ export default ({
     </TextField>
 
     {getRecordingControls({ recording, submitting, valid, onStopRecording, canStopRecording })}
-
   </form>
 )
 

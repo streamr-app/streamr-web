@@ -21,7 +21,6 @@ module.exports = (
         <Route path='/signup' component={SignupContainer} />
         <Route path='/record' component={RecordLayout}>
           <IndexRoute component={DrawViewContainer} />
-          <Route path=':streamId' component={DrawViewContainer} />
         </Route>
 
         <Route path='/:streamSlug' component={StreamContainer} />
@@ -29,6 +28,5 @@ module.exports = (
 
       <IndexRoute component={DefaultLayout} />
     </Route>
-
   </Router>
 )
