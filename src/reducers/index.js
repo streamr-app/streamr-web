@@ -5,6 +5,7 @@ import entitiesReducer, { stubbedEntityReducers } from './entitiesReducer'
 
 import auth from './auth'
 import drawing from './drawing'
+import streamDataByStream from './streamDataByStream'
 import user from './user'
 
 const rootReducer = combineReducers({
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   auth,
   drawing,
   form: formReducer,
+  streamDataByStream,
   user
 })
 

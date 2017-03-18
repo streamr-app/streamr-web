@@ -1,7 +1,14 @@
 import React from 'react'
 
 export default ({
-  streamSlug
-}) => (
-  <h1>TODO: {streamSlug}</h1>
-)
+  loading,
+  stream
+}) => {
+  if (loading) return <p>Loading...</p>
+
+  return (
+    <div className='container'>
+      <h1>{stream.title}</h1>
+    </div>
+  )
+}
