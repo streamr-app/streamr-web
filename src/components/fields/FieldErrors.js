@@ -4,8 +4,8 @@ export default ({
   errors
 }) => (
   <ul className='field-errors'>
-    {errors.map((error, index) =>
-      <li className='field-error' key={index}>{error}</li>
+    {errors.map((error) =>
+      <li className='field-error' key={error}>{error}</li>
     )}
   </ul>
 )

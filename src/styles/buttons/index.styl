@@ -23,6 +23,13 @@
     transform scale(1.03)
     box-shadow $active-field-box-shadow
 
-  &:disabled
+  &:disabled, &.disabled
     background desaturate($button-color, 100%)
     opacity 0.7
+    cursor not-allowed
+
+    &.-record
+      background desaturate($record-color, 100%)
+
+  &.-record
+    background $record-color

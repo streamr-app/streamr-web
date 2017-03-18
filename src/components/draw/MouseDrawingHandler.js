@@ -14,6 +14,12 @@ export default React.createClass({
   componentDidMount () {
     this.throttledPointCreate = throttle(this.props.onPointCreate, 20, { leading: true, trailing: true })
     this.throttledCursorMove = throttle(this.props.onCursorMove, 50, { leading: true, trailing: true })
+
+    this.measurer = setInterval(() => this.refs.measure.measure(), 100)
+  },
+
+  componentWillUnmount () {
+    clearInterval(this.measurer)
   },
 
   mouseDownCallback (event, measurements) {
@@ -65,7 +71,7 @@ export default React.createClass({
 
     return (
       <div className='mouse-drawing-handler'>
-        <Measure>
+        <Measure ref='measure' whitelist={['width', 'height', 'top', 'right', 'bottom', 'left']}>
           {(measurements) => (
             <div className='click-zone'
               onMouseDown={(event) => this.mouseDownCallback(event, measurements)}

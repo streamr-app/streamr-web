@@ -1,0 +1,56 @@
+header[role="main"]
+  position relative
+
+  &, img, .container, &:before, nav, .stream-options
+    transition all 0.7s ease
+
+  .container
+    z-index 2
+    position relative
+
+  &:before
+    content ' '
+    display block
+    background darken(#21252b, 20%)
+    position absolute
+    top 0
+    bottom 100%
+    left 0
+    right 0
+    z-index 0
+    opacity 0
+
+  .stream-options
+    left 70px
+    right 30px
+    position absolute
+    z-index 4
+    top 0
+    height 92px
+    transform translateY(-200px)
+    opacity 0
+
+html.recording
+  header[role="main"]
+    max-width 100%
+
+    &:before
+      bottom 0
+      opacity 1
+
+    .container
+      max-width 100%
+
+    nav
+      opacity 0
+
+    .stream-options
+      transform translateY(0)
+      opacity 1
+
+    img:first-child
+      width (image-size('../../images/header-logo.png')[0] / 3)
+
+    img:last-child
+      width (image-size('../../images/header-logo-text.png')[0] / 3)
+      opacity 0

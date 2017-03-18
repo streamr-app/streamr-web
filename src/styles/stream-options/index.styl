@@ -1,0 +1,26 @@
+.stream-options
+  display flex
+  justify-content space-between
+  align-items center
+  padding 0
+
+  input
+    background none
+    color white
+    border 1px solid transparent
+    padding 10px
+    border-radius 3px
+    transition background-color 0.2s ease, border-color 0.2s ease
+    outline 0
+    cursor pointer
+    font-size 1.3em
+    display block
+    max-width 70vw
+
+    &:hover, &:focus
+      border-color rgb(100, 100, 100)
+
+    &:focus
+      background black
+      cursor initial
+      border-color rgb(200, 200, 200)
