@@ -1,3 +1,5 @@
+import { CALL_API } from 'redux-api-middleware'
+
 import {
   fetch,
   createResource,
@@ -18,6 +20,37 @@ export function createStream (stream) {
     body: { stream },
     authenticated: true
   })
+}
+
+export function fetchStream (streamId) {
+  return fetch({
+    url: `streams/${streamId}`,
+    types: [ 'FETCH_STREAM_REQUEST', 'FETCH_STREAM_SUCCESS', 'FETCH_STREAM_FAILURE' ]
+  })
+}
+
+export function fetchStreamData (streamId) {
+  return (dispatch, getState) => {
+    const endpoint = getState().stream[streamId].s3Path
+
+    return dispatch({
+      [CALL_API]: {
+        endpoint,
+        method: 'GET',
+        types: [
+          'STREAM_DATA_REQUEST',
+          {
+            type: 'STREAM_DATA_SUCCESS',
+            payload: (action, state, response) => {
+              return response.text().then(text => {
+                return { data: text, streamId }
+              })
+            }
+          },
+          'STREAM_DATA_FAILURE']
+      }
+    })
+  }
 }
 
 export function setCurrentStream (streamId) {

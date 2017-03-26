@@ -26,16 +26,14 @@ function mapDispatchToProps (dispatch, ownProps) {
     },
     onLineStart (coordinates) {
       dispatch({
-        type: 'LINE_START',
-        payload: coordinates
+        type: 'LINE_START'
       })
     },
     onLineEnd (coordinates) {
       dispatch(persistCurrentLine())
 
       dispatch({
-        type: 'LINE_END',
-        payload: coordinates
+        type: 'LINE_END'
       })
     },
     onPointCreate (coordinates) {
