@@ -13,8 +13,15 @@ function mapStateToProps (state, ownProps) {
     return { loading: true }
   }
 
+  const streamData = state.streamDataByStream[stream.id]
+
+  if (!streamData) {
+    return { loading: true }
+  }
+
   return {
-    stream
+    stream,
+    streamData
   }
 }
 
