@@ -1,13 +1,33 @@
+sidebar-width = 90px
+
 .draw-view
   position relative
-  background rgb(33, 37, 43)
+  background darken(rgb(33, 37, 43), 15%)
+  height calc(100vh - 100px)
+
+  &.disabled
+    cursor not-allowed
+
+    .mouse-drawing-handler
+      cursor not-allowed
+
+  .drawing-sidebar
+    position absolute
+    top 0
+    bottom 0
+    width sidebar-width
+    z-index 100
+    background darken(rgb(33, 37, 43), 30%)
+
+  .mouse-drawing-handler, .stream-renderer
+    position absolute
+    right 0
+    top calc(((100vh - 100px) - (100vw - 90px) * 1080 / 1920) / 2)
+    min-width calc(100vw - 90px)
+    min-height calc((100vw - 90px) * 1080 / 1920)
 
   .mouse-drawing-handler
     cursor crosshair
-    position absolute
-    top 0
-    width 100vw
-    height (100 * 1080/1920)vw
 
     .click-zone
       position absolute
@@ -21,3 +41,6 @@
       height 100%
       width 100%
       pointer-events none
+
+  .stream-renderer
+    background rgb(33, 37, 43)
