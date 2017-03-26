@@ -14,9 +14,11 @@ export default ({
   currentThickness
 }) => (
   <div className='draw-view'>
-    <StreamRenderer {...{ currentLine, currentColor, currentThickness }} />
-    <MouseDrawingHandler {...{ onCursorMove, onLineStart, onLineEnd, onPointCreate }} />
-
     <DrawingSidebar />
+
+    <div className='draw-container'>
+      <StreamRenderer {...{ currentLine, currentColor, currentThickness }} />
+      <MouseDrawingHandler {...{ onCursorMove, onLineStart, onLineEnd, onPointCreate }} />
+    </div>
   </div>
 )

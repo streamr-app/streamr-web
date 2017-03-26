@@ -27,7 +27,7 @@
 
     &.selected
       border-color white
-      animation pulse 1s 1 forwards
+      opacity 1
 
   &.disabled
     pointer-events none
@@ -35,13 +35,3 @@
   &:hover .color-well
     opacity 1
     animation none
-
-@keyframes pulse
-  0%
-    opacity 1
-
-  66%
-    opacity 1
-
-  100%
-    opacity 0.4
