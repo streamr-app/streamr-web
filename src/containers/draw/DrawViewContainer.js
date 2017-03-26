@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import DrawView from '../../components/draw/DrawView'
 
 import { persistCurrentLine } from '../../actions/lines'
+import { reset as resetForm } from 'redux-form'
 
 function mapStateToProps (state, ownProps) {
   const currentLine = state.drawing.currentLine
@@ -18,6 +19,8 @@ function mapStateToProps (state, ownProps) {
 }
 
 function mapDispatchToProps (dispatch, ownProps) {
+  dispatch(resetForm('stream-options'))
+
   return {
     onCursorMove (coordinates) {
       dispatch({
