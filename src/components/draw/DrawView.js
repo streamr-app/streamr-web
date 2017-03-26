@@ -1,4 +1,5 @@
 import React from 'react'
+import cx from 'classnames'
 
 import MouseDrawingHandler from '../draw/MouseDrawingHandler'
 import StreamRenderer from '../stream-renderer/StreamRenderer'
@@ -11,14 +12,15 @@ export default ({
   onPointCreate,
   currentLine,
   currentColor,
-  currentThickness
+  currentThickness,
+  enabled
 }) => (
-  <div className='draw-view'>
+  <div className={cx('draw-view', { disabled: !enabled })}>
     <DrawingSidebar />
 
     <div className='draw-container'>
       <StreamRenderer {...{ currentLine, currentColor, currentThickness }} />
-      <MouseDrawingHandler {...{ onCursorMove, onLineStart, onLineEnd, onPointCreate }} />
+      <MouseDrawingHandler {...{ enabled, onCursorMove, onLineStart, onLineEnd, onPointCreate }} />
     </div>
   </div>
 )

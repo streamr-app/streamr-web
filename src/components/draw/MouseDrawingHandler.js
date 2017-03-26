@@ -2,6 +2,7 @@ import React from 'react'
 
 import throttle from 'lodash/throttle'
 
+import cx from 'classnames'
 import Measure from 'react-measure'
 
 export default React.createClass({
@@ -23,12 +24,16 @@ export default React.createClass({
   },
 
   mouseDownCallback (event, measurements) {
+    if (!this.props.enabled) return
+
     this.props.onLineStart(this.getRelativePosition(event, measurements))
 
     this.setState({ drawing: true })
   },
 
   mouseUpCallback (event, measurements) {
+    if (!this.props.enabled) return
+
     if (this.state.drawing) {
       this.throttledPointCreate.cancel()
       this.props.onLineEnd(this.getRelativePosition(event, measurements))
@@ -38,6 +43,8 @@ export default React.createClass({
   },
 
   mouseMoveCallback (event, measurements) {
+    if (!this.props.enabled) return
+
     if (this.state.drawing) {
       this.throttledPointCreate(this.getRelativePosition(event, measurements))
     } else {
@@ -46,6 +53,8 @@ export default React.createClass({
   },
 
   mouseLeaveCallback (event, measurement) {
+    if (!this.props.enabled) return
+
     this.setState({ drawing: false })
     if (this.state.drawing) {
       this.props.onPointCreate(this.getRelativePosition(event, measurement))
@@ -70,7 +79,7 @@ export default React.createClass({
     } = this.props
 
     return (
-      <div className='mouse-drawing-handler'>
+      <div className={cx('mouse-drawing-handler')}>
         <Measure ref='measure' whitelist={['width', 'height', 'top', 'right', 'bottom', 'left']}>
           {(measurements) => (
             <div className='click-zone'

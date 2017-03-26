@@ -12,7 +12,8 @@ function mapStateToProps (state, ownProps) {
   return {
     currentLine,
     currentColor,
-    currentThickness
+    currentThickness,
+    enabled: !!state.drawing.currentStreamId
   }
 }
 

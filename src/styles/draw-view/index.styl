@@ -2,8 +2,14 @@ sidebar-width = 90px
 
 .draw-view
   position relative
-  background darken(rgb(33, 37, 43), 30%)
+  background darken(rgb(33, 37, 43), 15%)
   height calc(100vh - 100px)
+
+  &.disabled
+    cursor not-allowed
+
+    .mouse-drawing-handler
+      cursor not-allowed
 
   .drawing-sidebar
     position absolute
@@ -11,9 +17,9 @@ sidebar-width = 90px
     bottom 0
     width sidebar-width
     z-index 100
+    background darken(rgb(33, 37, 43), 30%)
 
   .mouse-drawing-handler, .stream-renderer
-
     position absolute
     right 0
     top calc(((100vh - 100px) - (100vw - 90px) * 1080 / 1920) / 2)
