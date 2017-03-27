@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
+import { routerReducer } from 'react-router-redux'
 
 import entitiesReducer, { stubbedEntityReducers } from './entitiesReducer'
 
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   auth,
   drawing,
   form: formReducer,
+  router: routerReducer,
   streamDataByStream,
   user
 })

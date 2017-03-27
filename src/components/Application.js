@@ -2,11 +2,11 @@ import React from 'react'
 
 import Helmet from 'react-helmet'
 
+import DefaultLayout from './DefaultLayout'
+
 import ColorLoader from '../containers/draw/ColorLoader'
 
-export default ({
-  children
-}) => (
+export default () => (
   <div className='application'>
     <Helmet
       titleTemplate='Streamr — %s'
@@ -16,7 +16,7 @@ export default ({
       ]}
      />
 
-    {children}
+    <DefaultLayout />
 
     <ColorLoader />
   </div>

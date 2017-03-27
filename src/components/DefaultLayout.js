@@ -2,14 +2,26 @@ import React from 'react'
 
 import Header from './Header'
 
-export default ({
-  children
-}) => (
+import { Route, Switch } from 'react-router-dom'
+
+import RecordLayout from './RecordLayout'
+import Feed from './Feed'
+import LoginContainer from '../containers/auth/LoginContainer'
+import SignupContainer from '../containers/auth/SignupContainer'
+import StreamContainer from '../containers/streams/StreamContainer'
+
+export default () => (
   <div>
     <Header />
 
     <main>
-      {children}
+      <Switch>
+        <Route path='/explore' component={Feed} />
+        <Route path='/login' component={LoginContainer} />
+        <Route path='/signup' component={SignupContainer} />
+        <Route path='/record' component={RecordLayout} />
+        <Route path='/:streamSlug' component={StreamContainer} />
+      </Switch>
     </main>
   </div>
 )

@@ -1,6 +1,8 @@
 import React from 'react'
 import cx from 'classnames'
 
+import { Prompt } from 'react-router-dom'
+
 import MouseDrawingHandler from '../draw/MouseDrawingHandler'
 import StreamRenderer from '../stream-renderer/StreamRenderer'
 import DrawingSidebar from './DrawingSidebar'
@@ -16,6 +18,10 @@ export default ({
   enabled
 }) => (
   <div className={cx('draw-view', { disabled: !enabled })}>
+    <Prompt
+      when={enabled}
+      message='Are you sure you want to leave? Your recording will be cancelled.' />
+
     <DrawingSidebar />
 
     <div className='draw-container'>
