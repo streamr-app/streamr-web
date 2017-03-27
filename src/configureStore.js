@@ -4,19 +4,18 @@ import { apiMiddleware } from 'redux-api-middleware'
 import thunk from 'redux-thunk'
 
 import { routerMiddleware } from 'react-router-redux'
-import { browserHistory } from 'react-router'
+import { composeWithDevTools } from 'redux-devtools-extension'
 
-const createStoreWithMiddleware = applyMiddleware(
-  thunk,
-  apiMiddleware,
-  routerMiddleware(browserHistory)
-)(createStore)
-
-export default function configureStore (initialState) {
-  const store = createStoreWithMiddleware(
+export default function configureStore (history) {
+  const store = createStore(
     rootReducer,
-    initialState,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    composeWithDevTools(
+      applyMiddleware(
+        thunk,
+        apiMiddleware,
+        routerMiddleware(history)
+      )
+    )
   )
 
   if (module.hot) {

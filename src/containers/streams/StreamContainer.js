@@ -5,7 +5,7 @@ import StreamView from '../../components/streams/StreamView'
 import { fetchStream, fetchStreamData } from '../../actions/stream'
 
 function mapStateToProps (state, ownProps) {
-  const streamSlug = ownProps.params.streamSlug
+  const streamSlug = ownProps.match.params.streamSlug
   const streamId = streamSlug.split('-')[0]
   const stream = state.stream[streamId]
 
@@ -26,7 +26,7 @@ function mapStateToProps (state, ownProps) {
 }
 
 function mapDispatchToProps (dispatch, ownProps) {
-  const streamSlug = ownProps.params.streamSlug
+  const streamSlug = ownProps.match.params.streamSlug
   const streamId = streamSlug.split('-')[0]
 
   dispatch(fetchStream(streamId))

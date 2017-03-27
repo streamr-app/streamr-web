@@ -1,11 +1,14 @@
+const initialState = {
+  lines: [],
+  currentLine: null,
+  currentColor: 1,
+  brushThickness: 2,
+  currentStreamId: null,
+  isRecording: false
+}
+
 export default function (
-  state = {
-    lines: [],
-    currentLine: null,
-    currentColor: 1,
-    brushThickness: 2,
-    currentStreamId: null
-  },
+  state = initialState,
   action
 ) {
   switch (action.type) {
@@ -46,7 +49,13 @@ export default function (
       return {
         ...state,
         currentStreamId: action.payload,
-        streamStart: performance.now()
+        streamStart: performance.now(),
+        isRecording: true
+      }
+    case 'END_STREAM_SUCCESS':
+      return {
+        ...state,
+        ...initialState
       }
   }
 

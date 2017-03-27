@@ -2,6 +2,9 @@ import React from 'react'
 
 import Helmet from 'react-helmet'
 
+import { Route } from 'react-router-dom'
+import DrawViewContainer from '../containers/draw/DrawViewContainer'
+
 export default ({
   children
 }) => (
@@ -9,6 +12,6 @@ export default ({
     <Helmet
       htmlAttributes={{ class: 'recording' }} />
 
-    {children}
+    <Route path='/' component={DrawViewContainer} />
   </div>
 )
