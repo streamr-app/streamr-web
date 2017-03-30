@@ -1,6 +1,7 @@
 import React from 'react'
 
-import StreamPlayerContainer from '../../containers/streams/StreamPlayerContainer'
+import Helmet from 'react-helmet'
+import StreamPlayer from '../playback/StreamPlayer'
 
 export default ({
   loading,
@@ -11,7 +12,9 @@ export default ({
 
   return (
     <div className='container'>
-      <StreamPlayerContainer streamData={streamData} />
+      <Helmet title={stream.title} />
+
+      <StreamPlayer streamData={streamData} />
 
       <h1>{stream.title}</h1>
     </div>
