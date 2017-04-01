@@ -4,6 +4,7 @@ import Helmet from 'react-helmet'
 import StreamPlayer from '../playback/StreamPlayer'
 
 export default ({
+  colors,
   loading,
   stream,
   streamData
@@ -14,7 +15,7 @@ export default ({
     <div className='container'>
       <Helmet title={stream.title} />
 
-      <StreamPlayer streamData={streamData} />
+      <StreamPlayer {...{ stream, streamData, colors }} />
 
       <h1>{stream.title}</h1>
     </div>

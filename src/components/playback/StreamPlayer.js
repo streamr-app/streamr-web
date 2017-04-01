@@ -1,86 +1,42 @@
 import React from 'react'
+import DrawManager from './DrawManager'
+import cx from 'classnames'
 
-const WIDTH = 1920
-const HEIGHT = 1080
+import PlaybackControls from './PlaybackControls'
 
 export default React.createClass({
+  getInitialState () {
+    return {
+      position: 0
+    }
+  },
+
   componentDidMount () {
     const canvas = this.refs.canvas
-    this.svg = d3.select(canvas).append('svg')
-      .attr('viewBox', `0 0 ${WIDTH} ${HEIGHT}`)
 
-    const streamData = this.props.streamData
-    const lines = streamData.split('\n').filter(l => l)
-    const parsedLines = []
-
-    var lineCursor = 0
-    var pointCursor = 0
-    var start = null
-
-    const frame = (now) => {
-      if (!start) start = now
-      const duration = now - start
-
-      if (!parsedLines[lineCursor]) {
-        parsedLines[lineCursor] = JSON.parse(lines[lineCursor])
-        this.buildPath()
-      }
-
-      const currentLine = parsedLines[lineCursor]
-
-      this.color = currentLine.colorId
-      this.thickness = currentLine.thickness
-
-      while (pointCursor < currentLine.points.length && currentLine.points[pointCursor].time <= duration) {
-        var currentPoint = currentLine.points[pointCursor]
-
-        this.drawPoint(currentPoint)
-        pointCursor++
-      }
-
-      if (pointCursor === currentLine.points.length) {
-        pointCursor = 0
-        lineCursor++
-      }
-
-      if (lineCursor < lines.length) {
-        requestAnimationFrame(frame)
-      }
-    }
-
-    setTimeout(() => {
-      requestAnimationFrame(frame)
-    }, 500)
-  },
-
-  lineFunction: d3.svg.line().x(d => d.x * WIDTH).y(d => d.y * HEIGHT).interpolate('cardinal'),
-
-  drawPoint (point) {
-    this.points.push(point)
-
-    this.redrawLine()
-  },
-
-  buildPath () {
-    this.points = []
-    this.path = this.svg.append('path')
-      .attr('stroke', 'red')
-      .attr('stroke-width', this.thickness)
-      .attr('stroke-linecap', 'round')
-      .attr('fill', 'none')
-  },
-
-  redrawLine () {
-    this.path.attr('d', this.lineFunction(this.points))
+    this.manager = new DrawManager(canvas, this.props.stream, this.props.colors)
+    this.manager.on('POSITION_CHANGE', (position) => this.setState({ position }))
+    this.manager.on('READY', () => this.forceUpdate())
+    this.manager.on('PLAY', () => this.forceUpdate())
+    this.manager.on('PAUSE', () => this.forceUpdate())
+    this.manager.loadData(this.props.streamData)
   },
 
   render () {
+    if (!this.manager) this.manager = {}
+    const playing = this.manager.playing
+
     return (
-      <div className='stream-player'>
+      <div className={cx('stream-player', { paused: !playing })}>
         <svg viewBox='0 0 1920 1080' ref='canvas' />
+
+        <PlaybackControls
+          playing={playing}
+          position={this.manager.position}
+          duration={this.manager.duration}
+          onTogglePlayPause={() => this.manager.toggle()}
+          onPositionChange={(position) => this.manager.setPosition(position)} />
       </div>
     )
   }
 })
-
-/* global d3, setTimeout, requestAnimationFrame */
