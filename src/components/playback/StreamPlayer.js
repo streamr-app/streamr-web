@@ -26,7 +26,6 @@ export default React.createClass({
       this.audio.currentTime = position / 1000
     }
 
-    console.log(position)
     this.setState({ position })
   },
 
@@ -36,12 +35,28 @@ export default React.createClass({
     // TODO: use real audio from stream
     this.audio = new Audio('https://s3-us-west-2.amazonaws.com/streamr-stevens-mbp/audio/93-HELLO-THIS-IS-STREAM.mp3')
 
-    this.manager = new DrawManager(canvas, this.props.stream, this.props.colors)
+    this.manager = new DrawManager(canvas)
     this.manager.on('POSITION_CHANGE', this.positionChange)
-    this.manager.on('READY', () => this.forceUpdate())
+    this.manager.on('READY', () => setTimeout(() => this.manager.play(), 500))
     this.manager.on('PLAY', () => this.play())
     this.manager.on('PAUSE', () => this.pause())
-    this.manager.loadData(this.props.streamData)
+
+    if (this.props.streamData) {
+      const { stream, streamData, colors } = this.props
+      this.manager.prepare(stream, streamData, colors)
+    }
+  },
+
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.stream && !this.props.streamData) {
+      const { stream, streamData, colors } = nextProps
+      setTimeout(() => this.manager.prepare(stream, streamData, colors))
+    }
+  },
+
+  componentWillUnmount () {
+    this.manager.stop()
+    this.audio.pause()
   },
 
   render () {

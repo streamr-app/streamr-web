@@ -42,7 +42,7 @@ function clickHandler (onPositionChange, duration, { width, left }) {
 }
 
 function positionPercentage (position, duration) {
-  return position / duration * 100 + '%'
+  return (position / duration * 100 || 0) + '%'
 }
 
 function playPauseButton (playing) {

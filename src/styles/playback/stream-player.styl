@@ -25,3 +25,29 @@
 
     .playback-controls
       opacity 1
+
+.stream-player:after
+  position absolute
+  display block
+  content ' '
+  top 75%
+  left 50%
+  width 125px
+  height 125px
+  background-image url('../images/loader.svg')
+  animation 2s linear infinite forwards rotate
+  transition all 0.5s ease-in
+  opacity 0
+
+.container.loading .stream-player:after
+  opacity 1
+  top 50%
+
+@keyframes rotate {
+  from {
+    transform translate(-50%, -50%) rotate(0deg)
+  }
+  to {
+    transform translate(-50%, -50%) rotate(360deg)
+  }
+}

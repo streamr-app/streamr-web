@@ -1,22 +1,23 @@
 import EventEmitter from 'event-emitter'
+import allOff from 'event-emitter/all-off'
 import clamp from 'lodash/clamp'
 
 const WIDTH = 1920
 const HEIGHT = 1080
 
 export default class DrawManager {
-  constructor (svg, stream, colors) {
+  constructor (svg) {
     this.svg = d3.select(svg)
-    this.colors = colors
-    this.duration = stream.duration * 1000
     this.position = 0
     this.needsRedraw = true
     this.lineFunction = d3.svg.line().x(d => d.x * WIDTH).y(d => d.y * HEIGHT).interpolate('cardinal')
   }
 
-  loadData (streamData) {
+  prepare (stream, streamData, colors) {
     this.lines = streamData.split('\n').filter(l => l)
     this.parsedLines = []
+    this.duration = stream.duration * 1000
+    this.colors = colors
     this.emit('READY')
   }
 
@@ -31,6 +32,10 @@ export default class DrawManager {
     this.playing = false
     this._cancelNextFrame()
     this.emit('PAUSE')
+  }
+
+  stop () {
+    allOff(this)
   }
 
   setPosition (position) {
