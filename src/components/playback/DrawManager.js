@@ -23,6 +23,7 @@ export default class DrawManager {
   play () {
     this.playing = true
     this._playFrom(this.position)
+    this.emit('POSITION_CHANGE', this.position, true)
     this.emit('PLAY')
   }
 
@@ -41,10 +42,9 @@ export default class DrawManager {
     }
 
     this.position = position
+    this.emit('POSITION_CHANGE', this.position)
 
     this._draw()
-
-    this.emit('POSITION_CHANGE')
 
     if (wasPlaying) this.play()
   }
@@ -68,6 +68,8 @@ export default class DrawManager {
         this._enqueueFrame(frame)
       } else {
         this.pause()
+        this.needsRedraw = true
+        this.position = 0
       }
     }
 

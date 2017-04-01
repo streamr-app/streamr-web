@@ -11,14 +11,36 @@ export default React.createClass({
     }
   },
 
+  play () {
+    this.audio.play()
+    this.forceUpdate()
+  },
+
+  pause () {
+    this.audio.pause()
+    this.forceUpdate()
+  },
+
+  positionChange (position, userInitiated) {
+    if (userInitiated) {
+      this.audio.currentTime = position / 1000
+    }
+
+    console.log(position)
+    this.setState({ position })
+  },
+
   componentDidMount () {
     const canvas = this.refs.canvas
 
+    // TODO: use real audio from stream
+    this.audio = new Audio('https://s3-us-west-2.amazonaws.com/streamr-stevens-mbp/audio/93-HELLO-THIS-IS-STREAM.mp3')
+
     this.manager = new DrawManager(canvas, this.props.stream, this.props.colors)
-    this.manager.on('POSITION_CHANGE', (position) => this.setState({ position }))
+    this.manager.on('POSITION_CHANGE', this.positionChange)
     this.manager.on('READY', () => this.forceUpdate())
-    this.manager.on('PLAY', () => this.forceUpdate())
-    this.manager.on('PAUSE', () => this.forceUpdate())
+    this.manager.on('PLAY', () => this.play())
+    this.manager.on('PAUSE', () => this.pause())
     this.manager.loadData(this.props.streamData)
   },
 
@@ -40,3 +62,5 @@ export default React.createClass({
     )
   }
 })
+
+/* global Audio */
