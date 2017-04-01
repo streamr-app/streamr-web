@@ -5,16 +5,23 @@
   overflow hidden
 
   .playback-controls
-    perspective 5000px
     position absolute
     bottom 0
     width auto
     left 0
     right 0
-    transition all 0.3s ease
-    transform translateY(0px) scale(0.96) rotateX(-90deg)
     opacity 0
+    transform-style preserve-3d
+    perspective 2000px
 
-  &.paused .playback-controls, &:hover .playback-controls
-    transform translateY(0px) scale(1) rotateX(0deg)
-    opacity 1
+    &, .flip-container
+      transform rotateX(45deg)
+      transform-origin 50% 40px
+      transition all 0.3s ease
+
+  &.paused, &:hover
+    .flip-container, .playback-controls
+      transform rotateY(0deg)
+
+    .playback-controls
+      opacity 1

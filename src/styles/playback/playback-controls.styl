@@ -1,7 +1,9 @@
 .playback-controls
-  display flex
   padding 10px 10px
-  align-items center
+
+  .flip-container
+    display flex
+    align-items center
 
   a
     margin-right 10px
@@ -40,3 +42,14 @@
 
     .progress-filler
       background white
+
+      &:after
+        position absolute
+        top -3px
+        right -3px
+        width 8px
+        height 8px
+        border-radius 50%
+        display block
+        background white
+        content: ' '

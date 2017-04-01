@@ -10,20 +10,22 @@ export default ({
   onPositionChange
 }) => (
   <div className='playback-controls'>
-    <a href='#' onClick={(event) => { event.preventDefault(); onTogglePlayPause() }}>
-      {playPauseButton(playing)}
-    </a>
+    <div className='flip-container'>
+      <a href='#' onClick={(event) => { event.preventDefault(); onTogglePlayPause() }}>
+        {playPauseButton(playing)}
+      </a>
 
-    <Measure>
-      {(dimensions) => (
-        <div className='progress' onClick={clickHandler(onPositionChange, duration, dimensions)}>
-          <div className='progress-backing' />
-          <div className='progress-filler' style={{ width: positionPercentage(position, duration) }} />
-          <span className='current-progress'>{formatMillis(position)}</span>
-          <span className='duration'>{formatMillis(duration)}</span>
-        </div>
-      )}
-    </Measure>
+      <Measure>
+        {(dimensions) => (
+          <div className='progress' onClick={clickHandler(onPositionChange, duration, dimensions)}>
+            <div className='progress-backing' />
+            <div className='progress-filler' style={{ width: positionPercentage(position, duration) }} />
+            <span className='current-progress'>{formatMillis(position)}</span>
+            <span className='duration'>{formatMillis(duration)}</span>
+          </div>
+        )}
+      </Measure>
+    </div>
   </div>
 )
 
