@@ -20,8 +20,11 @@ function mapStateToProps (state, ownProps) {
 }
 
 function mapDispatchToProps (dispatch, ownProps) {
-  dispatch(fetchUser(ownProps.params.userId))
-  dispatch(fetchStreamsByUser(ownProps.params.userId))
+  const userId = ownProps.params.userId
+
+  dispatch(fetchUser(userId))
+    .then(() => dispatch(fetchStreamsByUser(userId)))
+
   return {}
 }
 
