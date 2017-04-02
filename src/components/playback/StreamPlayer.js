@@ -7,7 +7,8 @@ import PlaybackControls from './PlaybackControls'
 export default React.createClass({
   getInitialState () {
     return {
-      position: 0
+      position: 0,
+      loading: true
     }
   },
 
@@ -48,7 +49,7 @@ export default React.createClass({
   componentWillReceiveProps (nextProps) {
     if (nextProps.stream && !this.props.streamData) {
       const { stream, streamData, colors } = nextProps
-      setTimeout(() => this.manager.prepare(stream, streamData, colors))
+      this.manager.prepare(stream, streamData, colors)
     }
   },
 

@@ -16,6 +16,7 @@ export default class DrawManager {
     this.parsedLines = []
     this.pointCursor = 0
     this.position = 0
+    this.ready = false
   }
 
   prepare (stream, streamData, colors) {
@@ -24,10 +25,13 @@ export default class DrawManager {
     this.colors = colors
 
     this._setUpLine()
+    this.ready = true
     this.emit('READY')
   }
 
   play () {
+    if (!this.ready) return
+
     this.playing = true
     this._playFrom(this.position)
     this.emit('POSITION_CHANGE', this.position, true)
@@ -35,6 +39,8 @@ export default class DrawManager {
   }
 
   pause () {
+    if (!this.ready) return
+
     this.playing = false
     this._cancelNextFrame()
     this.emit('PAUSE')
@@ -49,6 +55,8 @@ export default class DrawManager {
   }
 
   setPosition (position) {
+    if (!this.ready) return
+
     const wasPlaying = this.playing
     if (wasPlaying) this.pause()
 
