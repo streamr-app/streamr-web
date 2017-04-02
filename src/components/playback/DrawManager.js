@@ -1,23 +1,27 @@
 import EventEmitter from 'event-emitter'
 import allOff from 'event-emitter/all-off'
 import clamp from 'lodash/clamp'
+import last from 'lodash/last'
 
 const WIDTH = 1920
 const HEIGHT = 1080
 
 export default class DrawManager {
-  constructor (svg) {
-    this.svg = d3.select(svg)
+  constructor () {
     this.position = 0
-    this.needsRedraw = true
+    this.needsRedraw = false
     this.lineFunction = d3.svg.line().x(d => d.x * WIDTH).y(d => d.y * HEIGHT).interpolate('cardinal')
   }
 
-  prepare (stream, streamData, colors) {
+  prepare (svg, stream, streamData, colors) {
+    this.svg = d3.select(svg)
     this.lines = streamData.split('\n').filter(l => l)
     this.parsedLines = []
     this.duration = stream.duration * 1000
     this.colors = colors
+    this.lineCursor = 0
+    this.pointCursor = 0
+    this._setUpLine()
     this.emit('READY')
   }
 
@@ -32,6 +36,10 @@ export default class DrawManager {
     this.playing = false
     this._cancelNextFrame()
     this.emit('PAUSE')
+  }
+
+  toggle () {
+    this.playing ? this.pause() : this.play()
   }
 
   stop () {
@@ -52,10 +60,6 @@ export default class DrawManager {
     this._draw()
 
     if (wasPlaying) this.play()
-  }
-
-  toggle () {
-    this.playing ? this.pause() : this.play()
   }
 
   _playFrom (offset) {
@@ -94,9 +98,9 @@ export default class DrawManager {
       this._clear()
     }
 
-    let currentLine
+    console.log(this.position)
 
-    if (this.lineCursor >= this.lines.length) {
+    if (this._doneDrawing()) {
       if (this.playing && this.position < this.duration) {
         return true
       } else {
@@ -104,35 +108,75 @@ export default class DrawManager {
       }
     }
 
-    if (!this.parsedLines[this.lineCursor]) {
-      this.parsedLines[this.lineCursor] = JSON.parse(this.lines[this.lineCursor])
-      currentLine = this.parsedLines[this.lineCursor]
-      this.color = currentLine.color_id
-      this.thickness = currentLine.thickness
+    while (this.position > last(this.currentLine.points).time) {
+      while (!this._doneDrawingLine()) {
+        this._addCurrentPoint()
+        this._nextPoint()
+      }
 
-      this._buildPath()
-    }
-
-    currentLine = this.parsedLines[this.lineCursor]
-
-    while (this.pointCursor < currentLine.points.length && currentLine.points[this.pointCursor].time <= this.position) {
-      let currentPoint = currentLine.points[this.pointCursor]
-
-      this._drawPoint(currentPoint)
       this._redrawLine()
-      this.pointCursor++
+      this._nextLine()
     }
 
-    if (this.pointCursor === currentLine.points.length) {
-      this.pointCursor = 0
-      this.lineCursor++
+    while (!this._doneDrawingLine() && this._currentPointIsInPast()) {
+      this._addCurrentPoint()
+      this._redrawLine()
+      this._nextPoint()
+    }
+
+    if (this._doneDrawingLine()) {
+      this._nextLine()
     }
 
     return true
   }
 
-  _drawPoint (point) {
-    this.points.push(point)
+  _getParsedLine (index) {
+    if (!this.parsedLines[index]) {
+      this.parsedLines[index] = JSON.parse(this.lines[index] || 'null')
+    }
+
+    return this.parsedLines[index]
+  }
+
+  _nextLine () {
+    this.lineCursor++
+    this.pointCursor = 0
+    this._setUpLine()
+  }
+
+  _nextPoint () {
+    this.pointCursor++
+  }
+
+  _setUpLine () {
+    this.currentLine = this._getParsedLine(this.lineCursor)
+
+    if (this.currentLine) {
+      this.color = this.currentLine.color_id
+      this.thickness = this.currentLine.thickness
+      this._buildPath()
+    }
+  }
+
+  _addCurrentPoint () {
+    this.points.push(this._currentPoint())
+  }
+
+  _currentPoint () {
+    return this.currentLine.points[this.pointCursor]
+  }
+
+  _doneDrawingLine () {
+    return this.pointCursor >= this.currentLine.points.length
+  }
+
+  _currentPointIsInPast () {
+    return this.currentLine.points[this.pointCursor].time <= this.position
+  }
+
+  _doneDrawing () {
+    return this.lineCursor >= this.lines.length
   }
 
   _buildPath () {

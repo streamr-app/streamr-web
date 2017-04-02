@@ -30,12 +30,10 @@ export default React.createClass({
   },
 
   componentDidMount () {
-    const canvas = this.refs.canvas
-
     // TODO: use real audio from stream
     this.audio = new Audio('https://s3-us-west-2.amazonaws.com/streamr-stevens-mbp/audio/93-HELLO-THIS-IS-STREAM.mp3')
 
-    this.manager = new DrawManager(canvas)
+    this.manager = new DrawManager()
     this.manager.on('POSITION_CHANGE', this.positionChange)
     this.manager.on('READY', () => setTimeout(() => this.manager.play(), 500))
     this.manager.on('PLAY', () => this.play())
@@ -50,7 +48,7 @@ export default React.createClass({
   componentWillReceiveProps (nextProps) {
     if (nextProps.stream && !this.props.streamData) {
       const { stream, streamData, colors } = nextProps
-      setTimeout(() => this.manager.prepare(stream, streamData, colors))
+      setTimeout(() => this.manager.prepare(this.svg, stream, streamData, colors))
     }
   },
 
@@ -65,7 +63,7 @@ export default React.createClass({
 
     return (
       <div className={cx('stream-player', { paused: !playing })}>
-        <svg viewBox='0 0 1920 1080' ref='canvas' />
+        <svg viewBox='0 0 1920 1080' ref={(svg) => { this.svg = svg }} />
 
         <PlaybackControls
           playing={playing}
