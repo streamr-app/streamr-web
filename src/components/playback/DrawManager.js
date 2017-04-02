@@ -98,7 +98,9 @@ export default class DrawManager {
       this._clear()
     }
 
-    console.log(this.position)
+    if (!this._doneDrawing() && !this.path) {
+      this._setUpLine()
+    }
 
     if (this._doneDrawing()) {
       if (this.playing && this.position < this.duration) {
@@ -108,7 +110,7 @@ export default class DrawManager {
       }
     }
 
-    while (this.position > last(this.currentLine.points).time) {
+    while (this.currentLine && this.position > last(this.currentLine.points).time) {
       while (!this._doneDrawingLine()) {
         this._addCurrentPoint()
         this._nextPoint()
@@ -118,13 +120,13 @@ export default class DrawManager {
       this._nextLine()
     }
 
-    while (!this._doneDrawingLine() && this._currentPointIsInPast()) {
+    while (this.currentLine && !this._doneDrawingLine() && this._currentPointIsInPast()) {
       this._addCurrentPoint()
       this._redrawLine()
       this._nextPoint()
     }
 
-    if (this._doneDrawingLine()) {
+    if (this.currentLine && this._doneDrawingLine()) {
       this._nextLine()
     }
 
@@ -197,7 +199,9 @@ export default class DrawManager {
     this.needsRedraw = false
     this.lineCursor = 0
     this.pointCursor = 0
-    this.parsedLines = []
+    this.currentLine = null
+    this.path = null
+    // this.parsedLines = []
   }
 }
 
