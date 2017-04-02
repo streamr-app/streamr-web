@@ -8,6 +8,7 @@ function mapStateToProps (state, ownProps) {
   const streamSlug = ownProps.match.params.streamSlug
   const streamId = streamSlug.split('-')[0]
   const stream = state.stream[streamId]
+  const colors = state.color
 
   if (!stream) {
     return { loading: true }
@@ -20,6 +21,7 @@ function mapStateToProps (state, ownProps) {
   }
 
   return {
+    colors,
     stream,
     streamData
   }

@@ -34,26 +34,35 @@ export function fetchStreamData (streamId) {
   return (dispatch, getState) => {
     const endpoint = getState().stream[streamId].s3Path
 
-    return dispatch({
-      [CALL_API]: {
-        endpoint,
-        method: 'GET',
-        types: [
-          'STREAM_DATA_REQUEST',
-          {
-            type: 'STREAM_DATA_SUCCESS',
-            payload: (action, state, response) => {
-              return response.text().then(text => {
-                return { data: text, streamId }
-              })
-            }
-          },
-          'STREAM_DATA_FAILURE']
+    return new Promise((resolve) => {
+      if (!endpoint) {
+        setTimeout(() => {
+          dispatch(fetchStream(streamId))
+          dispatch(fetchStreamData(streamId)).then(resolve)
+        }, 1000)
+      } else {
+        dispatch({
+          [CALL_API]: {
+            endpoint,
+            method: 'GET',
+            types: [
+              'STREAM_DATA_REQUEST',
+              {
+                type: 'STREAM_DATA_SUCCESS',
+                payload: (action, state, response) => {
+                  return response.text().then(text => {
+                    return { data: text, streamId }
+                  })
+                }
+              },
+              'STREAM_DATA_FAILURE'
+            ]
+          }
+        }).then(resolve)
       }
     })
   }
 }
-
 export function setCurrentStream (streamId) {
   return {
     type: 'SET_CURRENT_STREAM',

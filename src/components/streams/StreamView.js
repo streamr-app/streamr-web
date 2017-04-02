@@ -1,17 +1,20 @@
 import React from 'react'
+import cx from 'classnames'
 
-import StreamPlayerContainer from '../../containers/streams/StreamPlayerContainer'
+import Helmet from 'react-helmet'
+import StreamPlayer from '../playback/StreamPlayer'
 
 export default ({
-  loading,
-  stream,
-  streamData
+  colors,
+  stream = {},
+  streamData,
+  loading
 }) => {
-  if (loading) return <p>Loading...</p>
-
   return (
-    <div className='container'>
-      <StreamPlayerContainer streamData={streamData} />
+    <div className={cx('container', { loading })}>
+      <Helmet title={stream.title} />
+
+      <StreamPlayer {...{ stream, streamData, colors }} />
 
       <h1>{stream.title}</h1>
     </div>

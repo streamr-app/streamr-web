@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import DrawViewContainer from '../../containers/draw/DrawViewContainer'
+import StreamPlayer from '../../components/playback/StreamPlayer'
 
 import { playStreamData } from '../../actions/streamPlaying'
 
@@ -16,4 +16,4 @@ function mapDispatchToProps (dispatch, ownProps) {
   return {}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DrawViewContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(StreamPlayer)

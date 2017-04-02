@@ -29,7 +29,7 @@ export default React.createClass({
       var path = this.state.currentPath
     } else {
       path = this.buildPath()
-      this.setState({ currentPath: path })
+      setTimeout(() => this.setState({ currentPath: path }))
     }
 
     this.redrawLine(path, nextProps.currentLine)

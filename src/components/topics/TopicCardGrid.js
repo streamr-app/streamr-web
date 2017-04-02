@@ -5,7 +5,7 @@ import { TopicCard } from './TopicCard'
 var listCards = (topics) => {
   return topics.map((topic) => {
     return (
-      <TopicCard className='grid-card' topic={topic} />
+      <TopicCard className='grid-card' topic={topic} key={topic.id} />
     )
   })
 }

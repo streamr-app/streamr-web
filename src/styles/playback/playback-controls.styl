@@ -1,0 +1,60 @@
+.playback-controls
+  padding 10px 10px
+  user-select none
+
+  .flip-container
+    display flex
+    align-items center
+
+  a
+    margin-right 10px
+    cursor pointer
+
+    img
+      display block
+
+  .progress
+    position relative
+    height 20px
+    flex 1
+    color white
+    cursor pointer
+
+    .current-progress, .duration
+      position absolute
+      bottom 12px
+      font-size 0.6em
+
+    .current-progress
+      left 0
+
+    .duration
+      right 0
+
+    .progress-backing, .progress-filler
+      position absolute
+      top 9px
+      height 2px
+      width 100%
+      border-radius 2px
+
+    .progress-backing
+      background rgba(255, 255, 255, 0.2)
+
+    .progress-filler
+      background white
+
+      &:after
+        position absolute
+        top -3px
+        right -3px
+        width 8px
+        height 8px
+        border-radius 50%
+        display block
+        background white
+        content: ' '
+
+.container.loading .playback-controls
+  &, a, .progress
+    cursor not-allowed
