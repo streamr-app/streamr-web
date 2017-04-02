@@ -7,7 +7,8 @@ const WIDTH = 1920
 const HEIGHT = 1080
 
 export default class DrawManager {
-  constructor () {
+  constructor (svg) {
+    this.svg = d3.select(svg)
     this.lineFunction = d3.svg.line().x(d => d.x * WIDTH).y(d => d.y * HEIGHT).interpolate('cardinal')
 
     this.lineCursor = 0
@@ -17,8 +18,7 @@ export default class DrawManager {
     this.position = 0
   }
 
-  prepare (svg, stream, streamData, colors) {
-    this.svg = d3.select(svg)
+  prepare (stream, streamData, colors) {
     this.duration = stream.duration * 1000
     this.lines = streamData.split('\n').filter(l => l)
     this.colors = colors

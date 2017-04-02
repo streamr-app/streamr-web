@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default ({
   children,
@@ -6,7 +7,7 @@ export default ({
   stream,
   user
 }) => (
-  <div className={`stream-card ${className}`}>
+  <Link to={`/${stream.slug}`} className={`stream-card ${className}`}>
     <div className='thumbnail-wrapper'>
       <img className='thumbnail' src={stream.image} />
     </div>
@@ -15,5 +16,5 @@ export default ({
       <div className='description'>{stream.description}</div>
       <div className='author'>{user.name}</div>
     </div>
-  </div>
+  </Link>
 )
