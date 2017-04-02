@@ -85,7 +85,8 @@ export function endCurrentStream () {
 
 export function fetchStreamsByUser (userId) {
   return fetch({
-    url: 'users/' + userId + '/streams',
-    types: [ 'STREAMS_REQUEST', 'STREAMS_SUCCESS', 'STREAMS_FAILURE' ]
+    url: `users/${userId}/streams`,
+    types: [ 'USER_STREAMS_REQUEST', 'USER_STREAMS_SUCCESS', 'USER_STREAMS_FAILURE' ],
+    responseInterceptor: (response) => ({ ...response, userId })
   })
 }

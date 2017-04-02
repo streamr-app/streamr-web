@@ -14,6 +14,18 @@ export default function (state = null, action) {
       return { ...state, [userId]: user }
     }
 
+    case 'USER_STREAMS_SUCCESS': {
+      const userId = action.payload.userId
+
+      return {
+        ...state,
+        [userId]: {
+          ...state[userId],
+          streams: action.payload.result.stream
+        }
+      }
+    }
+
     case 'LOGOUT': {
       return { }
     }

@@ -9,7 +9,7 @@ import Feed from './Feed'
 import LoginContainer from '../containers/auth/LoginContainer'
 import SignupContainer from '../containers/auth/SignupContainer'
 import StreamContainer from '../containers/streams/StreamContainer'
-import ChannelContainer from './containers/ChannelContainer'
+import ChannelContainer from '../containers/ChannelContainer'
 
 export default () => (
   <div>

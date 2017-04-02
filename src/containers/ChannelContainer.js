@@ -1,17 +1,14 @@
 import { connect } from 'react-redux'
 import { fetchUser } from '../actions/users'
 import { fetchStreamsByUser } from '../actions/stream'
-import filter from 'lodash/filter'
+import at from 'lodash/at'
 
 import Channel from '../components/Channel'
 
 function mapStateToProps (state, ownProps) {
-  const user = state.user[ownProps.params.userId]
+  const user = state.user[ownProps.match.params.userId]
 
-  let streams = null
-  if (user) {
-    streams = filter(state.stream, { user: { id: user.id } })
-  }
+  const streams = at(state.stream, user.streams || [])
 
   return {
     user,
@@ -20,7 +17,7 @@ function mapStateToProps (state, ownProps) {
 }
 
 function mapDispatchToProps (dispatch, ownProps) {
-  const userId = ownProps.params.userId
+  const userId = ownProps.match.params.userId
 
   dispatch(fetchUser(userId))
     .then(() => dispatch(fetchStreamsByUser(userId)))
