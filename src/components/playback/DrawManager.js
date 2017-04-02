@@ -50,7 +50,7 @@ export default class DrawManager {
 
   setPosition (position) {
     const wasPlaying = this.playing
-    if (this.playing) this.pause()
+    if (wasPlaying) this.pause()
 
     if (position <= this.position) {
       this.needsRedraw = true
