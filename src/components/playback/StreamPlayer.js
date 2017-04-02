@@ -36,7 +36,7 @@ export default React.createClass({
 
     this.manager = new DrawManager(this.svg)
     this.manager.on('POSITION_CHANGE', this.positionChange)
-    this.manager.on('READY', () => setTimeout(() => this.manager.play(), 500))
+    this.manager.on('READY', () => this.manager.play())
     this.manager.on('PLAY', () => this.play())
     this.manager.on('PAUSE', () => this.pause())
 
