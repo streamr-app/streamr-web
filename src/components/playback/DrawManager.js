@@ -201,7 +201,6 @@ export default class DrawManager {
     this.pointCursor = 0
     this.currentLine = null
     this.path = null
-    // this.parsedLines = []
   }
 }
 
