@@ -120,11 +120,6 @@ export default class DrawManager {
 
       this._redrawLine()
       this._nextLine()
-
-      while (this.currentLine && this.currentLine.points.length === 0) {
-        this._nextLine()
-        continue
-      }
     }
 
     while (this.currentLine && !this._doneDrawingLine() && this._currentPointIsInPast()) {
@@ -152,6 +147,10 @@ export default class DrawManager {
     this.lineCursor++
     this.pointCursor = 0
     this._setUpLine()
+
+    while (this.currentLine && this.currentLine.points.length === 0) {
+      this._nextLine()
+    }
   }
 
   _nextPoint () {
