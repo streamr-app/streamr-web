@@ -12,7 +12,7 @@ export default ({
 }) => (
   <div className={`channel-badge ${className}`} {...rest}>
     <div className='thumbnail-wrapper'>
-      <img className='thumbnail' src={channel.profileImage || 'http://placehold.it/60x60'} />
+      <img className='thumbnail' src={channel.profileImage} />
     </div>
     {
       !hideInfo ? (
