@@ -112,7 +112,7 @@ export default class DrawManager {
       }
     }
 
-    while (this.currentLine && this.position > last(this.currentLine.points).time) {
+    while (this.currentLine && this.currentLine.points.length && this.position > last(this.currentLine.points).time) {
       while (!this._doneDrawingLine()) {
         this._addCurrentPoint()
         this._nextPoint()
