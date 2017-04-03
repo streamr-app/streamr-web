@@ -1,16 +1,16 @@
 .stream-card
-  img
-    width 100%
+  position relative
 
   .thumbnail-wrapper
     border-radius 3px
     overflow hidden
+    img
+      width 100%
 
   .information-wrapper
     .title
       font-weight 400
       font-size 0.9rem
-      margin-top 10px
 
     .description
       font-size 0.7rem
@@ -22,3 +22,29 @@
 
     .author
       font-size 0.65rem
+
+  &.horizontal
+    display block
+    width 100%
+    clear both
+    overflow hidden
+
+    .thumbnail-wrapper
+      float left
+      display inline-block
+      width 33%
+
+    .information-wrapper
+      float left
+      display inline-block
+      position absolute
+      top 5px
+      margin-left 15px
+
+      .title
+        font-size 1.3rem
+      .description
+        font-size 1.0rem
+        line-height 1.0rem
+        max-height 2.0rem
+        margin-top 8px

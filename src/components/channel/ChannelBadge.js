@@ -1,12 +1,13 @@
 import React from 'react'
 
-import { SubscribeButton } from './SubscribeButton'
+import SubscribeButton from './SubscribeButton'
 
-export const ChannelBadge = ({
+export default ({
   children,
   className = '',
   channel,
   hideInfo,
+  hideSubscribe,
   ...rest
 }) => (
   <div className={`channel-badge ${className}`} {...rest}>
@@ -17,9 +18,12 @@ export const ChannelBadge = ({
       !hideInfo ? (
         <div className='information-wrapper'>
           <div className='channel-name'>{channel.channelName || channel.name}</div>
-          <div className='channel-bio'>{channel.bio}</div>
-
-          <SubscribeButton />
+          <div className='channel-bio'>{channel.bio || null}</div>
+          {
+            !hideSubscribe ? (
+              <SubscribeButton />
+            ) : null
+          }
         </div>
       ) : null
     }

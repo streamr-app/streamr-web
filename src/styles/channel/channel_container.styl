@@ -1,0 +1,35 @@
+.channel
+  .top-wrapper
+    height 100px
+    margin 20px 30px
+    position relative
+
+    span
+      position absolute
+
+      &.left
+        left 0
+      &.right
+        right 0
+
+  .stream-list
+    width 100% !important
+    display block !important
+
+  .bottom-wrapper
+    margin 0 auto
+    max-width 700px
+
+    .no-streams
+      display inline-block
+      color gray
+
+  .loading
+    position absolute
+    font-size 3.2rem
+    top 40%
+    left 50%
+    transform translate(-50%, -50%)
+
+    i.fa-spinner
+      margin-left 8px
