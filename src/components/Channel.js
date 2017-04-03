@@ -7,7 +7,7 @@ import StreamCard from '../components/streams/StreamCard'
 
 function listStreamCards (streams, channel) {
   return streams.map((stream) => (
-    <StreamCard stream={stream} user={channel} className='horizontal' />
+    <StreamCard stream={stream} user={channel} key={stream.id} className='horizontal' />
   ))
 }
 
