@@ -13,8 +13,7 @@ function listStreamCards (streams, channel) {
 
 export default ({
   user,
-  streams,
-  ...rest
+  streams
 }) => (
   <div className='channel container'>
     { user ? (
