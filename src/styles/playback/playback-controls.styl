@@ -1,28 +1,36 @@
 .playback-controls
-  padding 10px 10px
   user-select none
+  padding-right 20px
 
   .flip-container
     display flex
-    align-items center
+    align-items stretch
 
   a
     margin-right 10px
     cursor pointer
+    display flex
+    align-items center
+    padding 0 15px
+    transition all 0.2s ease
+    box-sizing border-box
+
+    &:hover
+      transform scale(1.1)
 
     img
       display block
 
   .progress
     position relative
-    height 20px
+    height 40px
     flex 1
     color white
     cursor pointer
 
     .current-progress, .duration
       position absolute
-      bottom 12px
+      bottom 24px
       font-size 0.6em
 
     .current-progress
@@ -33,7 +41,7 @@
 
     .progress-backing, .progress-filler
       position absolute
-      top 9px
+      top 19px
       height 2px
       width 100%
       border-radius 2px

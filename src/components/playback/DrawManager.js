@@ -55,6 +55,8 @@ export default class DrawManager {
   }
 
   setPosition (position) {
+    position = clamp(position, 0, this.duration)
+
     if (!this.ready) return
 
     const wasPlaying = this.playing
