@@ -32,7 +32,7 @@ export function fetchStream (streamId) {
 
 export function fetchStreamData (streamId) {
   return (dispatch, getState) => {
-    const endpoint = getState().stream[streamId].s3Path
+    const endpoint = getState().stream[streamId].dataUrl
 
     return new Promise((resolve) => {
       if (!endpoint) {
