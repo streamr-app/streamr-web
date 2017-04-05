@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import StreamPlayer from '../../components/playback/StreamPlayer'
+import StreamPlayer from './StreamPlayer'
 
 import { playStreamData } from '../../actions/streamPlaying'
 

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import ProfilePreview from '../../components/auth/ProfilePreview'
+import ProfilePreview from './ProfilePreview'
 
 import { logout } from '../../actions/auth'
 

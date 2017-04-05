@@ -1,7 +1,7 @@
 import React from 'react'
 
 import StreamList from './StreamList'
-import StreamCardContainer from '../../containers/streams/StreamCardContainer'
+import StreamCardContainer from './StreamCardContainer'
 
 export default ({
   streams

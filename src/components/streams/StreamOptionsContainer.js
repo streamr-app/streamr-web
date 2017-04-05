@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
 
-import StreamOptions from '../../components/streams/StreamOptions'
+import StreamOptions from './StreamOptions'
 
 import { createStream, setCurrentStream, endCurrentStream } from '../../actions/stream'
 import { push } from 'react-router-redux'

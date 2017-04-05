@@ -4,7 +4,7 @@ import { reduxForm, SubmissionError } from 'redux-form'
 import { login } from '../../actions/auth'
 import { push } from 'react-router-redux'
 
-import Login from '../../components/auth/Login'
+import Login from './Login'
 
 function validate (values) {
   const errors = {}

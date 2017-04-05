@@ -4,7 +4,7 @@ import sortBy from 'lodash/sortBy'
 
 import { setColor, setColorByOrder } from '../../actions/colors'
 
-import ColorPicker from '../../components/draw/ColorPicker'
+import ColorPicker from './ColorPicker'
 
 function mapStateToProps (state, ownProps) {
   const sortedColors = sortBy(values(state.color), 'order')

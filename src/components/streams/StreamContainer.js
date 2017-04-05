@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import StreamView from '../../components/streams/StreamView'
+import StreamView from './StreamView'
 
 import { fetchStream, fetchStreamData } from '../../actions/stream'
 

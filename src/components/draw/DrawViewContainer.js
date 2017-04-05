@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import DrawView from '../../components/draw/DrawView'
+import DrawView from './DrawView'
 
 import { persistCurrentLine } from '../../actions/lines'
 

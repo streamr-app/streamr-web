@@ -4,7 +4,7 @@ import cx from 'classnames'
 import Helmet from 'react-helmet'
 import StreamPlayer from '../playback/StreamPlayer'
 import StreamDetails from './StreamDetails'
-import StreamCommentsContainer from '../../containers/comments/StreamCommentsContainer'
+import StreamCommentsContainer from '../comments/StreamCommentsContainer'
 
 export default ({
   colors,

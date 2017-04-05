@@ -1,6 +1,6 @@
 import React from 'react'
 
-import UserCardContainer from '../../containers/users/UserCardContainer'
+import UserCardContainer from '../users/UserCardContainer'
 
 export default ({
   stream = {}

@@ -6,7 +6,7 @@ import { checkEmailAvailability, createUser } from '../../actions/users'
 
 import { EMAIL_REGEX } from '../../utils/regexes'
 
-import Signup from '../../components/auth/Signup'
+import Signup from './Signup'
 
 function mapStateToProps (state, ownProps) {
   return {}
