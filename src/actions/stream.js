@@ -43,7 +43,8 @@ export function createStream (stream) {
 export function fetchStream (streamId) {
   return fetch({
     url: `streams/${streamId}`,
-    types: [ 'FETCH_STREAM_REQUEST', 'FETCH_STREAM_SUCCESS', 'FETCH_STREAM_FAILURE' ]
+    types: [ 'FETCH_STREAM_REQUEST', 'FETCH_STREAM_SUCCESS', 'FETCH_STREAM_FAILURE' ],
+    authenticated: 'try'
   })
 }
 
