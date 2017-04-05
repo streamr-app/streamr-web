@@ -1,6 +1,7 @@
 import React from 'react'
 
 import Header from './Header'
+import Footer from './Footer'
 
 import { Route, Switch } from 'react-router-dom'
 
@@ -25,5 +26,7 @@ export default () => (
         <Route path='/:streamSlug' component={StreamContainer} />
       </Switch>
     </main>
+
+    <Footer />
   </div>
 )
