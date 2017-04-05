@@ -22,7 +22,7 @@ module.exports = {
   },
   devtool: 'eval',
   module: {
-    rules: [
+    loaders: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -30,38 +30,41 @@ module.exports = {
       },
       {
         test: /\.styl/,
-        use: [
-          'style-loader',
-          'css-loader',
-          {
-            loader: 'stylus-loader',
-            options: {
-              use: [
-                poststylus([ 'autoprefixer', 'lost' ])
-              ]
-            }
-          }
-        ]
+        loader: 'style-loader!css-loader!stylus-loader'
       },
       {
         test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader'
-        ]
+        loader: 'style!css'
       },
       {
         test: /\.(jpe?g|png|gif|svg|ico)$/i,
-        use: [
-          'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
-          'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false'
+        loaders: [
+          'file?hash=sha512&digest=hex&name=[hash].[ext]',
+          'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
         ]
       }
     ]
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.API_ENDPOINT': JSON.stringify(process.env.API_ENDPOINT || '')
+      'process.env.API_ENDPOINT': JSON.stringify(process.env.API_ENDPOINT || ''),
+      'process.env.NODE_ENV': 'production'
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      beautify: false,
+      mangle: {
+        screw_ie8: true,
+        keep_fnames: true
+      },
+      compress: {
+        screw_ie8: true
+      },
+      comments: false
     })
-  ]
+  ],
+  stylus: {
+    use: [
+      poststylus([ 'autoprefixer', 'lost' ])
+    ]
+  }
 }
