@@ -91,10 +91,6 @@ export function baseRequest ({
     if (authenticated) {
       let accessToken = getState().auth.access_token
 
-      if (authenticated !== 'try' && !accessToken) {
-        throw new Error('Attempted to perform an authenticated action while not signed in.')
-      }
-
       if (accessToken) {
         headers['Authorization'] = `Bearer ${getState().auth.access_token}`
       }
@@ -117,7 +113,8 @@ export function baseRequest ({
               return deserialize(response).then((data) => responseInterceptor(data, response))
             }
           }
-        }, {
+        },
+        {
           type: failureAction,
           payload: (action, state, res) => {
             return getJSON(res).then(errorInterceptor)

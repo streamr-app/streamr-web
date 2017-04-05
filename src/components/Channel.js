@@ -1,7 +1,7 @@
 import React from 'react'
 
 import ProfileImage from './users/ProfileImage'
-
+import Loader from './common/Loader'
 import { Banner } from './common/banners'
 import SubscribeButtonContainer from './users/SubscribeButtonContainer'
 import StreamList from './streams/StreamList'
@@ -15,7 +15,8 @@ function listStreamCards (streams, channel) {
 
 export default ({
   user = {},
-  streams = []
+  streams = [],
+  loading
 }) => (
   <div className='channel'>
     <Banner className='channel-overview'>
@@ -25,11 +26,16 @@ export default ({
     </Banner>
 
     <div className='container'>
-      <StreamList>
+      <StreamList className='horizontal'>
         {
-          streams.length > 0 ? listStreamCards(streams, user) : (
+          loading
+            ? <Loader />
+            : listStreamCards(streams, user)
+        }
+
+        {
+          !loading && streams.length === 0 &&
             <div className='no-streams'>This channel has not posted any streams.</div>
-          )
         }
       </StreamList>
     </div>
