@@ -14,6 +14,22 @@ export function loadStreams () {
   })
 }
 
+export function loadTrendingStreams () {
+  return fetch({
+    url: 'streams',
+    query: { page_size: 8 },
+    types: [ 'TRENDING_STREAMS_REQUEST', 'TRENDING_STREAMS_SUCCESS', 'TRENDING_STREAMS_FAILURE' ]
+  })
+}
+
+export function loadSubscriptionStreams () {
+  return fetch({
+    url: 'streams',
+    query: { page_size: 8 },
+    types: [ 'SUBSCRIPTION_STREAMS_REQUEST', 'SUBSCRIPTION_STREAMS_SUCCESS', 'SUBSCRIPTION_STREAMS_FAILURE' ]
+  })
+}
+
 export function createStream (stream) {
   return createResource({
     url: 'streams',

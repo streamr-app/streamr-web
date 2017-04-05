@@ -9,6 +9,8 @@
   .thumbnail-wrapper
     border-radius 3px
     overflow hidden
+    height 160px
+    background black
     position relative
 
     img
@@ -41,7 +43,11 @@
     font-size 0.8em
 
   &.horizontal
-    display block
-    width 100%
     display flex
     align-items center
+
+    .thumbnail-wrapper
+      margin-right 10px
+      background black
+      height 160px
+      flex-basis 284px
