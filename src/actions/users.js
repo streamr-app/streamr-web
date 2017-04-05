@@ -32,7 +32,8 @@ export function checkEmailAvailability (email) {
 export function fetchUser (userId) {
   return fetch({
     url: 'users/' + userId,
-    types: [ 'USER_REQUEST', 'USER_SUCCESS', 'USER_FAILURE' ]
+    types: [ 'USER_REQUEST', 'USER_SUCCESS', 'USER_FAILURE' ],
+    authenticated: 'try'
   })
 }
 

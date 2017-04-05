@@ -105,6 +105,7 @@ export function fetchStreamsByUser (userId) {
   return fetch({
     url: `users/${userId}/streams`,
     types: [ 'USER_STREAMS_REQUEST', 'USER_STREAMS_SUCCESS', 'USER_STREAMS_FAILURE' ],
-    responseInterceptor: (response) => ({ ...response, userId })
+    responseInterceptor: (response) => ({ ...response, userId }),
+    authenticated: 'try'
   })
 }

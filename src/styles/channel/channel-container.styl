@@ -1,0 +1,44 @@
+.channel
+  .banner
+    .container
+      display flex
+      align-items center
+      justify-content space-between
+
+      .button
+        background white
+        color $blue
+
+        &.-unsubscribe
+          background transparent
+          color white
+          border-color white
+
+    .profile-image
+      margin-right 10px
+
+    h2
+      flex 1
+
+  .stream-list
+    max-width 600px
+    margin 0 auto
+    display block !important
+
+  .bottom-wrapper
+    margin 0 auto
+    max-width 700px
+
+    .no-streams
+      display inline-block
+      color gray
+
+  .loading
+    position absolute
+    font-size 3.2rem
+    top 40%
+    left 50%
+    transform translate(-50%, -50%)
+
+    i.fa-spinner
+      margin-left 8px

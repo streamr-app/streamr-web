@@ -1,0 +1,24 @@
+.loader
+  text-align center
+  position relative
+  height 100px
+
+  &:after
+    position absolute
+    top 50%
+    left 50%
+    transform translate(-50%, -50%)
+    content url('../images/loader.svg')
+    display block
+    margin 0 auto
+    height 50px
+    animation 1.5s linear infinite forwards rotate
+
+@keyframes rotate {
+  from {
+    transform translate(-50%, -50%) rotate(0deg)
+  }
+  to {
+    transform translate(-50%, -50%) rotate(360deg)
+  }
+}

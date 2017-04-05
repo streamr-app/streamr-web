@@ -12,6 +12,8 @@ function mapStateToProps (state, ownProps) {
 
   const streams = at(state.stream, user.streams || [])
 
+  if (!user.streams) return { loading: true }
+
   return {
     user,
     streams

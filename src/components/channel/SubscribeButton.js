@@ -11,7 +11,7 @@ export default ({
 }) => (
   <div className={`subscribe-button ${className}`} {...rest}>
     <a
-      className={cx('button -small', { '-subtle': user.currentUserSubscribed })}
+      className={cx('button -small', { '-subtle -unsubscribe': user.currentUserSubscribed })}
       onClick={preventDefault(() => updateSubscription(!user.currentUserSubscribed))}
     >
       {user.currentUserSubscribed

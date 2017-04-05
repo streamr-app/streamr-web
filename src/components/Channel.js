@@ -1,6 +1,8 @@
 import React from 'react'
 
-import ChannelBadge from './channel/ChannelBadge'
+import ProfileImage from './users/ProfileImage'
+import Loader from './common/Loader'
+import { Banner } from './common/banners'
 import SubscribeButtonContainer from './users/SubscribeButtonContainer'
 import StreamList from './streams/StreamList'
 import StreamCard from './streams/StreamCard'
@@ -13,31 +15,29 @@ function listStreamCards (streams, channel) {
 
 export default ({
   user = {},
-  streams = []
+  streams = [],
+  loading
 }) => (
-  <div className='channel container'>
-    { user ? (
-      <div>
-        <div className='top-wrapper'>
-          <span className='left'>
-            <ChannelBadge channel={user} hideSubscribe />
-          </span>
-          <span className='right'>
-            <SubscribeButtonContainer userId={user.id} />
-          </span>
-        </div>
-        <div className='bottom-wrapper'>
-          <StreamList>
-            {
-              streams.length > 0 ? listStreamCards(streams, user) : (
-                <div className='no-streams'>This channel has not posted any streams.</div>
-              )
-            }
-          </StreamList>
-        </div>
-      </div>
-    ) : (
-      <i className='loading fa fa-spinner fa-spin' />
-    ) }
+  <div className='channel'>
+    <Banner className='channel-overview'>
+      <ProfileImage image={user.image} />
+      <h2>{user.name}</h2>
+      <SubscribeButtonContainer userId={user.id} />
+    </Banner>
+
+    <div className='container'>
+      <StreamList className='horizontal'>
+        {
+          loading
+            ? <Loader />
+            : listStreamCards(streams, user)
+        }
+
+        {
+          !loading && streams.length === 0 &&
+            <div className='no-streams'>This channel has not posted any streams.</div>
+        }
+      </StreamList>
+    </div>
   </div>
 )

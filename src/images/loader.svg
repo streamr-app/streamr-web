@@ -15,11 +15,11 @@
                             <use xlink:href="#path-1"></use>
                         </mask>
                         <g id="Base-shape"></g>
-                        <circle id="Oval" fill-opacity="0.2247226" fill="#FFFFFF" mask="url(#mask-2)" cx="7.46069873e-14" cy="-3.90798505e-14" r="15.8333333"></circle>
-                        <circle id="Oval-Copy" fill-opacity="0.2247226" fill="#FFFFFF" mask="url(#mask-2)" cx="50" cy="-3.90798505e-14" r="15.8333333"></circle>
-                        <circle id="Oval-Copy-2" fill-opacity="0.2247226" fill="#FFFFFF" mask="url(#mask-2)" cx="50" cy="50" r="15.8333333"></circle>
-                        <circle id="Oval-Copy-3" fill-opacity="0.2247226" fill="#FFFFFF" mask="url(#mask-2)" cx="7.46069873e-14" cy="50" r="15.8333333"></circle>
-                        <ellipse id="Oval-Copy-4" fill-opacity="0.2247226" fill="#FFFFFF" mask="url(#mask-2)" cx="25" cy="25" rx="15.8333333" ry="15.8333333"></ellipse>
+                        <circle id="Oval" fill-opacity="0.5" fill="#EEEEEE" mask="url(#mask-2)" cx="7.46069873e-14" cy="-3.90798505e-14" r="15.8333333"></circle>
+                        <circle id="Oval-Copy" fill-opacity="0.5" fill="#EEEEEE" mask="url(#mask-2)" cx="50" cy="-3.90798505e-14" r="15.8333333"></circle>
+                        <circle id="Oval-Copy-2" fill-opacity="0.5" fill="#EEEEEE" mask="url(#mask-2)" cx="50" cy="50" r="15.8333333"></circle>
+                        <circle id="Oval-Copy-3" fill-opacity="0.5" fill="#EEEEEE" mask="url(#mask-2)" cx="7.46069873e-14" cy="50" r="15.8333333"></circle>
+                        <ellipse id="Oval-Copy-4" fill-opacity="0.5" fill="#EEEEEE" mask="url(#mask-2)" cx="25" cy="25" rx="15.8333333" ry="15.8333333"></ellipse>
                     </g>
                 </g>
             </g>

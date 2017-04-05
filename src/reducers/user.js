@@ -13,7 +13,6 @@ export default function (state = null, action) {
 
       return { ...state, [userId]: user }
     }
-
     case 'USER_STREAMS_SUCCESS': {
       const userId = action.payload.userId
 
