@@ -1,19 +1,23 @@
 .channel
-  .top-wrapper
-    height 100px
-    margin 20px 30px
-    position relative
+  .banner
+    .container
+      display flex
+      align-items center
+      justify-content space-between
 
-    span
-      position absolute
+      .button
+        background white
+        color $blue
 
-      &.left
-        left 0
-      &.right
-        right 0
+    .profile-image
+      margin-right 10px
+
+    h2
+      flex 1
 
   .stream-list
-    width 100% !important
+    max-width 600px
+    margin 0 auto
     display block !important
 
   .bottom-wrapper
