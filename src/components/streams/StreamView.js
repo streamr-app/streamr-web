@@ -3,6 +3,7 @@ import cx from 'classnames'
 
 import Helmet from 'react-helmet'
 import StreamPlayer from '../playback/StreamPlayer'
+import StreamDetails from './StreamDetails'
 
 export default ({
   colors,
@@ -13,10 +14,8 @@ export default ({
   return (
     <div className={cx('container', { loading })}>
       <Helmet title={stream.title} />
-
       <StreamPlayer {...{ stream, streamData, colors }} />
-
-      <h1>{stream.title}</h1>
+      <StreamDetails {...{ stream }} />
     </div>
   )
 }
