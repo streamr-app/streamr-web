@@ -11,7 +11,7 @@
     border-radius 3px
     border 1px solid #D5D5D5
     outline 0
-    transition all 0.2s ease
+    transition all 0.2s ease, height 1ms, width 1ms
     box-shadow $field-box-shadow
 
     &:focus
@@ -23,3 +23,15 @@
 
     &:focus
       box-shadow $error-active-field-box-shadow
+
+.text-area-field
+  @extend .text-field
+
+  > textarea
+    @extend .text-field > input
+
+    resize vertical
+    max-height 300px
+
+  .field-errors
+    top calc(100% - 5px)

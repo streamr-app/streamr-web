@@ -2,6 +2,7 @@ import update from 'react-addons-update'
 import fromPairs from 'lodash/fromPairs'
 
 const entities = [
+  'comment',
   'color',
   'stream',
   'topic',
