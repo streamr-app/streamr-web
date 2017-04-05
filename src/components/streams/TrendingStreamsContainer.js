@@ -6,7 +6,7 @@ import TrendingStreams from './TrendingStreams'
 import { loadTrendingStreams } from '../../actions/stream'
 
 function mapStateToProps (state, ownProps) {
-  const streams = at(state.stream, state.stream.trending)
+  const streams = at(state.stream, state.stream.trending || [])
 
   return {
     streams

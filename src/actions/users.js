@@ -2,6 +2,8 @@ export const API_ENDPOINT = `${process.env.API_ENDPOINT || ''}`
 
 import { CALL_API } from 'redux-api-middleware'
 
+import { login } from './auth'
+
 import {
   fetch,
   createResource,
@@ -9,12 +11,15 @@ import {
 } from './index'
 
 export function createUser (payload) {
-  return createResource({
-    url: 'users',
-    types: [ 'CREATE_USER_REQUEST', 'CREATE_USER_SUCCESS', 'CREATE_USER_FAILURE' ],
-    key: 'user',
-    body: payload
-  })
+  return (dispatch, getState) => {
+    return dispatch(createResource({
+      url: 'users',
+      types: [ 'CREATE_USER_REQUEST', 'CREATE_USER_SUCCESS', 'CREATE_USER_FAILURE' ],
+      key: 'user',
+      body: payload
+    }))
+      .then(() => dispatch(login(payload)))
+  }
 }
 
 export function checkEmailAvailability (email) {
