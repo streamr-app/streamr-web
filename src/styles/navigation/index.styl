@@ -8,10 +8,10 @@ nav[role='main']
 
   li:not(.profile-preview)
     a
+      padding nav-link-padding
       color $navigation-link-color
       font-weight 400
       position relative
-      padding nav-link-padding
 
       &, &:after
         transition all 0.2s ease
@@ -35,6 +35,10 @@ nav[role='main']
         transform scaleY(1)
 
   .profile-preview
+    padding 0 nav-link-padding
+    position relative
+    height 0
+
     p
       margin 0
 
