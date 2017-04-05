@@ -6,7 +6,7 @@ import {
 export function fetchCommentsForStream (streamId) {
   return fetch({
     url: `/streams/${streamId}/comments`,
-    types: ['FETCH_COMMENTS_REQUEST', 'FETCH_COMMENTS_SUCCESS', 'FETCH_COMMENTS_REQUEST'],
+    types: [ 'FETCH_COMMENTS_REQUEST', 'FETCH_COMMENTS_SUCCESS', 'FETCH_COMMENTS_FAILURE' ],
     responseInterceptor: (response) => ({ ...response, streamId })
   })
 }
