@@ -16,6 +16,7 @@ export default ({
       <ReactCSSTransitionGroup
         transitionName='comment'
         transitionEnterTimeout={200}
+        transitionLeaveTimeout={200}
       >
         {comments.map((comment) => (
           <CommentContainer key={comment.id} commentId={comment.id} />
