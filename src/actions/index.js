@@ -89,7 +89,15 @@ export function baseRequest ({
     }
 
     if (authenticated) {
-      headers['Authorization'] = `Bearer ${getState().auth.access_token}`
+      let accessToken = getState().auth.access_token
+
+      if (authenticated !== 'try' && !accessToken) {
+        throw new Error('Attempted to perform an authenticated action while not signed in.')
+      }
+
+      if (accessToken) {
+        headers['Authorization'] = `Bearer ${getState().auth.access_token}`
+      }
     }
 
     const request = {
