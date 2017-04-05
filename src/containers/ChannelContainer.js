@@ -8,6 +8,8 @@ import Channel from '../components/Channel'
 function mapStateToProps (state, ownProps) {
   const user = state.user[ownProps.match.params.userId]
 
+  if (!user) return { loading: true }
+
   const streams = at(state.stream, user.streams || [])
 
   return {

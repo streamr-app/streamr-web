@@ -1,5 +1,7 @@
 import store from 'store'
 
+//current_user_subscribed
+
 export default function (state = null, action) {
   switch (action.type) {
     case 'CURRENT_USER_SUCCESS': {
@@ -28,6 +30,26 @@ export default function (state = null, action) {
 
     case 'LOGOUT': {
       return { }
+    }
+
+    case 'SUBSCRIBE_SUCCESS': {
+      return {
+        ...state,
+        [action.payload.userId]: {
+          ...state[action.payload.userId],
+          currentUserSubscribed: true
+        }
+      }
+    }
+
+    case 'UNSUBSCRIBE_SUCCESS': {
+      return {
+        ...state,
+        [action.payload.userId]: {
+          ...state[action.payload.userId],
+          currentUserSubscribed: false
+        }
+      }
     }
   }
 

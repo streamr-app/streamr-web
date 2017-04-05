@@ -4,7 +4,8 @@ import { CALL_API } from 'redux-api-middleware'
 
 import {
   fetch,
-  createResource
+  createResource,
+  performActionOnResource
 } from './index'
 
 export function createUser (payload) {
@@ -32,5 +33,25 @@ export function fetchUser (userId) {
   return fetch({
     url: 'users/' + userId,
     types: [ 'USER_REQUEST', 'USER_SUCCESS', 'USER_FAILURE' ]
+  })
+}
+
+export function subscribeToUser (userId) {
+  return performActionOnResource({
+    url: `users/${userId}`,
+    action: 'subscribe',
+    types: ['SUBSCRIBE_REQUEST', 'SUBSCRIBE_SUCCESS', 'SUBSCRIBE_FAILURE'],
+    authenticated: true,
+    actionPayload: { userId }
+  })
+}
+
+export function unsubscribeToUser (userId) {
+  return performActionOnResource({
+    url: `users/${userId}`,
+    action: 'unsubscribe',
+    types: ['UNSUBSCRIBE_REQUEST', 'UNSUBSCRIBE_SUCCESS', 'UNSUBSCRIBE_FAILURE'],
+    authenticated: true,
+    actionPayload: { userId }
   })
 }

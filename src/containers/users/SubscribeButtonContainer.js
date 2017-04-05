@@ -2,6 +2,8 @@ import { connect } from 'react-redux'
 
 import SubscribeButton from '../../components/channel/SubscribeButton'
 
+import { subscribeToUser, unsubscribeToUser } from '../../actions/users'
+
 function mapStateToProps (state, ownProps) {
   const user = state.user[ownProps.userId]
 
@@ -12,12 +14,12 @@ function mapStateToProps (state, ownProps) {
 
 function mapDispatchToProps (dispatch, ownProps) {
   return {
-    onSubscribe () {
-      // TODO
-    },
-
-    onUnsubscribe () {
-      // TODO
+    updateSubscription (shouldSubscribe) {
+      if (shouldSubscribe) {
+        dispatch(subscribeToUser(ownProps.userId))
+      } else {
+        dispatch(unsubscribeToUser(ownProps.userId))
+      }
     }
   }
 }

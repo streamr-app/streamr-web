@@ -1,7 +1,7 @@
 import React from 'react'
 
 import ChannelBadge from '../components/channel/ChannelBadge'
-import SubscribeButton from '../components/channel/SubscribeButton'
+import SubscribeButtonContainer from '../containers/users/SubscribeButtonContainer'
 import StreamList from '../components/streams/StreamList'
 import StreamCard from '../components/streams/StreamCard'
 
@@ -12,8 +12,8 @@ function listStreamCards (streams, channel) {
 }
 
 export default ({
-  user,
-  streams
+  user = {},
+  streams = []
 }) => (
   <div className='channel container'>
     { user ? (
@@ -23,7 +23,7 @@ export default ({
             <ChannelBadge channel={user} hideSubscribe />
           </span>
           <span className='right'>
-            <SubscribeButton channel={user} showSubscribers />
+            <SubscribeButtonContainer userId={user.id} />
           </span>
         </div>
         <div className='bottom-wrapper'>
