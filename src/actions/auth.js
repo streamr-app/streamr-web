@@ -2,7 +2,6 @@ export const API_ENDPOINT = `${process.env.API_ENDPOINT || ''}`
 
 import { fetch } from './index'
 import { CALL_API } from 'redux-api-middleware'
-import { push } from 'react-router-redux'
 
 export function loadCurrentUser () {
   return fetch({
@@ -37,6 +36,6 @@ export function logout () {
       type: 'LOGOUT'
     })
 
-    dispatch(push('/'))
+    window.location = '/'
   }
 }
