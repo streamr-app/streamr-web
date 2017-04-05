@@ -24,7 +24,8 @@ export function loadTrendingStreams () {
 
 export function loadSubscriptionStreams () {
   return fetch({
-    url: 'streams',
+    url: 'streams/subscribed',
+    authenticated: true,
     query: { page_size: 8 },
     types: [ 'SUBSCRIPTION_STREAMS_REQUEST', 'SUBSCRIPTION_STREAMS_SUCCESS', 'SUBSCRIPTION_STREAMS_FAILURE' ]
   })

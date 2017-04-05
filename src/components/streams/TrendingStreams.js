@@ -10,5 +10,8 @@ export default ({
     {streams.map((stream) => (
       <StreamCardContainer streamId={stream.id} key={stream.id} />
     ))}
+
+    {streams.length === 0 &&
+      <p className='none'>No streams found.</p>}
   </StreamList>
 )
