@@ -29,6 +29,26 @@ export default function (state = null, action) {
     case 'LOGOUT': {
       return { }
     }
+
+    case 'SUBSCRIBE_SUCCESS': {
+      return {
+        ...state,
+        [action.payload.userId]: {
+          ...state[action.payload.userId],
+          currentUserSubscribed: true
+        }
+      }
+    }
+
+    case 'UNSUBSCRIBE_SUCCESS': {
+      return {
+        ...state,
+        [action.payload.userId]: {
+          ...state[action.payload.userId],
+          currentUserSubscribed: false
+        }
+      }
+    }
   }
 
   return state || store.get('user', {})

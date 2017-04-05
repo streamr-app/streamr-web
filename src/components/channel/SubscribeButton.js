@@ -1,17 +1,22 @@
 import React from 'react'
+import cx from 'classnames'
+
 import preventDefault from '../../utils/preventDefault'
 
 export default ({
   className = '',
-  channel,
-  showSubscribers,
-  onClick,
+  user = {},
+  updateSubscription,
   ...rest
 }) => (
   <div className={`subscribe-button ${className}`} {...rest}>
-    {showSubscribers && channel.subscriberCount &&
-      <div className='subscriber-count'>{channel.subscriberCount} subscribers</div>
-    }
-    <a className='button -primary -small' onClick={preventDefault(onClick)}>Subscribe</a>
+    <a
+      className={cx('button -small', { '-subtle': user.currentUserSubscribed })}
+      onClick={preventDefault(() => updateSubscription(!user.currentUserSubscribed))}
+    >
+      {user.currentUserSubscribed
+        ? 'Unsubscribe'
+        : 'Subscribe'}
+    </a>
   </div>
 )
