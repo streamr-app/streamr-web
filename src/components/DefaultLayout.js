@@ -17,7 +17,7 @@ export default () => (
 
     <main>
       <Switch>
-        <Route path='/explore' component={Feed} />
+        <Route path='/' exact component={Feed} />
         <Route path='/login' component={LoginContainer} />
         <Route path='/signup' component={SignupContainer} />
         <Route path='/profile/:userId' component={ChannelContainer} />

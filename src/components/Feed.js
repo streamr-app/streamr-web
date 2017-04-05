@@ -1,14 +1,14 @@
 import React from 'react'
 
-import TrendingTopicsContainer from '../containers/topics/TrendingTopicsContainer'
+import SubscriptionStreamsContainer from '../containers/streams/SubscriptionStreamsContainer'
 import TrendingStreamsContainer from '../containers/streams/TrendingStreamsContainer'
 
 export default () => (
   <div className='feed container'>
-    <h1>🚀 Trending Topics</h1>
-    <TrendingTopicsContainer />
+    <h2>My Subscriptions</h2>
+    <SubscriptionStreamsContainer />
 
-    <h1>🕶 Trending Streams</h1>
+    <h2>🚀 Trending Streams</h2>
     <TrendingStreamsContainer />
   </div>
 )

@@ -1,7 +1,7 @@
 import React from 'react'
 
 import ProfilePreviewContainer from '../containers/auth/ProfilePreviewContainer'
-import { Link } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 
 export default ({
   isSignedIn
@@ -9,11 +9,11 @@ export default ({
   <nav role='main'>
     <ul>
       <li>
-        <Link to='/explore'>Explore</Link>
+        <NavLink exact to='/'>Explore</NavLink>
       </li>
 
       <li className='record'>
-        <Link to='/record'>Record</Link>
+        <NavLink to='/record'>Record</NavLink>
       </li>
 
       {showUserOrSignUp(isSignedIn)}
@@ -27,7 +27,7 @@ function showUserOrSignUp (isSignedIn) {
   } else {
     return (
       <li>
-        <Link to='/signup'>Sign up</Link>
+        <NavLink to='/signup'>Sign up</NavLink>
       </li>
     )
   }

@@ -1,4 +1,7 @@
-export default function (state = {}, action) {
+export default function (state = {
+  fromSubscriptions: [],
+  trending: []
+}, action) {
   switch (action.type) {
     case 'FETCH_COMMENTS_SUCCESS': {
       return {
@@ -20,6 +23,20 @@ export default function (state = {}, action) {
             ...(state[action.payload.streamId].comments || [])
           ]
         }
+      }
+    }
+
+    case 'SUBSCRIPTION_STREAMS_SUCCESS': {
+      return {
+        ...state,
+        fromSubscriptions: action.payload.result.stream
+      }
+    }
+
+    case 'TRENDING_STREAMS_SUCCESS': {
+      return {
+        ...state,
+        trending: action.payload.result.stream
       }
     }
   }
