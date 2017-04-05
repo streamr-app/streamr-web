@@ -1,8 +1,8 @@
 import React from 'react'
 
 import { Link } from 'react-router-dom'
-import NavigationContainer from '../containers/NavigationContainer'
-import StreamOptionsContainer from '../containers/streams/StreamOptionsContainer'
+import NavigationContainer from './NavigationContainer'
+import StreamOptionsContainer from './streams/StreamOptionsContainer'
 
 export default () => (
   <header role='main'>

@@ -1,9 +1,8 @@
 import React from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
-import NewCommentContainer from '../../containers/comments/NewCommentContainer'
-
-import CommentContainer from '../../containers/comments/CommentContainer'
+import NewCommentContainer from './NewCommentContainer'
+import CommentContainer from './CommentContainer'
 
 export default ({
   streamId,

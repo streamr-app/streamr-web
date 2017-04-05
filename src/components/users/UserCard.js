@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 import ProfileImage from './ProfileImage'
-import SubscribeButtonContainer from '../../containers/users/SubscribeButtonContainer'
+import SubscribeButtonContainer from './SubscribeButtonContainer'
 
 export default ({
   user = {}

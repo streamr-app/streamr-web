@@ -3,7 +3,7 @@ import { reduxForm, reset as resetForm } from 'redux-form'
 
 import { createCommentForStream } from '../../actions/comment'
 
-import CommentForm from '../../components/comments/CommentForm'
+import CommentForm from './CommentForm'
 
 function validate (values) {
   const errors = {}

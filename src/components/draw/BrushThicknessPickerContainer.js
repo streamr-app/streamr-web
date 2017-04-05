@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import BrushThicknessPicker from '../../components/draw/BrushThicknessPicker'
+import BrushThicknessPicker from './BrushThicknessPicker'
 
 import { setThickness } from '../../actions/thickness'
 

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import ProfilePreviewContainer from '../containers/auth/ProfilePreviewContainer'
+import ProfilePreviewContainer from './auth/ProfilePreviewContainer'
 import { NavLink } from 'react-router-dom'
 
 export default ({

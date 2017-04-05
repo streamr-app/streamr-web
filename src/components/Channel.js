@@ -1,9 +1,9 @@
 import React from 'react'
 
-import ChannelBadge from '../components/channel/ChannelBadge'
-import SubscribeButtonContainer from '../containers/users/SubscribeButtonContainer'
-import StreamList from '../components/streams/StreamList'
-import StreamCard from '../components/streams/StreamCard'
+import ChannelBadge from './channel/ChannelBadge'
+import SubscribeButtonContainer from './users/SubscribeButtonContainer'
+import StreamList from './streams/StreamList'
+import StreamCard from './streams/StreamCard'
 
 function listStreamCards (streams, channel) {
   return streams.map((stream) => (

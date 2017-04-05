@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import Comment from '../../components/comments/Comment'
+import Comment from './Comment'
 
 function mapStateToProps (state, ownProps) {
   const comment = state.comment[ownProps.commentId]

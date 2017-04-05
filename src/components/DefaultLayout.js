@@ -7,10 +7,10 @@ import { Route, Switch } from 'react-router-dom'
 
 import RecordLayout from './RecordLayout'
 import Feed from './Feed'
-import LoginContainer from '../containers/auth/LoginContainer'
-import SignupContainer from '../containers/auth/SignupContainer'
-import StreamContainer from '../containers/streams/StreamContainer'
-import ChannelContainer from '../containers/ChannelContainer'
+import LoginContainer from './auth/LoginContainer'
+import SignupContainer from './auth/SignupContainer'
+import StreamContainer from './streams/StreamContainer'
+import ChannelContainer from './ChannelContainer'
 
 export default () => (
   <div>

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import at from 'lodash/at'
 
-import StreamComments from '../../components/comments/StreamComments'
+import StreamComments from './StreamComments'
 
 import { fetchCommentsForStream } from '../../actions/comment'
 

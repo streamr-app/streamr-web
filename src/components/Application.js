@@ -4,7 +4,7 @@ import Helmet from 'react-helmet'
 
 import DefaultLayout from './DefaultLayout'
 
-import ColorLoader from '../containers/draw/ColorLoader'
+import ColorLoader from './draw/ColorLoader'
 
 export default () => (
   <div className='application'>

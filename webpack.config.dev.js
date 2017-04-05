@@ -22,7 +22,7 @@ module.exports = {
   },
   devtool: 'eval',
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
@@ -30,17 +30,31 @@ module.exports = {
       },
       {
         test: /\.styl/,
-        loader: 'style-loader!css-loader!stylus-loader'
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'stylus-loader',
+            options: {
+              use: [
+                poststylus([ 'autoprefixer', 'lost' ])
+              ]
+            }
+          }
+        ]
       },
       {
         test: /\.css$/,
-        loader: 'style!css'
+        use: [
+          'style-loader',
+          'css-loader'
+        ]
       },
       {
         test: /\.(jpe?g|png|gif|svg|ico)$/i,
-        loaders: [
-          'file?hash=sha512&digest=hex&name=[hash].[ext]',
-          'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+        use: [
+          'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
+          'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false'
         ]
       }
     ]
@@ -49,10 +63,5 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.API_ENDPOINT': JSON.stringify(process.env.API_ENDPOINT || '')
     })
-  ],
-  stylus: {
-    use: [
-      poststylus([ 'autoprefixer', 'lost' ])
-    ]
-  }
+  ]
 }

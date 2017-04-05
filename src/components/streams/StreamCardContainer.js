@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 
-import StreamCard from '../../components/streams/StreamCard'
+import StreamCard from './StreamCard'
 
 function mapStateToProps (state, ownProps) {
   const stream = state.stream[ownProps.streamId]

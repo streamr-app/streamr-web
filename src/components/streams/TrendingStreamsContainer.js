@@ -1,12 +1,12 @@
 import { connect } from 'react-redux'
 import at from 'lodash/at'
 
-import TrendingStreams from '../../components/streams/TrendingStreams'
+import TrendingStreams from './TrendingStreams'
 
-import { loadSubscriptionStreams } from '../../actions/stream'
+import { loadTrendingStreams } from '../../actions/stream'
 
 function mapStateToProps (state, ownProps) {
-  const streams = at(state.stream, state.stream.fromSubscriptions || [])
+  const streams = at(state.stream, state.stream.trending)
 
   return {
     streams
@@ -14,7 +14,7 @@ function mapStateToProps (state, ownProps) {
 }
 
 function mapDispatchToProps (dispatch, ownProps) {
-  dispatch(loadSubscriptionStreams())
+  dispatch(loadTrendingStreams())
 
   return {}
 }
