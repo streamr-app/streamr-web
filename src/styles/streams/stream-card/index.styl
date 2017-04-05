@@ -1,50 +1,47 @@
 .stream-card
   position relative
+  color black
+  transition all 0.3s ease
+
+  p
+    margin 4px 0
 
   .thumbnail-wrapper
     border-radius 3px
     overflow hidden
+    position relative
+
     img
       width 100%
 
-  .information-wrapper
+  .duration
+    position absolute
+    bottom 3px
+    right 3px
+    color rgba(255, 255, 255, 0.6)
+    margin 0
+    font-size 0.7em
+
+  .title
+    margin-top 10px
+    font-weight 400
+    color black
+    font-size 1.1em
+
+  .author
+    color #aaa
+
+  &:hover
+    transform scale(1.03)
+
     .title
-      font-weight 400
-      font-size 0.9rem
+      text-decoration underline
 
-    .description
-      font-size 0.7rem
-      color $light-gray
-      overflow hidden
-      text-overflow ellipsis // this ellipsis won't work for some reason
-      line-height 0.7rem
-      max-height 1.4rem // line-height * #-lines
-
-    .author
-      font-size 0.65rem
+  .author
+    font-size 0.8em
 
   &.horizontal
     display block
     width 100%
-    clear both
-    overflow hidden
-
-    .thumbnail-wrapper
-      float left
-      display inline-block
-      width 33%
-
-    .information-wrapper
-      float left
-      display inline-block
-      position absolute
-      top 5px
-      margin-left 15px
-
-      .title
-        font-size 1.3rem
-      .description
-        font-size 1.0rem
-        line-height 1.0rem
-        max-height 2.0rem
-        margin-top 8px
+    display flex
+    align-items center
