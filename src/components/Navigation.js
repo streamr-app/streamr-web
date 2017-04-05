@@ -9,7 +9,7 @@ export default ({
   <nav role='main'>
     <ul>
       <li>
-        <NavLink to='/explore'>Explore</NavLink>
+        <NavLink to='/'>Explore</NavLink>
       </li>
 
       <li className='record'>
