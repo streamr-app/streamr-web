@@ -4,6 +4,7 @@ import cx from 'classnames'
 import Helmet from 'react-helmet'
 import StreamPlayer from '../playback/StreamPlayer'
 import StreamDetails from './StreamDetails'
+import StreamCommentsContainer from '../../containers/comments/StreamCommentsContainer'
 
 export default ({
   colors,
@@ -16,6 +17,9 @@ export default ({
       <Helmet title={stream.title} />
       <StreamPlayer {...{ stream, streamData, colors }} />
       <StreamDetails {...{ stream }} />
+
+      {stream.id &&
+        <StreamCommentsContainer streamId={stream.id} />}
     </div>
   )
 }
