@@ -1,7 +1,5 @@
 import store from 'store'
 
-//current_user_subscribed
-
 export default function (state = null, action) {
   switch (action.type) {
     case 'CURRENT_USER_SUCCESS': {
