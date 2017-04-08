@@ -20,7 +20,7 @@ export default ({
 }) => (
   <div className='channel'>
     <Banner className='channel-overview'>
-      <ProfileImage image={user.image} />
+      <ProfileImage image={user.imageUrl} />
       <h2>{user.name}</h2>
       <SubscribeButtonContainer userId={user.id} />
     </Banner>
