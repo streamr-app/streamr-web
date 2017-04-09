@@ -8,7 +8,7 @@ export default ({
   user = {}
 }) => (
   <div className='user-card'>
-    <ProfileImage image={user.image} />
+    <ProfileImage image={user.imageUrl} />
 
     <div>
       <Link to={`/profile/${user.id}`} className='profile-link'>{user.name}</Link>

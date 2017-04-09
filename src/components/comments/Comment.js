@@ -25,7 +25,7 @@ export default React.createClass({
     return (
       <div className='comment'>
         <div>
-          <ProfileImage image={user.image} />
+          <ProfileImage image={user.imageUrl} />
         </div>
 
         <div className='content'>
