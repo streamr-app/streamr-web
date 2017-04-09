@@ -35,6 +35,18 @@ export default React.createClass({
     this.recorder.connect(this.audioContext.destination)
   },
 
+  onStop (blob) {
+    console.log(blob)
+  },
+
+  componentWillMount () {
+    this.client = new BinaryClient('ws://localhost:9001')
+
+    this.client.on('open', () => {
+      this.stream = this.client.createStream({ meta: 'test' })
+    })
+  },
+
   recorderProcess (event) {
     if (!this.stream) return null
 
@@ -51,6 +63,10 @@ export default React.createClass({
     }
 
     return buf.buffer
+  },
+
+  onError (error) {
+    console.log(error)
   },
 
   render () {
