@@ -6021,6 +6021,16 @@ react-proxy@^3.0.0-alpha.0:
   dependencies:
     lodash "^4.6.1"
 
+react-recorder-redux@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-recorder-redux/-/react-recorder-redux-1.0.0.tgz#75f5614a915f5ee597e3781389e8be90567d1ee5"
+  dependencies:
+    react-recorder "^1.0.0"
+
+react-recorder@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-recorder/-/react-recorder-1.0.0.tgz#ed05c20ce2284af1d4c894ea35903bdb32095fcb"
+
 react-redux@^5.0.3:
   version "5.0.3"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-5.0.3.tgz#86c3b68d56e74294a42e2a740ab66117ef6c019f"
