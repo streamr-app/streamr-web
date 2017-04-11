@@ -8,27 +8,40 @@ export default React.createClass({
     console.log(blob)
   },
 
-  componentWillMount () {
-    this.client = new BinaryClient('ws://localhost:9001')
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.streamId && !this.props.streamId) {
+      this.client = new BinaryClient('ws://streamr-recording-service.herokuapp.com')
 
-    this.client.on('open', () => {
-      this.stream = this.client.createStream({ meta: 'test' })
-    })
+      this.client.on('open', () => {
+        this.stream = this.client.createStream({
+          streamId: this.props.streamId,
+          authToken: this.props.authToken,
+          sampleRate: this.sampleRate
+        })
+      })
+    }
+  },
+
+  componentWillUnmount () {
+    this.client && this.client.close()
   },
 
   gotStream (stream) {
-    const context = new AudioContext()
+    this.audioContext = new AudioContext()
+    this.sampleRate = this.audioContext.sampleRate
 
-    const audioInput = context.createMediaStreamSource(stream)
+    const audioInput = this.audioContext.createMediaStreamSource(stream)
     const bufferSize = 2048
 
-    const recorder = context.createScriptProcessor(bufferSize, 1, 1)
-    recorder.onaudioprocess = this.recorderProcess
-    audioInput.connect(recorder)
-    recorder.connect(context.destination)
+    this.recorder = this.audioContext.createScriptProcessor(bufferSize, 1, 1)
+    this.recorder.onaudioprocess = this.recorderProcess
+    audioInput.connect(this.recorder)
+    this.recorder.connect(this.audioContext.destination)
   },
 
   recorderProcess (event) {
+    if (!this.stream) return null
+
     var left = event.inputBuffer.getChannelData(0)
     this.stream.write(this.float32to16(left))
   },

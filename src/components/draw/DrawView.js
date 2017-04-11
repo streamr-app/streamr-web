@@ -7,7 +7,7 @@ import MouseDrawingHandler from '../draw/MouseDrawingHandler'
 import StreamRenderer from '../stream-renderer/StreamRenderer'
 import DrawingSidebar from './DrawingSidebar'
 
-import AudioRecordingStream from './AudioRecordingStream'
+import AudioRecordingStreamContainer from './AudioRecordingStreamContainer'
 
 export default ({
   streamId,
@@ -32,6 +32,6 @@ export default ({
       <MouseDrawingHandler {...{ enabled, onCursorMove, onLineStart, onLineEnd, onPointCreate }} />
     </div>
 
-    <AudioRecordingStream {...{ streamId }} />
+    <AudioRecordingStreamContainer {...{ streamId }} />
   </div>
 )
