@@ -10,7 +10,7 @@ export default React.createClass({
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.streamId && !this.props.streamId) {
-      this.client = new BinaryClient('ws://streamr-recording-service.herokuapp.com')
+      this.client = new BinaryClient(process.env.RECORDING_SERVICE_URL)
 
       this.client.on('open', () => {
         this.stream = this.client.createStream({
