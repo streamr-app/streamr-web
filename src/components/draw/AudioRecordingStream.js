@@ -39,14 +39,6 @@ export default React.createClass({
     console.log(blob)
   },
 
-  componentWillMount () {
-    this.client = new BinaryClient('ws://localhost:9001')
-
-    this.client.on('open', () => {
-      this.stream = this.client.createStream({ meta: 'test' })
-    })
-  },
-
   recorderProcess (event) {
     if (!this.stream) return null
 

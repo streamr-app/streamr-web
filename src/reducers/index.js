@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 import { reducer as formReducer } from 'redux-form'
 import { routerReducer } from 'react-router-redux'
+import { recorderReducer as recorder } from 'react-recorder-redux'
 
 import entitiesReducer, { stubbedEntityReducers } from './entitiesReducer'
 
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   auth,
   drawing,
   form: formReducer,
+  recorder,
   router: routerReducer,
   stream,
   streamDataByStream,
