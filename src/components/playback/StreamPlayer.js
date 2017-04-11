@@ -39,8 +39,8 @@ export default React.createClass({
 
     if (this.props.streamData) {
       const { stream, streamData, colors } = this.props
-      // this.audio = new Audio(stream.audioDataUrl)
-      // this.manager.prepare(stream, streamData, colors)
+      this.audio = new Audio(stream.audioDataUrl)
+      this.manager.prepare(stream, streamData, colors)
     }
   },
 
