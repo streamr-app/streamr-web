@@ -4,10 +4,6 @@ import { BinaryClient } from '../../vendor/binary'
 import Recorder from 'react-recorder'
 
 export default React.createClass({
-  onStop (blob) {
-    console.log(blob)
-  },
-
   componentWillReceiveProps (nextProps) {
     if (nextProps.streamId && !this.props.streamId) {
       this.client = new BinaryClient(process.env.RECORDING_SERVICE_URL)
@@ -55,10 +51,6 @@ export default React.createClass({
     }
 
     return buf.buffer
-  },
-
-  onError (error) {
-    console.log(error)
   },
 
   render () {
