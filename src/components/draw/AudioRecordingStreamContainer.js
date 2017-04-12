@@ -11,4 +11,4 @@ function mapStateToProps (state, ownProps) {
   }
 }
 
-export default connect(mapStateToProps, null)(AudioRecordingStream)
+export default connect(mapStateToProps)(AudioRecordingStream)
