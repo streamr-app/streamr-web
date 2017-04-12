@@ -57,10 +57,6 @@ export default React.createClass({
     return buf.buffer
   },
 
-  onError (error) {
-    console.log(error)
-  },
-
   render () {
     return (
       <Recorder
