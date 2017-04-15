@@ -15,7 +15,7 @@ export default function configureStore (history) {
         thunk,
         apiMiddleware,
         userSync,
-        routerMiddleware(history),
+        routerMiddleware(history)
       )
     )
   )

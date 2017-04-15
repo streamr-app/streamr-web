@@ -32,7 +32,6 @@ export default class Me extends React.Component {
       error,
       handleSubmit,
       onSubmit,
-      dirty,
       pristine,
       submitting,
       invalid
