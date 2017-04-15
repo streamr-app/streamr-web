@@ -14,6 +14,14 @@ export function loadStreams () {
   })
 }
 
+export function searchForStreams (searchQuery) {
+  return fetch({
+    url: 'streams',
+    query: { search: searchQuery },
+    types: [ 'STREAMS_SEARCH_REQUEST', 'STREAMS_SEARCH_SUCCESS', 'STREAMS_SEARCH_FAILURE' ]
+  })
+}
+
 export function loadTrendingStreams () {
   return fetch({
     url: 'streams',

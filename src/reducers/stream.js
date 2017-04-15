@@ -3,6 +3,13 @@ export default function (state = {
   trending: []
 }, action) {
   switch (action.type) {
+    case 'STREAMS_SEARCH_SUCCESS': {
+      return {
+        ...state,
+        searchResults: action.payload.result.stream
+      }
+    }
+
     case 'FETCH_COMMENTS_SUCCESS': {
       return {
         ...state,

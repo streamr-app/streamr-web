@@ -11,6 +11,7 @@ import LoginContainer from './auth/LoginContainer'
 import SignupContainer from './auth/SignupContainer'
 import StreamContainer from './streams/StreamContainer'
 import ChannelContainer from './ChannelContainer'
+import SearchResultsContainer from './search/SearchResultsContainer'
 
 export default () => (
   <div>
@@ -23,6 +24,7 @@ export default () => (
         <Route path='/signup' component={SignupContainer} />
         <Route path='/profile/:userId' component={ChannelContainer} />
         <Route path='/record' component={RecordLayout} />
+        <Route path='/search' component={SearchResultsContainer} />
         <Route path='/:streamSlug' component={StreamContainer} />
       </Switch>
     </main>
