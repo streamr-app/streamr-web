@@ -24,6 +24,10 @@ export default class StreamRenderer extends React.Component {
     this.group = this.svg.append('g')
       .attr('stroke-linecap', 'round')
       .attr('fill', 'none')
+
+    this.group.append('rect')
+      .attr('x', 0).attr('y', 0).attr('width', WIDTH).attr('height', HEIGHT)
+      .attr('fill', 'rgb(33, 37, 43)')
   }
 
   componentWillReceiveProps (nextProps) {

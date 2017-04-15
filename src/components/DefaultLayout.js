@@ -36,7 +36,7 @@ export default () => (
 
         <Route path='/search' component={SearchResultsContainer} />
 
-        <Route path='/:streamSlug' component={StreamContainer} />
+        <Route path='/:streamSlug' exact component={StreamContainer} />
         <Route path='/:streamSlug/publish' component={PublishStreamContainer} />
       </Switch>
     </main>
