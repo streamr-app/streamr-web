@@ -8,6 +8,7 @@ import auth from './auth'
 import drawing from './drawing'
 import stream from './stream'
 import streamDataByStream from './streamDataByStream'
+import topic from './topic'
 import user from './user'
 
 const rootReducer = combineReducers({
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   router: routerReducer,
   stream,
   streamDataByStream,
+  topic,
   user
 })
 
