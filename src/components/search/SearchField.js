@@ -12,8 +12,9 @@ import {
 const searchField = reduxFormWrapper(<TextField id='email' />)
 
 export default class SearchField extends React.Component {
-  focusSearch (e) {
-    e.preventDefault()
+  focusSearch (event) {
+    event.preventDefault()
+
     const node = ReactDOM.findDOMNode(this.search)
     node.querySelector('input').focus()
   }
@@ -33,7 +34,7 @@ export default class SearchField extends React.Component {
 
         <Mousetrap
           bindings={{
-            '/': (e) => this.focusSearch(e)
+            '/': (event) => this.focusSearch(event)
           }}
         />
       </div>
