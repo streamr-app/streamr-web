@@ -1,22 +1,34 @@
 .single-dropzone
   width 160px
-  height 160px
-  position relative
-  border-radius 10px
-  overflow hidden
-  background #eee
-  background-repeat no-repeat
-  background-position center center
-
-  &:not(.empty)
-    background-size cover
 
   .dropzone
-    position absolute
+    border-radius 10px
+    background #eee
+    height 160px
     cursor pointer
-    top 0
-    right 0
-    bottom 0
-    left 0
-    display flex
-    flex-direction column
+    background-repeat no-repeat
+    background-position center center
+    background-size cover
+    position relative
+
+    &:after
+      position absolute
+      top -1px
+      right -1px
+      bottom -1px
+      left -1px
+      border 6px solid white
+      border-radius 11px
+      content ' '
+      display block
+      opacity 0
+      transition opacity 0.3s ease
+
+    &.active:after
+      opacity 0.6
+
+  p
+    font-size 0.8em
+    text-align center
+    margin 5px 0
+    color #999

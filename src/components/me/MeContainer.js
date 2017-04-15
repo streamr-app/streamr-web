@@ -1,7 +1,9 @@
 import { connect } from 'react-redux'
 import { reduxForm } from 'redux-form'
+import omit from 'lodash/omit'
 
 import { updateMe } from '../../actions/users'
+import { loadCurrentUser } from '../../actions/auth'
 
 import Me from './Me'
 
@@ -34,8 +36,14 @@ function mapStateToProps (state, ownProps) {
 }
 
 function mapDispatchToProps (dispatch, ownProps) {
+  dispatch(loadCurrentUser())
+
   return {
     onSubmit (data) {
+      if (!data.image || !data.image.includes('base64')) {
+        data = omit(data, 'image')
+      }
+
       return dispatch(updateMe(data))
     }
   }

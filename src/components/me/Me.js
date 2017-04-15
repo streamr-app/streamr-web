@@ -32,6 +32,7 @@ export default class Me extends React.Component {
       error,
       handleSubmit,
       onSubmit,
+      dirty,
       pristine,
       submitting,
       invalid
@@ -74,7 +75,11 @@ export default class Me extends React.Component {
           </FormRow>
 
           <FormRow>
-            <Button disabled={pristine || submitting || invalid}>Update Profile</Button>
+            <Button disabled={pristine || submitting || invalid}>
+              {submitting
+                ? 'Saving...'
+                : 'Update Profile'}
+            </Button>
           </FormRow>
         </form>
       </div>
