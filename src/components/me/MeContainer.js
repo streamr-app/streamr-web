@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { reduxForm, initialize, reset } from 'redux-form'
+import { reduxForm } from 'redux-form'
 
 import { updateMe } from '../../actions/users'
 
