@@ -8,12 +8,13 @@ import { Route, Switch } from 'react-router-dom'
 import ChannelContainer from './ChannelContainer'
 import Feed from './Feed'
 import LoginContainer from './auth/LoginContainer'
+import PublishStreamContainer from './streams/PublishStreamContainer'
 import RecordLayout from './RecordLayout'
+import SearchResultsContainer from './search/SearchResultsContainer'
 import SignupContainer from './auth/SignupContainer'
 import MeContainer from './me/MeContainer'
 import StreamContainer from './streams/StreamContainer'
 import TopicContainer from './topics/TopicContainer'
-import SearchResultsContainer from './search/SearchResultsContainer'
 
 export default () => (
   <div>
@@ -36,6 +37,7 @@ export default () => (
         <Route path='/search' component={SearchResultsContainer} />
 
         <Route path='/:streamSlug' component={StreamContainer} />
+        <Route path='/:streamSlug/publish' component={PublishStreamContainer} />
       </Switch>
     </main>
 

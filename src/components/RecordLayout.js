@@ -9,8 +9,7 @@ export default ({
   children
 }) => (
   <div>
-    <Helmet
-      htmlAttributes={{ class: 'recording' }} />
+    <Helmet htmlAttributes={{ class: 'recording' }} />
 
     <Route path='/' component={DrawViewContainer} />
   </div>

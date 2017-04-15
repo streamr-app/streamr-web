@@ -4,6 +4,7 @@ import { reset as resetForm } from 'redux-form'
 import {
   fetch,
   createResource,
+  updateResource,
   performActionOnResource
 } from './index'
 
@@ -127,3 +128,23 @@ export function fetchStreamsByUser (userId) {
     authenticated: 'try'
   })
 }
+
+export function updateStream (streamId, data) {
+  return updateResource({
+    url: `streams/${streamId}`,
+    types: [ 'UPDATE_STREAM_REQUEST', 'UPDATE_STREAM_SUCCESS', 'UPDATE_STREAM_FAILURE' ],
+    key: 'stream',
+    body: data,
+    authenticated: true
+  })
+}
+
+export function setCurrentStreamThumbnail (thumbnail) {
+  const previewData = 'data:image/svg+xml;base64,' + btoa(thumbnail)
+
+  return (dispatch, getState) => {
+    return dispatch(updateStream(getState().drawing.currentStreamId, { previewData }))
+  }
+}
+
+/* global btoa */

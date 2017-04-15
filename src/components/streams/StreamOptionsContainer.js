@@ -3,7 +3,7 @@ import { reduxForm } from 'redux-form'
 
 import StreamOptions from './StreamOptions'
 
-import { createStream, setCurrentStream, endCurrentStream } from '../../actions/stream'
+import { createStream, setCurrentStream, endCurrentStream, setCurrentStreamThumbnail } from '../../actions/stream'
 import { push } from 'react-router-redux'
 
 function mapStateToProps (state, ownProps) {
@@ -26,11 +26,12 @@ function mapDispatchToProps (dispatch, ownProps) {
     onStopRecording (event) {
       event.preventDefault()
 
-      return dispatch(endCurrentStream())
+      return dispatch(setCurrentStreamThumbnail(window.drawingSvg.html()))
+        .then(() => dispatch(endCurrentStream()))
         .then((action) => {
           const streamId = action.payload.result.stream[0]
           const slug = action.payload.entities.stream[streamId].slug
-          dispatch(push(`/${slug}`))
+          dispatch(push(`/${slug}/publish`))
         })
     }
   }

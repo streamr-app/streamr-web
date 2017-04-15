@@ -23,16 +23,16 @@ export default React.createClass({
   },
 
   gotStream (stream) {
-    this.audioContext = new AudioContext()
-    this.sampleRate = this.audioContext.sampleRate
-
-    const audioInput = this.audioContext.createMediaStreamSource(stream)
-    const bufferSize = 2048
-
-    this.recorder = this.audioContext.createScriptProcessor(bufferSize, 1, 1)
-    this.recorder.onaudioprocess = this.recorderProcess
-    audioInput.connect(this.recorder)
-    this.recorder.connect(this.audioContext.destination)
+    // this.audioContext = new AudioContext()
+    // this.sampleRate = this.audioContext.sampleRate
+    //
+    // const audioInput = this.audioContext.createMediaStreamSource(stream)
+    // const bufferSize = 2048
+    //
+    // this.recorder = this.audioContext.createScriptProcessor(bufferSize, 1, 1)
+    // this.recorder.onaudioprocess = this.recorderProcess
+    // audioInput.connect(this.recorder)
+    // this.recorder.connect(this.audioContext.destination)
   },
 
   onStop (blob) {
