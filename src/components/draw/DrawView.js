@@ -7,7 +7,10 @@ import MouseDrawingHandler from '../draw/MouseDrawingHandler'
 import StreamRenderer from '../stream-renderer/StreamRenderer'
 import DrawingSidebar from './DrawingSidebar'
 
+import AudioRecordingStreamContainer from './AudioRecordingStreamContainer'
+
 export default ({
+  streamId,
   onCursorMove,
   onLineStart,
   onLineEnd,
@@ -28,5 +31,7 @@ export default ({
       <StreamRenderer {...{ currentLine, currentColor, currentThickness }} />
       <MouseDrawingHandler {...{ enabled, onCursorMove, onLineStart, onLineEnd, onPointCreate }} />
     </div>
+
+    <AudioRecordingStreamContainer {...{ streamId }} />
   </div>
 )

@@ -10,7 +10,7 @@ function mapStateToProps (state, ownProps) {
   const stream = state.stream[streamId]
   const colors = state.color
 
-  if (!stream) {
+  if (!stream || !stream.audioDataUrl) {
     return { loading: true }
   }
 

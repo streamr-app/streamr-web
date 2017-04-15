@@ -51,9 +51,10 @@ export function fetchStream (streamId) {
 export function fetchStreamData (streamId) {
   return (dispatch, getState) => {
     const endpoint = getState().stream[streamId].dataUrl
+    const audioEndpoint = getState().stream[streamId].audioDataUrl
 
     return new Promise((resolve) => {
-      if (!endpoint) {
+      if (!endpoint || !audioEndpoint) {
         setTimeout(() => {
           dispatch(fetchStream(streamId))
           dispatch(fetchStreamData(streamId)).then(resolve)
