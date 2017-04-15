@@ -18,7 +18,7 @@ export default ({
     <label htmlFor={id}>{label}</label>
 
     {
-      children && React.cloneElement(children, { id, type, ...rest }) ||
+      (children && React.cloneElement(children, { id, type, ...rest })) ||
       <input type={type} id={id} {...rest} />
     }
 

@@ -54,7 +54,18 @@ module.exports = {
         test: /\.(jpe?g|png|gif|svg|ico)$/i,
         use: [
           'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
-          'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false'
+          {
+            loader: 'image-webpack-loader',
+            query: {
+              gifsicle: {
+                interlaced: false
+              },
+              optipng: {
+                optimizationLevel: 7
+              },
+              bypassOnDebug: ''
+            }
+          }
         ]
       }
     ]
@@ -63,6 +74,7 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.API_ENDPOINT': JSON.stringify(process.env.API_ENDPOINT || ''),
       'process.env.RECORDING_SERVICE_URL': JSON.stringify(process.env.RECORDING_SERVICE_URL || '')
-    })
+    }),
+    new webpack.NamedModulesPlugin()
   ]
 }

@@ -1,7 +1,7 @@
-export const API_ENDPOINT = `${process.env.API_ENDPOINT || ''}`
-
 import { fetch } from './index'
 import { CALL_API } from 'redux-api-middleware'
+
+export const API_ENDPOINT = `${process.env.API_ENDPOINT || ''}`
 
 export function loadCurrentUser () {
   return fetch({

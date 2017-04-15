@@ -1,22 +1,22 @@
 import React from 'react'
 import forEach from 'lodash/forEach'
 
-import Mousetrap from 'mousetrap'
+import mousetrap from 'mousetrap'
 
-export default React.createClass({
+export default class Mousetrap extends React.Component {
   componentDidMount () {
     forEach(this.props.bindings || [], (callback, key) => {
-      Mousetrap.bind(key, callback)
+      mousetrap.bind(key, callback)
     })
-  },
+  }
 
   componentWillUnmount () {
     forEach(this.props.bindings || [], (_, key) => {
-      Mousetrap.unbind(key)
+      mousetrap.unbind(key)
     })
-  },
+  }
 
   render () {
     return null
   }
-})
+}

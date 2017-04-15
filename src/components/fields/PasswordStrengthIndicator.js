@@ -1,5 +1,4 @@
-import React, { PropTypes } from 'react'
-
+import React from 'react'
 import cx from 'classnames'
 
 export default class PasswordStrengthIndicator extends React.Component {
@@ -20,8 +19,6 @@ export default class PasswordStrengthIndicator extends React.Component {
   render () {
     const score = this.state.zxcvbn(this.props.password).score
 
-    score
-
     return (
       <div className={`password-strength-indicator score-${score}`}>
         <div className={cx('strength-bar', { filled: score >= 1 })} />
@@ -31,8 +28,4 @@ export default class PasswordStrengthIndicator extends React.Component {
       </div>
     )
   }
-}
-
-PasswordStrengthIndicator.propTypes = {
-  password: PropTypes.string.isRequired
 }
