@@ -46,7 +46,7 @@ export default class StreamRenderer extends React.Component {
     return this.group.append('path')
       .attr('stroke', this.props.currentColor)
       .attr('stroke-width', this.props.currentThickness)
-  },
+  }
 
   redrawLine (path, line) {
     path.attr('d', this.lineFunction(line.points))
