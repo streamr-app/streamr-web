@@ -10,6 +10,7 @@ import Feed from './Feed'
 import LoginContainer from './auth/LoginContainer'
 import RecordLayout from './RecordLayout'
 import SignupContainer from './auth/SignupContainer'
+import MeContainer from './me/MeContainer'
 import StreamContainer from './streams/StreamContainer'
 import TopicContainer from './topics/TopicContainer'
 import SearchResultsContainer from './search/SearchResultsContainer'
@@ -23,6 +24,8 @@ export default () => (
         <Route path='/' exact component={Feed} />
         <Route path='/login' component={LoginContainer} />
         <Route path='/signup' component={SignupContainer} />
+
+        <Route path='/me' component={MeContainer} />
 
         <Route path='/profile/:userId' component={ChannelContainer} />
 

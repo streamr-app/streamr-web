@@ -1,0 +1,34 @@
+.single-dropzone
+  width 160px
+
+  .dropzone
+    border-radius 10px
+    background #eee
+    height 160px
+    cursor pointer
+    background-repeat no-repeat
+    background-position center center
+    background-size cover
+    position relative
+
+    &:after
+      position absolute
+      top -1px
+      right -1px
+      bottom -1px
+      left -1px
+      border 6px solid white
+      border-radius 11px
+      content ' '
+      display block
+      opacity 0
+      transition opacity 0.3s ease
+
+    &.active:after
+      opacity 0.6
+
+  p
+    font-size 0.8em
+    text-align center
+    margin 5px 0
+    color #999

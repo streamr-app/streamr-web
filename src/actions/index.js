@@ -31,9 +31,8 @@ export function updateResource ({ body, key, ...options }) {
   }
 
   return baseRequest({
-    method: 'PATCH',
+    method: 'PUT',
     body,
-    key,
     ...options
   })
 }
