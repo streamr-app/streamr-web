@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { reduxForm } from 'redux-form'
+import { reduxForm, reset } from 'redux-form'
 import queryString from 'query-string'
 
 import SearchField from './SearchField'
@@ -15,6 +15,10 @@ function mapStateToProps (state, ownProps) {
 }
 
 function mapDispatchToProps (dispatch, ownProps) {
+  if (!queryString.parse(ownProps.location.search).query) {
+    dispatch(reset('search'))
+  }
+
   return {
     onSubmit (data) {
       const search = data.search
