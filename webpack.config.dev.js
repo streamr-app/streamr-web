@@ -63,6 +63,7 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.API_ENDPOINT': JSON.stringify(process.env.API_ENDPOINT || ''),
       'process.env.RECORDING_SERVICE_URL': JSON.stringify(process.env.RECORDING_SERVICE_URL || '')
-    })
+    }),
+    new webpack.NamedModulesPlugin()
   ]
 }

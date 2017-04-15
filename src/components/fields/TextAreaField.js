@@ -18,7 +18,7 @@ export default ({
       <label htmlFor={id}>{label}</label>}
 
     {
-      children && React.cloneElement(children, { id, ...rest }) ||
+      (children && React.cloneElement(children, { id, ...rest })) ||
       <textarea id={id} {...rest} />
     }
 

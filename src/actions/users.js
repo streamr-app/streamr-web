@@ -1,7 +1,4 @@
-export const API_ENDPOINT = `${process.env.API_ENDPOINT || ''}`
-
 import { CALL_API } from 'redux-api-middleware'
-
 import { login } from './auth'
 
 import {
@@ -9,6 +6,8 @@ import {
   createResource,
   performActionOnResource
 } from './index'
+
+export const API_ENDPOINT = `${process.env.API_ENDPOINT || ''}`
 
 export function createUser (payload) {
   return (dispatch, getState) => {

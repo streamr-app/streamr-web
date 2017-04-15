@@ -1,12 +1,10 @@
 import { CALL_API, getJSON } from 'redux-api-middleware'
 import path from 'path'
 import queryString from 'query-string'
+import humps from 'humps'
+import deserialize from '../utils/deserialize'
 
 export const API_ENDPOINT = `${process.env.API_ENDPOINT || ''}`
-
-import humps from 'humps'
-
-import deserialize from '../utils/deserialize'
 
 export function fetch (options) {
   return baseRequest({

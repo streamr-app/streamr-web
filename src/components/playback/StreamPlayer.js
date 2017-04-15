@@ -4,23 +4,23 @@ import cx from 'classnames'
 
 import PlaybackControls from './PlaybackControls'
 
-export default React.createClass({
+export default class StreamPlayer extends React.Component {
   getInitialState () {
     return {
       position: 0,
       loading: true
     }
-  },
+  }
 
   play () {
     this.audio && this.audio.play()
     this.forceUpdate()
-  },
+  }
 
   pause () {
     this.audio && this.audio.pause()
     this.forceUpdate()
-  },
+  }
 
   positionChange (position, userInitiated) {
     if (this.audio && userInitiated) {
@@ -28,11 +28,11 @@ export default React.createClass({
     }
 
     this.setState({ position })
-  },
+  }
 
   componentDidMount () {
     this.manager = new DrawManager(this.svg)
-    this.manager.on('POSITION_CHANGE', this.positionChange)
+    this.manager.on('POSITION_CHANGE', (position) => this.positionChange(position))
     this.manager.on('READY', () => this.manager.play())
     this.manager.on('PLAY', () => this.play())
     this.manager.on('PAUSE', () => this.pause())
@@ -42,7 +42,7 @@ export default React.createClass({
       this.audio = new Audio(stream.audioDataUrl)
       this.manager.prepare(stream, streamData, colors)
     }
-  },
+  }
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.stream && !this.props.streamData) {
@@ -50,12 +50,12 @@ export default React.createClass({
       this.audio = new Audio(stream.audioDataUrl)
       this.manager.prepare(stream, streamData, colors)
     }
-  },
+  }
 
   componentWillUnmount () {
     this.manager.stop()
     this.audio.pause()
-  },
+  }
 
   render () {
     if (!this.manager) this.manager = {}
@@ -74,6 +74,6 @@ export default React.createClass({
       </div>
     )
   }
-})
+}
 
 /* global Audio */

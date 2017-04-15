@@ -3,18 +3,22 @@ import moment from 'moment'
 
 import ProfileImage from '../users/ProfileImage'
 
-export default React.createClass({
+export default class Comment extends React.Component {
   tick () {
     this.forceUpdate()
-  },
+  }
 
   componentDidMount () {
     this.interval = setInterval(this.tick, 10000)
-  },
+  }
 
   componentWillUnmount () {
     clearInterval(this.interval)
-  },
+  }
+
+  timeAgo (dateTime) {
+    return moment(dateTime).fromNow(true)
+  }
 
   render () {
     const {
@@ -35,14 +39,10 @@ export default React.createClass({
 
         <div>
           <p className='ago' title={comment.insertedAt}>
-            {timeAgo(comment.insertedAt)}
+            {this.timeAgo(comment.insertedAt)}
           </p>
         </div>
       </div>
     )
   }
-})
-
-function timeAgo (dateTime) {
-  return moment(dateTime).fromNow(true)
 }

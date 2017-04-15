@@ -5,23 +5,23 @@ import throttle from 'lodash/throttle'
 import cx from 'classnames'
 import Measure from 'react-measure'
 
-export default React.createClass({
+export default class MouseDrawingHandler extends React.Component {
   getInitialState () {
     return {
       drawing: false
     }
-  },
+  }
 
   componentDidMount () {
     this.throttledPointCreate = throttle(this.props.onPointCreate, 20, { leading: true, trailing: true })
     this.throttledCursorMove = throttle(this.props.onCursorMove, 50, { leading: true, trailing: true })
 
     this.measurer = setInterval(() => this.refs.measure.measure(), 100)
-  },
+  }
 
   componentWillUnmount () {
     clearInterval(this.measurer)
-  },
+  }
 
   mouseDownCallback (event, measurements) {
     if (!this.props.enabled) return
@@ -29,7 +29,7 @@ export default React.createClass({
     this.props.onLineStart(this.getRelativePosition(event, measurements))
 
     this.setState({ drawing: true })
-  },
+  }
 
   mouseUpCallback (event, measurements) {
     if (!this.props.enabled) return
@@ -40,7 +40,7 @@ export default React.createClass({
     }
 
     this.setState({ drawing: false })
-  },
+  }
 
   mouseMoveCallback (event, measurements) {
     if (!this.props.enabled) return
@@ -50,7 +50,7 @@ export default React.createClass({
     } else {
       this.throttledCursorMove(this.getRelativePosition(event, measurements))
     }
-  },
+  }
 
   mouseLeaveCallback (event, measurement) {
     if (!this.props.enabled) return
@@ -60,18 +60,18 @@ export default React.createClass({
       this.props.onPointCreate(this.getRelativePosition(event, measurement))
       this.props.onLineEnd(this.getRelativePosition(event, measurement))
     }
-  },
+  }
 
   getRelativePosition (event, measurements) {
     const x = (event.pageX - measurements.left) / measurements.width
     const y = (event.pageY - measurements.top) / measurements.height
 
     return { x: this.round(x, 5), y: this.round(y, 5) }
-  },
+  }
 
   round (number, precision) {
     return Math.round(number * Math.pow(10, precision)) / Math.pow(10, precision)
-  },
+  }
 
   render () {
     const {
@@ -94,4 +94,4 @@ export default React.createClass({
       </div>
     )
   }
-})
+}
