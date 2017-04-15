@@ -12,6 +12,7 @@ import RecordLayout from './RecordLayout'
 import SignupContainer from './auth/SignupContainer'
 import StreamContainer from './streams/StreamContainer'
 import TopicContainer from './topics/TopicContainer'
+import SearchResultsContainer from './search/SearchResultsContainer'
 
 export default () => (
   <div>
@@ -28,6 +29,8 @@ export default () => (
         <Route path='/record' component={RecordLayout} />
 
         <Route path='/topics/:topicId' component={TopicContainer} />
+
+        <Route path='/search' component={SearchResultsContainer} />
 
         <Route path='/:streamSlug' component={StreamContainer} />
       </Switch>

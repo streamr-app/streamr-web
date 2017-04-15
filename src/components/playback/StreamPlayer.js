@@ -13,17 +13,17 @@ export default React.createClass({
   },
 
   play () {
-    this.audio.play()
+    this.audio && this.audio.play()
     this.forceUpdate()
   },
 
   pause () {
-    this.audio.pause()
+    this.audio && this.audio.pause()
     this.forceUpdate()
   },
 
   positionChange (position, userInitiated) {
-    if (userInitiated) {
+    if (this.audio && userInitiated) {
       this.audio.currentTime = position / 1000
     }
 
@@ -31,9 +31,6 @@ export default React.createClass({
   },
 
   componentDidMount () {
-    // TODO: use real audio from stream
-    this.audio = new Audio('https://s3-us-west-2.amazonaws.com/streamr-stevens-mbp/audio/93-HELLO-THIS-IS-STREAM.mp3')
-
     this.manager = new DrawManager(this.svg)
     this.manager.on('POSITION_CHANGE', this.positionChange)
     this.manager.on('READY', () => this.manager.play())
@@ -42,6 +39,7 @@ export default React.createClass({
 
     if (this.props.streamData) {
       const { stream, streamData, colors } = this.props
+      this.audio = new Audio(stream.audioDataUrl)
       this.manager.prepare(stream, streamData, colors)
     }
   },
@@ -49,6 +47,7 @@ export default React.createClass({
   componentWillReceiveProps (nextProps) {
     if (nextProps.stream && !this.props.streamData) {
       const { stream, streamData, colors } = nextProps
+      this.audio = new Audio(stream.audioDataUrl)
       this.manager.prepare(stream, streamData, colors)
     }
   },

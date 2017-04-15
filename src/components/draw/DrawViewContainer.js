@@ -5,11 +5,13 @@ import DrawView from './DrawView'
 import { persistCurrentLine } from '../../actions/lines'
 
 function mapStateToProps (state, ownProps) {
+  const streamId = state.drawing.currentStreamId
   const currentLine = state.drawing.currentLine
   const currentColor = (state.color[state.drawing.currentColor] || {}).normal
   const currentThickness = state.drawing.brushThickness
 
   return {
+    streamId,
     currentLine,
     currentColor,
     currentThickness,
