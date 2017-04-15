@@ -1,6 +1,6 @@
 import store from 'store'
 
-export default function (state = null, action) {
+export default function (state = store.get('user') || {}, action) {
   switch (action.type) {
     case 'CURRENT_USER_SUCCESS': {
       const userId = action.payload.result.user[0]
@@ -50,5 +50,5 @@ export default function (state = null, action) {
     }
   }
 
-  return state || store.get('user', {})
+  return state
 }

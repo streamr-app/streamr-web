@@ -1,0 +1,22 @@
+.single-dropzone
+  width 160px
+  height 160px
+  position relative
+  border-radius 10px
+  overflow hidden
+  background #eee
+  background-repeat no-repeat
+  background-position center center
+
+  &:not(.empty)
+    background-size cover
+
+  .dropzone
+    position absolute
+    cursor pointer
+    top 0
+    right 0
+    bottom 0
+    left 0
+    display flex
+    flex-direction column

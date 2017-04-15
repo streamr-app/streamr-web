@@ -18,7 +18,7 @@ export default function (state = null, action) {
       return { ...state, userId }
     }
     case 'LOGOUT': {
-      store.clear()
+      store.clearAll()
 
       return {}
     }

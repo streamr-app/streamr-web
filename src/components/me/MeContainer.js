@@ -1,8 +1,7 @@
 import { connect } from 'react-redux'
-import { reduxForm } from 'redux-form'
+import { reduxForm, initialize, reset } from 'redux-form'
 
-import { login } from '../../actions/auth'
-import { push } from 'react-router-redux'
+import { updateMe } from '../../actions/users'
 
 import Me from './Me'
 
@@ -28,7 +27,8 @@ function mapStateToProps (state, ownProps) {
     user,
     initialValues: {
       name: user.name,
-      email: user.email
+      email: user.email,
+      image: user.imageUrl
     }
   }
 }
@@ -36,8 +36,7 @@ function mapStateToProps (state, ownProps) {
 function mapDispatchToProps (dispatch, ownProps) {
   return {
     onSubmit (data) {
-      // TODO
-      console.log('Update user', data)
+      return dispatch(updateMe(data))
     }
   }
 }

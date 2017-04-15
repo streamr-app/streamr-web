@@ -4,6 +4,7 @@ import { login } from './auth'
 import {
   fetch,
   createResource,
+  updateResource,
   performActionOnResource
 } from './index'
 
@@ -38,6 +39,16 @@ export function fetchUser (userId) {
     url: 'users/' + userId,
     types: [ 'USER_REQUEST', 'USER_SUCCESS', 'USER_FAILURE' ],
     authenticated: 'try'
+  })
+}
+
+export function updateMe (data) {
+  return updateResource({
+    url: 'users/me',
+    key: 'user',
+    body: data,
+    types: [ 'USER_UPDATE_REQUEST', 'USER_UPDATE_SUCCESS', 'USER_UPDATE_FAILURE' ],
+    authenticated: true
   })
 }
 

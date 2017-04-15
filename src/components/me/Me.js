@@ -1,6 +1,5 @@
 import React from 'react'
 import Helmet from 'react-helmet'
-import { Link } from 'react-router-dom'
 
 import { Banner } from '../common/banners'
 
@@ -17,42 +16,68 @@ import {
 
 import {
   TextField,
+  SinglePhotoDropzone,
+  CreatePasswordField,
   reduxFormWrapper
 } from '../fields'
 
+const imageField = reduxFormWrapper(<SinglePhotoDropzone id='image' />)
 const nameField = reduxFormWrapper(<TextField id='name' label='Name' />)
 const emailField = reduxFormWrapper(<TextField id='email' label='Email Address' />)
+const passwordField = reduxFormWrapper(<CreatePasswordField id='password' label='Password' />)
 
-export default ({
-  error,
-  handleSubmit,
-  onSubmit,
-  pristine,
-  submitting,
-  valid
-}) => (
-  <div className='login'>
-    <Helmet title='Log In' />
+export default class Me extends React.Component {
+  render () {
+    const {
+      error,
+      handleSubmit,
+      onSubmit,
+      pristine,
+      submitting,
+      invalid
+    } = this.props
 
-    <Banner>
-      <h2>My Account</h2>
-    </Banner>
+    return (
+      <div className='login me'>
+        <Helmet title='My Account' />
 
-    <form onSubmit={handleSubmit(onSubmit)}>
-      {error &&
-        <FormError>{error}</FormError>}
+        <Banner>
+          <h2>My Account</h2>
+        </Banner>
 
-      <FormRow>
-        <Field name='name' component={nameField} />
-      </FormRow>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          {error &&
+            <FormError>{error}</FormError>}
 
-      <FormRow>
-        <Field name='email' component={emailField} />
-      </FormRow>
+          <h3>Profile Information</h3>
 
-      <FormRow>
-        <Button disabled={pristine || submitting || !valid}>Update Profile</Button>
-      </FormRow>
-    </form>
-  </div>
-)
+          <div className='form-block'>
+            <Field name='image' component={imageField} />
+
+            <div>
+              <FormRow>
+                <Field name='name' component={nameField} />
+              </FormRow>
+
+              <FormRow>
+                <Field name='email' component={emailField} />
+              </FormRow>
+            </div>
+          </div>
+
+          <h3>Password</h3>
+
+          <p>If you don't want to change your password, just leave this blank.</p>
+
+          <FormRow>
+            <Field name='password' component={passwordField} />
+          </FormRow>
+
+          <FormRow>
+            <Button disabled={pristine || submitting || invalid}>Update Profile</Button>
+          </FormRow>
+        </form>
+      </div>
+    )
+  }
+}
