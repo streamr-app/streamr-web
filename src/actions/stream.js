@@ -31,6 +31,15 @@ export function loadSubscriptionStreams () {
   })
 }
 
+export function loadStreamsByTopic (topicId) {
+  return fetch({
+    url: `topics/${topicId}/streams`,
+    authenticated: 'try',
+    types: [ 'TOPIC_STREAMS_REQUEST', 'TOPIC_STREAMS_SUCCESS', 'TOPIC_STREAMS_FAILURE' ],
+    responseInterceptor: (response) => ({ ...response, topicId })
+  })
+}
+
 export function createStream (stream) {
   return createResource({
     url: 'streams',

@@ -5,12 +5,13 @@ import Footer from './Footer'
 
 import { Route, Switch } from 'react-router-dom'
 
-import RecordLayout from './RecordLayout'
+import ChannelContainer from './ChannelContainer'
 import Feed from './Feed'
 import LoginContainer from './auth/LoginContainer'
+import RecordLayout from './RecordLayout'
 import SignupContainer from './auth/SignupContainer'
 import StreamContainer from './streams/StreamContainer'
-import ChannelContainer from './ChannelContainer'
+import TopicContainer from './topics/TopicContainer'
 
 export default () => (
   <div>
@@ -21,8 +22,13 @@ export default () => (
         <Route path='/' exact component={Feed} />
         <Route path='/login' component={LoginContainer} />
         <Route path='/signup' component={SignupContainer} />
+
         <Route path='/profile/:userId' component={ChannelContainer} />
+
         <Route path='/record' component={RecordLayout} />
+
+        <Route path='/topics/:topicId' component={TopicContainer} />
+
         <Route path='/:streamSlug' component={StreamContainer} />
       </Switch>
     </main>
