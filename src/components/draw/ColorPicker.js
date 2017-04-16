@@ -15,7 +15,7 @@ export default ({
       <div
         key={color.id}
         className={cx('color-well', { selected: selectedColor === color.id })}
-        style={{ backgroundColor: color.normal }}
+        style={{ backgroundColor: color.hex }}
         onClick={() => onSelectColor(color.id)} />
     ))}
 

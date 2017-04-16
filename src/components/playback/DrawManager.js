@@ -236,7 +236,7 @@ export default class DrawManager {
   _buildPath (lineId) {
     this.points = []
     this.path = this.svg.append('path')
-      .attr('stroke', this.colors[this.color].normal)
+      .attr('stroke', this.colors[this.color].hex)
       .attr('stroke-width', this.thickness)
       .attr('stroke-linecap', 'round')
       .attr('fill', 'none')
