@@ -29,8 +29,6 @@ export default class StreamRenderer extends React.Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    console.log(nextProps.currentLine)
-
     if (!nextProps.currentLine) {
       setTimeout(() => this.setState({ currentPath: null }))
       return
@@ -38,25 +36,27 @@ export default class StreamRenderer extends React.Component {
 
     if (nextProps.currentLine.type === 'undo') {
       const lineId = nextProps.currentLine.lineId
-      this.group.select(`#line-${lineId}`).attr('style', 'display: none')
+      const lines = document.querySelectorAll(`.line-${lineId}`)
+
+      lines.forEach((line) => { line.style.display = 'none' })
       return
     }
 
     if (this.state.currentPath) {
       var path = this.state.currentPath
     } else {
-      path = this.buildPath(nextProps.currentLine.sequenceNumber)
+      path = this.buildPath(nextProps.currentLine.lineId)
       setTimeout(() => this.setState({ currentPath: path }))
     }
 
     this.redrawLine(path, nextProps.currentLine)
   }
 
-  buildPath (sequenceNumber) {
+  buildPath (lineId) {
     return this.group.append('path')
       .attr('stroke', this.props.currentColor)
       .attr('stroke-width', this.props.currentThickness)
-      .attr('id', `line-${sequenceNumber}`)
+      .attr('class', `line-${lineId}`)
   }
 
   redrawLine (path, line) {

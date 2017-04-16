@@ -28,12 +28,12 @@ export default function (
       return {
         ...state,
         currentLine: {
-          points: [],
-          type: 'line',
           time,
-          sequenceNumber: state.lines.length + 1,
+          type: 'line',
+          lineId: state.lines.length + 1,
           colorId: state.currentColor,
-          thickness: state.brushThickness
+          thickness: state.brushThickness,
+          points: []
         }
       }
     case 'LINE_END':
@@ -41,7 +41,7 @@ export default function (
         ...state,
         lines: state.lines.concat([ state.currentLine ]),
         undoHistory: state.currentLine.type === 'line'
-          ? state.undoHistory.concat([ state.currentLine.sequenceNumber ])
+          ? state.undoHistory.concat([ state.currentLine.lineId ])
           : state.undoHistory,
         currentLine: null
       }
@@ -57,7 +57,6 @@ export default function (
       }
     case 'UNDO_LINE':
       let lineId = last(state.undoHistory)
-      console.log(lineId)
       if (!lineId) return state
 
       return {

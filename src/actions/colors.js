@@ -23,6 +23,6 @@ export function setColorByOrder (colorOrder) {
   return (dispatch, getState) => {
     const colors = values(getState().color)
     var color = find(colors, { order: colorOrder })
-    dispatch(setColor(color.id))
+    color && dispatch(setColor(color.id))
   }
 }
