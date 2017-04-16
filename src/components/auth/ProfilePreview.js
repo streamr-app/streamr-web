@@ -9,7 +9,7 @@ export default ({
   onLogOut
 }) => (
   <li className='profile-preview'>
-    <p>{user.name}</p>
+    <Link to={`/profile/${user.id}`} className='profile-link'>{user.name}</Link>
     <Link to='/me'>account</Link>
     {' '}
     <a href='' onClick={preventDefault(onLogOut)}>logout</a>
