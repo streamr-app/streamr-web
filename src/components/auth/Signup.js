@@ -67,9 +67,6 @@ export default ({
           For a password, we recommend using a phrase of 4 or 5
           words. Something like "vibrato-cellophane-remote-treehouse".
         </p>
-        <p>
-          By creating an account, you agree to our <u>Terms and Conditions</u>.
-        </p>
       </div>
     </div>
   </div>
