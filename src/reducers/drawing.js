@@ -37,6 +37,8 @@ export default function (
         }
       }
     case 'LINE_END':
+      if (!state.currentLine) return state
+
       return {
         ...state,
         lines: state.lines.concat([ state.currentLine ]),
@@ -58,6 +60,10 @@ export default function (
     case 'UNDO_LINE':
       let lineId = last(state.undoHistory)
       if (!lineId) return state
+
+      if (state.undoHistory.length === 0) {
+        return state
+      }
 
       return {
         ...state,
