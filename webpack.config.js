@@ -19,7 +19,7 @@ module.exports = {
   devServer: {
     port: 5000,
     historyApiFallback: {
-      index: './src/index.html'
+      index: './src/200.html'
     }
   },
   devtool: 'eval',
@@ -79,7 +79,8 @@ module.exports = {
     }),
     new webpack.NamedModulesPlugin(),
     new HTMLWebpackPlugin({
-      template: 'src/200.html'
+      template: 'src/200.html',
+      filename: '200.html'
     })
   ]
 }
