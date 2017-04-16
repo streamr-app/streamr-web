@@ -8,11 +8,12 @@ export default ({
   description,
   className,
   children,
+  checked,
   ...rest
 }) => (
-  <div className={cx('field horizontal-field radio-field', className)}>
+  <div className={cx('field horizontal-field radio-field', className, { checked })}>
     {children ||
-      <input type='radio' id={id || value} value={value} {...rest} />
+      <input type='radio' id={id || value} value={value} checked={checked} {...rest} />
     }
 
     <label htmlFor={id || value}>

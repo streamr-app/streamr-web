@@ -18,26 +18,16 @@ import {
   TextField,
   SinglePhotoDropzone,
   CreatePasswordField,
-  reduxFormWrapper,
-  RadioField,
-  RadioGroup
+  reduxFormWrapper
 } from '../fields'
+
+import ColorPalettePickerContainer from './ColorPalettePickerContainer'
 
 const imageField = reduxFormWrapper(<SinglePhotoDropzone id='image' />)
 const nameField = reduxFormWrapper(<TextField id='name' label='Name' />)
 const emailField = reduxFormWrapper(<TextField id='email' label='Email Address' />)
 const passwordField = reduxFormWrapper(<CreatePasswordField id='password' label='Password' />)
-const colorPreferenceField = reduxFormWrapper(
-  <RadioGroup>
-    <RadioField value='normal' label='Normal' description='Use our default color set.' />
-    <RadioField value='deuteranopia' label='Deuteranopia'
-      description='Use colors adapted for users with deuteranopia.' />
-    <RadioField value='protanopia' label='Protanopia'
-      description='Use colors adapted for users with protanopia.' />
-    <RadioField value='tritanopia' label='Tritanopia'
-      description='Use colors adapted for users with tritanopia.' />
-  </RadioGroup>
-)
+const colorPreferenceField = reduxFormWrapper(<ColorPalettePickerContainer />)
 
 export default class Me extends React.Component {
   render () {
