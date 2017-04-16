@@ -1,12 +1,12 @@
 import { connect } from 'react-redux'
-import values from 'lodash/values'
+import at from 'lodash/at'
 
 import TopicCardGrid from '../../components/topics/TopicCardGrid'
 
 import { loadTopics } from '../../actions/topic'
 
 function mapStateToProps (state, ownProps) {
-  const topics = values(state.topic)
+  const topics = at(state.topic, state.topic.ids || [])
 
   return {
     topics
