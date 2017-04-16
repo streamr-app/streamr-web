@@ -30,7 +30,8 @@ function mapStateToProps (state, ownProps) {
     initialValues: {
       name: user.name,
       email: user.email,
-      image: user.imageUrl
+      image: user.imageUrl,
+      colorPreference: user.colorPreference,
     }
   }
 }

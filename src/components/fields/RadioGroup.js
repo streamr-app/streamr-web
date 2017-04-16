@@ -24,6 +24,7 @@ export default class RadioGroup extends React.Component {
             {
               name: this.state.uuid,
               id: `${this.state.uuid}-${child.props.value}`,
+              checked: this.props.value == child.props.value,
               onChange: (event) => onChange(child.props.value)
             }
           )
