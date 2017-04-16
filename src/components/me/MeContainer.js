@@ -4,6 +4,7 @@ import omit from 'lodash/omit'
 
 import { updateMe } from '../../actions/users'
 import { loadCurrentUser } from '../../actions/auth'
+import { loadColors } from '../../actions/colors'
 
 import Me from './Me'
 
@@ -46,6 +47,7 @@ function mapDispatchToProps (dispatch, ownProps) {
       }
 
       return dispatch(updateMe(data))
+        .then(() => dispatch(loadColors()))
     }
   }
 }
