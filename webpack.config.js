@@ -19,7 +19,7 @@ module.exports = {
   devServer: {
     port: 5000,
     historyApiFallback: {
-      index: './src/200.html'
+      index: './src/index.html'
     }
   },
   devtool: 'eval',
