@@ -17,7 +17,6 @@ export default class AudioRecordingStream extends React.Component {
   componentWillReceiveProps (nextProps) {
     if (nextProps.streamId && !this.streamSetup) {
       this.clientOpenPromise.then(() => {
-        console.log('creating stream')
         this.stream = this.client.createStream({
           streamId: this.props.streamId,
           authToken: this.props.authToken,
