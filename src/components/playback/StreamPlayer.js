@@ -48,7 +48,7 @@ export default class StreamPlayer extends React.Component {
     if (this.prepared) return
 
     this.manager = new DrawManager(this.svg)
-    this.manager.on('POSITION_CHANGE', (position) => this.positionChange(position))
+    this.manager.on('POSITION_CHANGE', this.positionChange.bind(this))
     this.manager.on('READY', () => this.manager.play())
     this.manager.on('PLAY', () => this.play())
     this.manager.on('PAUSE', () => this.pause())
