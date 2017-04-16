@@ -25,7 +25,7 @@ export function searchForStreams (searchQuery) {
 
 export function loadTrendingStreams () {
   return fetch({
-    url: 'streams',
+    url: 'streams/trending',
     query: { page_size: 8 },
     types: [ 'TRENDING_STREAMS_REQUEST', 'TRENDING_STREAMS_SUCCESS', 'TRENDING_STREAMS_FAILURE' ]
   })
