@@ -3,6 +3,7 @@ var path = require('path')
 var poststylus = require('poststylus')
 
 var HTMLWebpackPlugin = require('html-webpack-plugin')
+var HTMLWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin')
 
 if (process.env.NODE_ENV !== 'production') {
   const dotenv = require('dotenv')
@@ -21,7 +22,7 @@ module.exports = {
   devServer: {
     port: 5000,
     historyApiFallback: {
-      index: './src/200.html'
+      index: './build/200.html'
     }
   },
   devtool: 'eval',
@@ -82,7 +83,9 @@ module.exports = {
     new webpack.NamedModulesPlugin(),
     new HTMLWebpackPlugin({
       template: 'src/200.html',
-      filename: '200.html'
-    })
+      filename: '200.html',
+      alwaysWriteToDisk: true
+    }),
+    new HTMLWebpackHarddiskPlugin()
   ]
 }

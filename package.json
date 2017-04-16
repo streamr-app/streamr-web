@@ -26,6 +26,7 @@
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-react": "^6.7.1",
     "eslint-plugin-standard": "^3.0.1",
+    "html-webpack-harddisk-plugin": "^0.1.0",
     "jest": "^19.0.2",
     "webpack-dev-middleware": "^1.8.4",
     "webpack-dev-server": "^2.4.2",
