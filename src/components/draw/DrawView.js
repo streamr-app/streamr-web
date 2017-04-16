@@ -18,6 +18,7 @@ export default ({
   currentLine,
   currentColor,
   currentThickness,
+  undoneLines,
   enabled
 }) => (
   <div className={cx('draw-view', { disabled: !enabled })}>
@@ -28,7 +29,7 @@ export default ({
     <DrawingSidebar />
 
     <div className='draw-container'>
-      <StreamRenderer {...{ currentLine, currentColor, currentThickness }} />
+      <StreamRenderer {...{ currentLine, currentColor, currentThickness, undoneLines }} />
       <MouseDrawingHandler {...{ enabled, onCursorMove, onLineStart, onLineEnd, onPointCreate }} />
     </div>
 
