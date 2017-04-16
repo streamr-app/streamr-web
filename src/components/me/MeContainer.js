@@ -32,7 +32,7 @@ function mapStateToProps (state, ownProps) {
       name: user.name,
       email: user.email,
       image: user.imageUrl,
-      colorPreference: user.colorPreference,
+      colorPreference: user.colorPreference
     }
   }
 }
