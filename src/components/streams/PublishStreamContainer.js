@@ -31,7 +31,6 @@ function mapStateToProps (state, ownProps) {
     stream,
     topics,
     initialValues: {
-      ...stream,
       topicId: (topics[0] || {}).id
     }
   }
