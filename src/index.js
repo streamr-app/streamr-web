@@ -10,6 +10,8 @@ import './config/moment.config.js'
 import 'normalize.css/normalize.css'
 import './styles/index.styl'
 
+import 'html-loader!./200.html'
+
 const render = (Component) => {
   ReactDOM.render(
     <HotEnabler>

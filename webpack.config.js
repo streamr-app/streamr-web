@@ -2,6 +2,8 @@ var webpack = require('webpack')
 var path = require('path')
 var poststylus = require('poststylus')
 
+var HTMLWebpackPlugin = require('html-webpack-plugin')
+
 const dotenv = require('dotenv')
 dotenv.config({ silent: true })
 
@@ -12,12 +14,12 @@ module.exports = {
   ],
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: 'bundle.js'
+    filename: 'bundle-[hash].js'
   },
   devServer: {
     port: 5000,
     historyApiFallback: {
-      index: './src/index.html'
+      index: './src/200.html'
     }
   },
   devtool: 'eval',
@@ -75,6 +77,9 @@ module.exports = {
       'process.env.API_ENDPOINT': JSON.stringify(process.env.API_ENDPOINT || ''),
       'process.env.RECORDING_SERVICE_URL': JSON.stringify(process.env.RECORDING_SERVICE_URL || '')
     }),
-    new webpack.NamedModulesPlugin()
+    new webpack.NamedModulesPlugin(),
+    new HTMLWebpackPlugin({
+      template: 'src/200.html'
+    })
   ]
 }
