@@ -7,7 +7,7 @@ import { persistCurrentLine } from '../../actions/lines'
 function mapStateToProps (state, ownProps) {
   const streamId = state.drawing.currentStreamId
   const currentLine = state.drawing.currentLine
-  const currentColor = (state.color[state.drawing.currentColor] || {}).normal
+  const currentColor = (state.color[state.drawing.currentColor] || {}).hex
   const currentThickness = state.drawing.brushThickness
   const undoneLines = state.drawing.undoneLines
 
