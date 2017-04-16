@@ -6,7 +6,7 @@ import Footer from './Footer'
 import { Route, Switch } from 'react-router-dom'
 
 import ChannelContainer from './ChannelContainer'
-import Feed from './Feed'
+import FeedContainer from './FeedContainer'
 import LoginContainer from './auth/LoginContainer'
 import PublishStreamContainer from './streams/PublishStreamContainer'
 import RecordLayout from './RecordLayout'
@@ -22,7 +22,7 @@ export default () => (
 
     <main>
       <Switch>
-        <Route path='/' exact component={Feed} />
+        <Route path='/' exact component={FeedContainer} />
         <Route path='/login' component={LoginContainer} />
         <Route path='/signup' component={SignupContainer} />
 
