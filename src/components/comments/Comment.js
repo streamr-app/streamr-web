@@ -1,6 +1,8 @@
 import React from 'react'
 import moment from 'moment'
 
+import { Link } from 'react-router-dom'
+
 import ProfileImage from '../users/ProfileImage'
 
 export default class Comment extends React.Component {
@@ -33,7 +35,7 @@ export default class Comment extends React.Component {
         </div>
 
         <div className='content'>
-          <p className='author'>{user.name}</p>
+          <Link to={`/profile/${user.id}`} className='profile-link'>{user.name}</Link>
           <p className='body'>{comment.body}</p>
         </div>
 
