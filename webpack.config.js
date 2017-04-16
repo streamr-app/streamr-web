@@ -4,8 +4,10 @@ var poststylus = require('poststylus')
 
 var HTMLWebpackPlugin = require('html-webpack-plugin')
 
-const dotenv = require('dotenv')
-dotenv.config({ silent: true })
+if (process.env.NODE_ENV !== 'production') {
+  const dotenv = require('dotenv')
+  dotenv.config({ silent: true })
+}
 
 module.exports = {
   entry: [
