@@ -29,7 +29,7 @@ export default class AudioRecordingStream extends React.Component {
   }
 
   componentWillUnmount () {
-    this.stream.end()
+    this.stream && this.stream.end()
     this.client.close()
     this.audioStream.getTracks()[0].stop()
   }
