@@ -21,10 +21,13 @@ import {
   reduxFormWrapper
 } from '../fields'
 
+import ColorPalettePickerContainer from './ColorPalettePickerContainer'
+
 const imageField = reduxFormWrapper(<SinglePhotoDropzone id='image' />)
 const nameField = reduxFormWrapper(<TextField id='name' label='Name' />)
 const emailField = reduxFormWrapper(<TextField id='email' label='Email Address' />)
 const passwordField = reduxFormWrapper(<CreatePasswordField id='password' label='Password' />)
+const colorPreferenceField = reduxFormWrapper(<ColorPalettePickerContainer />)
 
 export default class Me extends React.Component {
   render () {
@@ -71,6 +74,12 @@ export default class Me extends React.Component {
 
           <FormRow>
             <Field name='password' component={passwordField} />
+          </FormRow>
+
+          <h3>Color Preferences</h3>
+
+          <FormRow>
+            <Field name='colorPreference' component={colorPreferenceField} />
           </FormRow>
 
           <FormRow>

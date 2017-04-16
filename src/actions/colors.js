@@ -6,6 +6,7 @@ export function loadColors () {
   return (dispatch, getState) => {
     dispatch(fetch({
       url: 'colors',
+      authenticated: 'try',
       types: ['COLORS_REQUEST', 'COLORS_SUCCESS', 'COLORS_FAILURE']
     }))
       .then(() => dispatch(setColorByOrder(1)))
