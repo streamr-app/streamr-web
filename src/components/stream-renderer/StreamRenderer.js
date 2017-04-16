@@ -34,20 +34,29 @@ export default class StreamRenderer extends React.Component {
       return
     }
 
+    if (nextProps.currentLine.type === 'undo') {
+      const lineId = nextProps.currentLine.lineId
+      const lines = document.querySelectorAll(`.line-${lineId}`)
+
+      lines.forEach((line) => { line.style.display = 'none' })
+      return
+    }
+
     if (this.state.currentPath) {
       var path = this.state.currentPath
     } else {
-      path = this.buildPath()
+      path = this.buildPath(nextProps.currentLine.lineId)
       setTimeout(() => this.setState({ currentPath: path }))
     }
 
     this.redrawLine(path, nextProps.currentLine)
   }
 
-  buildPath () {
+  buildPath (lineId) {
     return this.group.append('path')
       .attr('stroke', this.props.currentColor)
       .attr('stroke-width', this.props.currentThickness)
+      .attr('class', `line-${lineId}`)
   }
 
   redrawLine (path, line) {

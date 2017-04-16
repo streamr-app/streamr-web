@@ -9,12 +9,14 @@ function mapStateToProps (state, ownProps) {
   const currentLine = state.drawing.currentLine
   const currentColor = (state.color[state.drawing.currentColor] || {}).normal
   const currentThickness = state.drawing.brushThickness
+  const undoneLines = state.drawing.undoneLines
 
   return {
     streamId,
     currentLine,
     currentColor,
     currentThickness,
+    undoneLines,
     enabled: state.drawing.isRecording
   }
 }

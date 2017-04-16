@@ -10,7 +10,7 @@ export default ({
   hideSubscribe,
   ...rest
 }) => (
-  <div className={`channel-badge ${className}`} {...rest}>
+  <div className={`channel-badge ${className}`}>
     <div className='thumbnail-wrapper'>
       <img className='thumbnail' src={channel.profileImage} />
     </div>

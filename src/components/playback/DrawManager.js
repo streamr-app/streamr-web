@@ -17,6 +17,7 @@ export default class DrawManager {
     this.pointCursor = 0
     this.position = 0
     this.ready = false
+    this.undoQueue = []
   }
 
   prepare (stream, streamData, colors) {
@@ -33,7 +34,7 @@ export default class DrawManager {
     if (!this.ready) return
 
     this.playing = true
-    this._playFrom(this.position)
+    this._playFrom()
     this.emit('POSITION_CHANGE', this.position, true)
     this.emit('PLAY')
   }
@@ -74,7 +75,7 @@ export default class DrawManager {
     if (wasPlaying) this.play()
   }
 
-  _playFrom (offset) {
+  _playFrom () {
     let start
 
     const initialPosition = this.position
@@ -110,6 +111,20 @@ export default class DrawManager {
       this._clear()
     }
 
+    if (
+      !this.playing &&
+      this.currentLine &&
+      this.currentLine.time > this.position
+    ) {
+      return true
+    }
+
+    this._performUndos()
+
+    if (!this.playing && this._isUndo()) {
+      return this._draw()
+    }
+
     if (!this._doneDrawing() && !this.path) {
       this._setUpLine()
     }
@@ -122,7 +137,7 @@ export default class DrawManager {
       }
     }
 
-    while (this.currentLine && this.position > last(this.currentLine.points).time) {
+    while (this.currentLine && this._isLine() && this.position > last(this.currentLine.points).time) {
       while (!this._doneDrawingLine()) {
         this._addCurrentPoint()
         this._nextPoint()
@@ -132,17 +147,38 @@ export default class DrawManager {
       this._nextLine()
     }
 
-    while (this.currentLine && !this._doneDrawingLine() && this._currentPointIsInPast()) {
+    while (this.currentLine && this._isLine() && !this._doneDrawingLine() && this._currentPointIsInPast()) {
       this._addCurrentPoint()
       this._redrawLine()
       this._nextPoint()
     }
 
-    if (this.currentLine && this._doneDrawingLine()) {
+    if (this.currentLine && this._isLine() && this._doneDrawingLine()) {
       this._nextLine()
     }
 
+    if (!this.playing && this._isUndo()) {
+      return this._draw()
+    }
+
     return true
+  }
+
+  _performUndos () {
+    while (this.currentLine && this._isUndo() && this.currentLine.time <= this.position) {
+      const lineId = this.currentLine.line_id
+      const lines = document.querySelectorAll(`.line-${lineId}`)
+      lines.forEach((line) => { line.style.display = 'none' })
+      this._nextLine()
+    }
+  }
+
+  _isUndo () {
+    return this.currentLine && this.currentLine.type === 'undo'
+  }
+
+  _isLine () {
+    return this.currentLine && this.currentLine.type === 'line'
   }
 
   _getParsedLine (index) {
@@ -158,7 +194,7 @@ export default class DrawManager {
     this.pointCursor = 0
     this._setUpLine()
 
-    while (this.currentLine && this.currentLine.points.length === 0) {
+    while (this.currentLine && this.currentLine.points && this.currentLine.points.length === 0) {
       this._nextLine()
     }
   }
@@ -170,7 +206,7 @@ export default class DrawManager {
   _setUpLine () {
     this.currentLine = this._getParsedLine(this.lineCursor)
 
-    if (this.currentLine) {
+    if (this.currentLine && this.currentLine.type === 'line') {
       this.color = this.currentLine.color_id
       this.thickness = this.currentLine.thickness
       this._buildPath()
@@ -197,13 +233,14 @@ export default class DrawManager {
     return this.lineCursor >= this.lines.length
   }
 
-  _buildPath () {
+  _buildPath (lineId) {
     this.points = []
     this.path = this.svg.append('path')
       .attr('stroke', this.colors[this.color].normal)
       .attr('stroke-width', this.thickness)
       .attr('stroke-linecap', 'round')
       .attr('fill', 'none')
+      .attr('class', `line-${this.currentLine.line_id}`)
   }
 
   _redrawLine () {

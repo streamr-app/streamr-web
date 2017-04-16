@@ -5,7 +5,7 @@ import BrushThicknessPicker from './BrushThicknessPicker'
 import { setThickness } from '../../actions/thickness'
 
 function mapStateToProps (state, ownProps) {
-  const currentColor = (state.color[state.drawing.currentColor] || {}).normal
+  const currentColor = (state.color[state.drawing.currentColor] || {}).hex
 
   return {
     currentThickness: state.drawing.brushThickness,
