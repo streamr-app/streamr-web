@@ -32,6 +32,6 @@ export default ({
       <MouseDrawingHandler {...{ enabled, onCursorMove, onLineStart, onLineEnd, onPointCreate }} />
     </div>
 
-    {/* <AudioRecordingStreamContainer {...{ streamId }} /> */}
+    <AudioRecordingStreamContainer {...{ streamId }} />
   </div>
 )

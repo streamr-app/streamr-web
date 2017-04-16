@@ -1,7 +1,9 @@
 import { connect } from 'react-redux'
-import { reduxForm, SubmissionError } from 'redux-form'
+import { reduxForm } from 'redux-form'
+import at from 'lodash/at'
 
-import { login } from '../../actions/auth'
+import { fetchStream, updateStream, publishStream } from '../../actions/stream'
+import { loadTopics } from '../../actions/topic'
 import { push } from 'react-router-redux'
 
 import PublishStreamView from './PublishStreamView'
@@ -21,20 +23,32 @@ function validate (values) {
 }
 
 function mapStateToProps (state, ownProps) {
-  return {}
+  const streamId = ownProps.match.params.streamSlug.replace(/\D/g, '')
+  const stream = state.stream[streamId]
+  const topics = at(state.topic, state.topic.ids || [])
+
+  return {
+    stream,
+    topics,
+    initialValues: {
+      ...stream,
+      topicId: (topics[0] || {}).id
+    }
+  }
 }
 
 function mapDispatchToProps (dispatch, ownProps) {
+  const streamSlug = ownProps.match.params.streamSlug
+  const streamId = streamSlug.replace(/\D/g, '')
+
+  dispatch(fetchStream(streamId))
+  dispatch(loadTopics())
+
   return {
     onSubmit (data) {
-      return dispatch(login(data))
-        .then((action) => {
-          if (action.type.includes('SUCCESS')) {
-            dispatch(push('/'))
-          } else {
-            throw new SubmissionError({ _error: 'Incorrect email address or password.' })
-          }
-        })
+      return dispatch(updateStream(streamId, data))
+        .then(() => dispatch(publishStream(streamId)))
+        .then(() => dispatch(push(`/${streamSlug}`)))
     }
   }
 }

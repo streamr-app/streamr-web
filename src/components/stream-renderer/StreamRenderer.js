@@ -19,8 +19,6 @@ export default class StreamRenderer extends React.Component {
     this.svg = d3.select(canvas).append('svg')
       .attr('viewBox', `0 0 ${WIDTH} ${HEIGHT}`)
 
-    window.drawingSvg = this.svg
-
     this.group = this.svg.append('g')
       .attr('stroke-linecap', 'round')
       .attr('fill', 'none')

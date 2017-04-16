@@ -1,5 +1,4 @@
 import React from 'react'
-
 import cx from 'classnames'
 
 import { TextField, reduxFormWrapper } from '../fields'
@@ -19,15 +18,12 @@ export default ({
   onStopRecording,
   canStopRecording,
   submitting,
+  pristine,
   valid,
   handleSubmit,
   onSubmit
 }) => (
-  <form className='stream-options' onSubmit={handleSubmit(onSubmit)}>
-    <TextField>
-      <Field name='title' component={titleField} />
-    </TextField>
-
+  <form className={cx('stream-options', { pristine })} onSubmit={handleSubmit(onSubmit)}>
     {getRecordingControls({ recording, submitting, valid, onStopRecording, canStopRecording })}
   </form>
 )

@@ -120,6 +120,15 @@ export function endCurrentStream () {
   }
 }
 
+export function publishStream (streamId) {
+  return performActionOnResource({
+    url: `/streams/${streamId}`,
+    action: 'publish',
+    types: [ 'PUBLISH_STREAM_REQUEST', 'PUBLISH_STREAM_SUCCESS', 'PUBLISH_STREAM_FAILURE' ],
+    authenticated: true
+  })
+}
+
 export function fetchStreamsByUser (userId) {
   return fetch({
     url: `users/${userId}/streams`,
@@ -138,13 +147,3 @@ export function updateStream (streamId, data) {
     authenticated: true
   })
 }
-
-export function setCurrentStreamThumbnail (thumbnail) {
-  const previewData = 'data:image/svg+xml;base64,' + btoa(thumbnail)
-
-  return (dispatch, getState) => {
-    return dispatch(updateStream(getState().drawing.currentStreamId, { previewData }))
-  }
-}
-
-/* global btoa */

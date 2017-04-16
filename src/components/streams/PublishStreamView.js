@@ -24,34 +24,51 @@ const titleField = reduxFormWrapper(<TextField id='title' label='Title' />)
 const descriptionField = reduxFormWrapper(<TextAreaField id='description' label='Description' />)
 
 export default ({
+  stream = {},
   error,
   handleSubmit,
   onSubmit,
   submitting,
-  valid
+  valid,
+  topics = []
 }) => (
-  <div className='login'>
+  <div className='publish-stream-view'>
     <Helmet title='Publish' />
 
     <Banner>
-      <h2>Publish</h2>
+      <h2>Publish this Stream</h2>
     </Banner>
 
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className='container'>
       {error &&
         <FormError>{error}</FormError>}
 
-      <FormRow>
-        <Field name='title' component={titleField} />
-      </FormRow>
+      <img className='preview' src={stream.imageUrl} />
 
-      <FormRow>
-        <Field name='description' component={descriptionField} />
-      </FormRow>
+      <div>
+        <FormRow>
+          <Field name='title' component={titleField} />
+        </FormRow>
 
-      <FormRow>
-        <Button disabled={submitting || !valid}>Publish Stream</Button>
-      </FormRow>
+        <FormRow>
+          <Field name='description' component={descriptionField} />
+        </FormRow>
+
+        <FormRow>
+          <div className='field text-field'>
+            <label htmlFor='topicId'>Topic</label>
+            <Field name='topicId' component='select'>
+              {topics.map((topic) => (
+                <option key={topic.id} value={topic.id}>{topic.name}</option>
+              ))}
+            </Field>
+          </div>
+        </FormRow>
+
+        <FormRow>
+          <Button disabled={submitting || !valid}>Publish Stream</Button>
+        </FormRow>
+      </div>
     </form>
   </div>
 )

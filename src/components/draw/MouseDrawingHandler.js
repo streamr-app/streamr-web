@@ -6,8 +6,10 @@ import cx from 'classnames'
 import Measure from 'react-measure'
 
 export default class MouseDrawingHandler extends React.Component {
-  getInitialState () {
-    return {
+  constructor (props) {
+    super(props)
+
+    this.state = {
       drawing: false
     }
   }

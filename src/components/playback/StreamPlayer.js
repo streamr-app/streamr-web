@@ -5,8 +5,10 @@ import cx from 'classnames'
 import PlaybackControls from './PlaybackControls'
 
 export default class StreamPlayer extends React.Component {
-  getInitialState () {
-    return {
+  constructor (props) {
+    super(props)
+
+    this.state = {
       position: 0,
       loading: true
     }
@@ -31,25 +33,30 @@ export default class StreamPlayer extends React.Component {
   }
 
   componentDidMount () {
+    if (!this.props.loading) {
+      this.prepare(this.props)
+    }
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (!nextProps.loading) {
+      this.prepare(nextProps)
+    }
+  }
+
+  prepare ({ stream, streamData, colors }) {
+    if (this.prepared) return
+
     this.manager = new DrawManager(this.svg)
     this.manager.on('POSITION_CHANGE', (position) => this.positionChange(position))
     this.manager.on('READY', () => this.manager.play())
     this.manager.on('PLAY', () => this.play())
     this.manager.on('PAUSE', () => this.pause())
 
-    if (this.props.streamData) {
-      const { stream, streamData, colors } = this.props
-      this.audio = new Audio(stream.audioDataUrl)
-      this.manager.prepare(stream, streamData, colors)
-    }
-  }
+    this.audio = new Audio(stream.audioDataUrl)
+    this.manager.prepare(stream, streamData, colors)
 
-  componentWillReceiveProps (nextProps) {
-    if (nextProps.stream && !this.props.streamData) {
-      const { stream, streamData, colors } = nextProps
-      this.audio = new Audio(stream.audioDataUrl)
-      this.manager.prepare(stream, streamData, colors)
-    }
+    this.prepared = true
   }
 
   componentWillUnmount () {
