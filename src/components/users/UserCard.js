@@ -12,8 +12,6 @@ export default ({
 
     <div>
       <Link to={`/profile/${user.id}`} className='profile-link'>{user.name}</Link>
-      <p className='bio'>Lorem ipsum dolor sit amet...</p>
-
       <SubscribeButtonContainer userId={user.id} />
     </div>
   </div>
