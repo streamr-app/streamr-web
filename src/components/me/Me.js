@@ -30,9 +30,12 @@ const passwordField = reduxFormWrapper(<CreatePasswordField id='password' label=
 const colorPreferenceField = reduxFormWrapper(
   <RadioGroup>
     <RadioField value='normal' label='Normal' description='Use our default color set.' />
-    <RadioField value='deuteranopia' label='Deuteranopia' description='Use colors adapted for Deuteranopia.' />
-    <RadioField value='protanopia' label='Protanopia' description='Use colors adapted for Protanopia.' />
-    <RadioField value='tritanopia' label='Tritanopia' description='Use colors adapted for Tritanopia.' />
+    <RadioField value='deuteranopia' label='Deuteranopia'
+      description='Use colors adapted for users with deuteranopia.' />
+    <RadioField value='protanopia' label='Protanopia'
+      description='Use colors adapted for users with protanopia.' />
+    <RadioField value='tritanopia' label='Tritanopia'
+      description='Use colors adapted for users with tritanopia.' />
   </RadioGroup>
 )
 
