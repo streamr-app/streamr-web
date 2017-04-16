@@ -12,7 +12,10 @@ function mapStateToProps (state, ownProps) {
 
   return {
     recording,
-    canStopRecording
+    canStopRecording,
+    initialValues: {
+      title: 'stream'
+    }
   }
 }
 
@@ -30,7 +33,7 @@ function mapDispatchToProps (dispatch, ownProps) {
         .then((action) => {
           const streamId = action.payload.result.stream[0]
           const slug = action.payload.entities.stream[streamId].slug
-          dispatch(push(`/${slug}`))
+          dispatch(push(`/${slug}/publish`))
         })
     }
   }

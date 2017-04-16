@@ -4,6 +4,7 @@ import { reset as resetForm } from 'redux-form'
 import {
   fetch,
   createResource,
+  updateResource,
   performActionOnResource
 } from './index'
 
@@ -119,11 +120,30 @@ export function endCurrentStream () {
   }
 }
 
+export function publishStream (streamId) {
+  return performActionOnResource({
+    url: `/streams/${streamId}`,
+    action: 'publish',
+    types: [ 'PUBLISH_STREAM_REQUEST', 'PUBLISH_STREAM_SUCCESS', 'PUBLISH_STREAM_FAILURE' ],
+    authenticated: true
+  })
+}
+
 export function fetchStreamsByUser (userId) {
   return fetch({
     url: `users/${userId}/streams`,
     types: [ 'USER_STREAMS_REQUEST', 'USER_STREAMS_SUCCESS', 'USER_STREAMS_FAILURE' ],
     responseInterceptor: (response) => ({ ...response, userId }),
     authenticated: 'try'
+  })
+}
+
+export function updateStream (streamId, data) {
+  return updateResource({
+    url: `streams/${streamId}`,
+    types: [ 'UPDATE_STREAM_REQUEST', 'UPDATE_STREAM_SUCCESS', 'UPDATE_STREAM_FAILURE' ],
+    key: 'stream',
+    body: data,
+    authenticated: true
   })
 }

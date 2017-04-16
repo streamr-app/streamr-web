@@ -18,6 +18,14 @@ export default class StreamRenderer extends React.Component {
 
     this.svg = d3.select(canvas).append('svg')
       .attr('viewBox', `0 0 ${WIDTH} ${HEIGHT}`)
+
+    this.group = this.svg.append('g')
+      .attr('stroke-linecap', 'round')
+      .attr('fill', 'none')
+
+    this.group.append('rect')
+      .attr('x', 0).attr('y', 0).attr('width', WIDTH).attr('height', HEIGHT)
+      .attr('fill', 'rgb(33, 37, 43)')
   }
 
   componentWillReceiveProps (nextProps) {
@@ -37,11 +45,9 @@ export default class StreamRenderer extends React.Component {
   }
 
   buildPath () {
-    return this.svg.append('path')
+    return this.group.append('path')
       .attr('stroke', this.props.currentColor)
       .attr('stroke-width', this.props.currentThickness)
-      .attr('stroke-linecap', 'round')
-      .attr('fill', 'none')
   }
 
   redrawLine (path, line) {

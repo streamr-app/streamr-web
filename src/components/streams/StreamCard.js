@@ -9,7 +9,7 @@ export default ({
 }) => (
   <Link to={`/${stream.slug}`} className={`stream-card ${className}`}>
     <div className='thumbnail-wrapper'>
-      <img className='thumbnail' src={stream.image} />
+      <img className='thumbnail' src={stream.imageUrl} />
 
       <p className='duration'>{formatDuration(stream.duration)}</p>
     </div>

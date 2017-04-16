@@ -15,7 +15,7 @@ export default ({
   return (
     <div className={cx('container', { loading })}>
       <Helmet title={stream.title} />
-      <StreamPlayer {...{ stream, streamData, colors }} />
+      <StreamPlayer {...{ stream, streamData, colors, loading }} />
       <StreamDetails {...{ stream }} />
 
       {stream.id &&
