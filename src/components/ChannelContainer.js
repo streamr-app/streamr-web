@@ -2,6 +2,7 @@ import { connect } from 'react-redux'
 import { fetchUser } from '../actions/users'
 import { fetchStreamsByUser } from '../actions/stream'
 import at from 'lodash/at'
+import compact from 'lodash/compact'
 
 import Channel from '../components/Channel'
 
@@ -10,7 +11,7 @@ function mapStateToProps (state, ownProps) {
 
   if (!user) return { loading: true }
 
-  const streams = at(state.stream, user.streams || [])
+  const streams = compact(at(state.stream, user.streams || []))
 
   if (!user.streams) return { loading: true }
 

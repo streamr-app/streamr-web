@@ -12,9 +12,13 @@ export default ({
         <NavLink exact to='/'>Explore</NavLink>
       </li>
 
-      <li className='record'>
-        <NavLink to='/record'>Record</NavLink>
-      </li>
+      {
+        (isSignedIn) ? (
+          <li className='record'>
+            <NavLink to='/record'>Record</NavLink>
+          </li>
+        ) : null
+      }
 
       {showUserOrSignUp(isSignedIn)}
     </ul>

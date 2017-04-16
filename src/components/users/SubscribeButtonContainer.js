@@ -6,9 +6,11 @@ import { subscribeToUser, unsubscribeToUser } from '../../actions/users'
 
 function mapStateToProps (state, ownProps) {
   const user = state.user[ownProps.userId]
+  const isMe = state.auth.userId === ownProps.userId
 
   return {
-    user
+    user,
+    isMe
   }
 }
 

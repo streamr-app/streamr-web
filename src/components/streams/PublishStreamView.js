@@ -2,6 +2,7 @@ import React from 'react'
 import Helmet from 'react-helmet'
 
 import { Banner } from '../common/banners'
+import StreamThumbnail from './StreamThumbnail'
 
 import { Field } from 'redux-form'
 
@@ -43,7 +44,7 @@ export default ({
       {error &&
         <FormError>{error}</FormError>}
 
-      <img className='preview' src={stream.imageUrl} />
+      <StreamThumbnail className='preview' stream={stream} />
 
       <div>
         <FormRow>

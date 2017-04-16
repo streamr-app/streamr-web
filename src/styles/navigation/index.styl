@@ -39,8 +39,16 @@ nav[role='main']
     position relative
     height 0
 
-    p
+    .profile-link
+      color black
+      display block
+      font-size 1.3rem
       margin 0
+      transition color 0.2s
+
+      &:hover
+        color $navigation-link-color
+        cursor pointer
 
     a
       font-size 0.8rem
