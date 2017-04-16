@@ -4,10 +4,18 @@ import SubscriptionStreamsContainer from './streams/SubscriptionStreamsContainer
 import TrendingStreamsContainer from './streams/TrendingStreamsContainer'
 import TrendingTopicsContainer from './topics/TrendingTopicsContainer'
 
-export default () => (
+export default ({
+  isSignedIn
+}) => (
   <div className='feed container'>
-    <h2>My Subscriptions</h2>
-    <SubscriptionStreamsContainer />
+    {
+      (isSignedIn) ? (
+        <div>
+          <h2>My Subscriptions</h2>
+          <SubscriptionStreamsContainer />
+        </div>
+      ) : null
+    }
 
     <h2>🚀 Trending Streams</h2>
     <TrendingStreamsContainer />
