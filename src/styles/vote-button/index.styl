@@ -14,6 +14,19 @@
     text-align center
     min-width 30px
     display inline-block
+    position relative
+
+    &:after
+      position absolute
+      left -10px
+      top 50%
+      content ' '
+      display block
+      border 6px solid
+      border-color transparent #eee transparent transparent
+      transform translateY(-50%)
+      height 0
+      width 0
 
   &.disabled
     cursor default
