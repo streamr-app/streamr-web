@@ -46,6 +46,28 @@ export default function (state = {
         trending: action.payload.result.stream
       }
     }
+
+    case 'STREAM_UPVOTE_SUCCESS': {
+      return {
+        ...state,
+        [action.payload.streamId]: {
+          ...state[action.payload.streamId],
+          currentUserVoted: true,
+          votesCount: state[action.payload.streamId].votesCount + 1
+        }
+      }
+    }
+
+    case 'STREAM_UNVOTE_SUCCESS': {
+      return {
+        ...state,
+        [action.payload.streamId]: {
+          ...state[action.payload.streamId],
+          currentUserVoted: false,
+          votesCount: state[action.payload.streamId].votesCount - 1
+        }
+      }
+    }
   }
 
   return state

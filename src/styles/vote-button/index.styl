@@ -1,0 +1,68 @@
+.vote-button
+  cursor pointer
+  display inline-block
+
+  i
+    color #888
+    margin-right 10px
+    transition all 0.2s ease
+
+  span
+    background #eee
+    border-radius 2px
+    padding 3px 10px
+    text-align center
+    min-width 30px
+    display inline-block
+    position relative
+
+    &:after
+      position absolute
+      left -10px
+      top 50%
+      content ' '
+      display block
+      border 6px solid
+      border-color transparent #eee transparent transparent
+      transform translateY(-50%)
+      height 0
+      width 0
+
+  &.disabled
+    cursor default
+
+    i
+      cursor not-allowed
+
+  &:not(.disabled)
+    &:hover i
+      color #9a9a9a
+
+    &.active i
+      color $blue
+
+      animation-duration 1s
+      animation-fill-mode both
+      animation-name tada
+
+@keyframes tada {
+  from {
+    transform: scale3d(1, 1, 1);
+  }
+
+  10%, 20% {
+    transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+  }
+
+  30%, 50%, 70%, 90% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+  }
+
+  40%, 60%, 80% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+  }
+
+  to {
+    transform: scale3d(1, 1, 1);
+  }
+}

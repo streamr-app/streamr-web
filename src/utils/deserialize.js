@@ -4,10 +4,15 @@ import humps from 'humps'
 
 export default function (json) {
   return getJSON(json).then((data) => {
-    var humped = humps.camelizeKeys(data)
-    const meta = humped.meta
+    let normalized = null
+    let meta = null
 
-    const normalized = normalize(humped)
+    if (data) {
+      var humped = humps.camelizeKeys(data)
+      meta = humped.meta
+
+      normalized = normalize(humped)
+    }
 
     return { ...normalized, meta }
   })
