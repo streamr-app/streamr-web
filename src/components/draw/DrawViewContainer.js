@@ -31,7 +31,8 @@ function mapDispatchToProps (dispatch, ownProps) {
     },
     onLineStart (coordinates) {
       dispatch({
-        type: 'LINE_START'
+        type: 'LINE_START',
+        payload: coordinates
       })
     },
     onLineEnd (coordinates) {

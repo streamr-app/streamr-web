@@ -33,7 +33,7 @@ export default function (
           lineId: state.lines.length + 1,
           colorId: state.currentColor,
           thickness: state.brushThickness,
-          points: []
+          points: [ { ...action.payload, time } ]
         }
       }
     case 'LINE_END':
