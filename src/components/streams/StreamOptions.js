@@ -3,7 +3,10 @@ import cx from 'classnames'
 
 import { Button } from '../buttons'
 
+import AudioRecordingStreamContainer from '../draw/AudioRecordingStreamContainer'
+
 export default ({
+  streamId,
   recording,
   onStopRecording,
   canStopRecording,
@@ -15,6 +18,8 @@ export default ({
   onSubmit
 }) => (
   <form className={cx('stream-options', { pristine })} onSubmit={handleSubmit(onSubmit)}>
+    <AudioRecordingStreamContainer streamEnding={streamEnding} />
+
     {getRecordingControls({ recording, submitting, valid, streamEnding, onStopRecording, canStopRecording })}
   </form>
 )

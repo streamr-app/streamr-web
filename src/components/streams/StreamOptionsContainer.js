@@ -7,11 +7,13 @@ import { createStream, setCurrentStream, endCurrentStream } from '../../actions/
 import { push } from 'react-router-redux'
 
 function mapStateToProps (state, ownProps) {
-  const recording = state.drawing.currentStreamId != null
+  const streamId = state.drawing.currentStreamId
+  const recording = !!streamId
   const canStopRecording = state.drawing.lines && state.drawing.lines.length
   const streamEnding = state.drawing.streamEnding
 
   return {
+    streamId,
     recording,
     canStopRecording,
     streamEnding,
