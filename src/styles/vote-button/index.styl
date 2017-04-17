@@ -15,12 +15,17 @@
     min-width 30px
     display inline-block
 
-  &:hover
+  &.disabled
+    cursor default
+
     i
+      cursor not-allowed
+
+  &:not(.disabled)
+    &:hover i
       color #9a9a9a
 
-  &.active
-    i
+    &.active i
       color $blue
 
       animation-duration 1s
