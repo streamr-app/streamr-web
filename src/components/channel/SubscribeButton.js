@@ -6,11 +6,12 @@ import preventDefault from '../../utils/preventDefault'
 export default ({
   className = '',
   user = {},
+  isLoggedIn,
   isMe,
   updateSubscription,
   ...rest
 }) => (
-  (!isMe) ? (
+  (isLoggedIn && !isMe) ? (
     <div className={`subscribe-button ${className}`}>
       <a
         className={cx('button -small', { '-subtle -unsubscribe': user.currentUserSubscribed })}

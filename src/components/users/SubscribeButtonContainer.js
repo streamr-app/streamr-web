@@ -7,9 +7,11 @@ import { subscribeToUser, unsubscribeToUser } from '../../actions/users'
 function mapStateToProps (state, ownProps) {
   const user = state.user[ownProps.userId]
   const isMe = state.auth.userId === ownProps.userId
+  const isLoggedIn = !!state.auth.userId
 
   return {
     user,
+    isLoggedIn,
     isMe
   }
 }
