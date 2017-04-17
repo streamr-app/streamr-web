@@ -13,8 +13,6 @@ function mapStateToProps (state, ownProps) {
 
   const streams = compact(at(state.stream, user.streams || []))
 
-  if (!user.streams) return { loading: true }
-
   return {
     user,
     streams

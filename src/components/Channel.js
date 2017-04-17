@@ -35,7 +35,7 @@ export default ({
 
         {
           !loading && streams.length === 0 &&
-            <div className='no-streams'>This channel has not posted any streams.</div>
+            <div className='none'>This channel has not posted any streams.</div>
         }
       </StreamList>
     </div>
