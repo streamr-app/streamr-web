@@ -4,7 +4,7 @@ import cx from 'classnames'
 import { BinaryClient } from '../../vendor/binary'
 import Recorder from 'react-recorder'
 
-const FFT_SIZE = 1024
+const FFT_SIZE = 512
 
 export default class AudioRecordingStream extends React.Component {
   constructor (props) {
@@ -87,7 +87,7 @@ export default class AudioRecordingStream extends React.Component {
   }
 
   analysisProcess (event) {
-    const data = new Uint8Array(200)
+    const data = new Uint8Array(100)
     this.analyzer.getByteFrequencyData(data)
     this.fft = data
   }
