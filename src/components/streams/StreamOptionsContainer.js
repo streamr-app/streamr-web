@@ -9,10 +9,12 @@ import { push } from 'react-router-redux'
 function mapStateToProps (state, ownProps) {
   const recording = state.drawing.currentStreamId != null
   const canStopRecording = state.drawing.lines && state.drawing.lines.length
+  const streamEnding = state.drawing.streamEnding
 
   return {
     recording,
     canStopRecording,
+    streamEnding,
     initialValues: {
       title: 'stream'
     }

@@ -109,8 +109,6 @@ export function setCurrentStream (streamId) {
 
 export function endCurrentStream () {
   return (dispatch, getState) => {
-    dispatch(resetForm('stream-options'))
-
     return dispatch(performActionOnResource({
       url: `streams/${getState().drawing.currentStreamId}`,
       action: 'end',
