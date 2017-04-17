@@ -7,13 +7,15 @@ import { fetchCommentsForStream } from '../../actions/comment'
 
 function mapStateToProps (state, ownProps) {
   const stream = state.stream[ownProps.streamId]
+  const isLoggedIn = !!state.auth.userId
 
   if (!stream) return { comments: [] }
 
   const comments = at(state.comment, stream.comments || [])
 
   return {
-    comments
+    comments,
+    isLoggedIn
   }
 }
 

@@ -6,10 +6,11 @@ import CommentContainer from './CommentContainer'
 
 export default ({
   streamId,
-  comments
+  comments,
+  isLoggedIn
 }) => (
   <div className='stream-comments'>
-    <NewCommentContainer streamId={streamId} />
+    { (isLoggedIn) ? <NewCommentContainer streamId={streamId} /> : null }
 
     {comments.length > 0 &&
       <ReactCSSTransitionGroup
