@@ -17,7 +17,11 @@ export default ({
           <li className='record'>
             <NavLink to='/record'>Record</NavLink>
           </li>
-        ) : null
+        ) : (
+          <li>
+            <NavLink to='/login'>Log In</NavLink>
+          </li>
+        )
       }
 
       {showUserOrSignUp(isSignedIn)}
