@@ -11,22 +11,27 @@ export default ({
   pristine,
   valid,
   handleSubmit,
+  streamEnding,
   onSubmit
 }) => (
   <form className={cx('stream-options', { pristine })} onSubmit={handleSubmit(onSubmit)}>
-    {getRecordingControls({ recording, submitting, valid, onStopRecording, canStopRecording })}
+    {getRecordingControls({ recording, submitting, valid, streamEnding, onStopRecording, canStopRecording })}
   </form>
 )
 
-function getRecordingControls ({ recording, submitting, valid, onStopRecording, canStopRecording }) {
+function getRecordingControls ({ recording, submitting, valid, streamEnding, onStopRecording, canStopRecording }) {
   if (recording) {
     return (
       <div className='record-control-buttons'>
         <a
           href='#'
-          className={cx('button -record', { disabled: !canStopRecording })}
-          onClick={(e) => canStopRecording && onStopRecording(e)}>
-          Finish Recording
+          className={cx('button -record', { disabled: !canStopRecording || streamEnding })}
+          onClick={(e) => canStopRecording && !streamEnding && onStopRecording(e)}>
+          {
+            streamEnding
+            ? 'Finishing up...'
+            : 'Finish Recording'
+          }
         </a>
       </div>
     )

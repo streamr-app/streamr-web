@@ -8,7 +8,8 @@ const initialState = {
   currentStreamId: null,
   isRecording: false,
   undoHistory: [],
-  undoneLine: []
+  undoneLine: [],
+  streamEnding: false
 }
 
 export default function (
@@ -86,6 +87,11 @@ export default function (
         currentStreamId: action.payload,
         streamStart: performance.now(),
         isRecording: true
+      }
+    case 'END_STREAM_REQUEST':
+      return {
+        ...state,
+        streamEnding: true
       }
     case 'END_STREAM_SUCCESS':
       return {
