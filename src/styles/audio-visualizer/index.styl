@@ -1,0 +1,15 @@
+.visualizer
+  display flex
+  align-items flex-end
+  height 40px
+
+  .bar
+    background rgba(255, 255, 255, 0.4)
+    width 2px
+    border-radius 1px
+    min-height 2px
+    margin-right 1px
+    transition height 0.1s ease, background 0.2s ease
+
+  &.recording .bar
+    background $red

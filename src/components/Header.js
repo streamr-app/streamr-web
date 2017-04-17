@@ -21,6 +21,6 @@ export default () => (
       <NavigationContainer />
     </div>
 
-    <StreamOptionsContainer />
+    <Route path='/record' component={StreamOptionsContainer} />
   </header>
 )
