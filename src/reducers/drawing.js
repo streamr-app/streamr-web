@@ -4,6 +4,7 @@ const initialState = {
   lines: [],
   currentLine: null,
   currentColor: 1,
+  thicknesses: [2, 3, 4, 6, 8],
   brushThickness: 2,
   currentStreamId: null,
   isRecording: false,
