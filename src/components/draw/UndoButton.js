@@ -1,7 +1,9 @@
 import React from 'react'
+import cx from 'classnames'
 
 export default ({
-  onClick
+  onClick,
+  disabled
 }) => (
-  <div className='sidebar-button undo-button' {...{ onClick }} />
+  <div className={cx('sidebar-button undo-button', { disabled })} {...{ onClick }} />
 )

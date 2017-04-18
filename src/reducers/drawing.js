@@ -71,6 +71,12 @@ export default function (
         currentLine: { time, type: 'undo', lineId },
         undoHistory: state.undoHistory.slice(0, -1)
       }
+    case 'CLEAR_SCREEN':
+      return {
+        ...state,
+        undoHistory: [],
+        currentLine: { time, type: 'clear' }
+      }
     case 'COLOR_SET':
       return {
         ...state,
