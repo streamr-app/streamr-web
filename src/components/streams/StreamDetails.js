@@ -9,7 +9,7 @@ export default ({
 }) => (
   <div className='stream-details'>
     <div className='basic-info'>
-      <h1>{stream.title}</h1> <h4>{topic.name}</h4>
+      <h1>{stream.title}</h1> {(topic) ? <h4>{topic.name}</h4> : null}
       <p>{stream.description || noDescription()}</p>
 
       {stream.id &&
