@@ -91,8 +91,12 @@ export default function (
       return {
         ...state,
         currentStreamId: action.payload,
-        streamStart: performance.now(),
         isRecording: true
+      }
+    case 'AUDIO_READY':
+      return {
+        ...state,
+        streamStart: performance.now()
       }
     case 'END_STREAM_REQUEST':
       return {

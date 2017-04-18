@@ -12,4 +12,13 @@ function mapStateToProps (state, ownProps) {
   }
 }
 
-export default connect(mapStateToProps)(AudioRecordingStream)
+function mapDispatchToProps (dispatch, ownProps) {
+  return {
+    onAudioReady () {
+      console.log('Audio ready')
+      dispatch({ type: 'AUDIO_READY' })
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AudioRecordingStream)
