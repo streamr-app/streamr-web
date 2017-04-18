@@ -34,7 +34,7 @@ export default function (
           type: 'line',
           lineId: state.lines.length + 1,
           colorId: state.currentColor,
-          thickness: state.brushThickness,
+          thickness: state.thicknesses[state.brushThickness],
           points: [ { ...action.payload, time } ]
         }
       }
