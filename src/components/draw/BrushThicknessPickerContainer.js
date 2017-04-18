@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 
 import BrushThicknessPicker from './BrushThicknessPicker'
 
-import { setThickness } from '../../actions/thickness'
+import { setThickness, increaseThickness, decreaseThickness } from '../../actions/thickness'
 
 function mapStateToProps (state, ownProps) {
   const thicknesses = state.drawing.thicknesses
@@ -19,6 +19,14 @@ function mapDispatchToProps (dispatch, ownProps) {
   return {
     onSelectThickness (thicknessId) {
       dispatch(setThickness(thicknessId))
+    },
+
+    onIncreaseThickness () {
+      dispatch(increaseThickness())
+    },
+
+    onDecreaseThickness () {
+      dispatch(decreaseThickness())
     }
   }
 }

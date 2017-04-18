@@ -1,13 +1,17 @@
 import React from 'react'
 import cx from 'classnames'
 
+import Mousetrap from '../Mousetrap'
+
 import Brush from './Brush'
 
 export default ({
   thicknesses,
   thicknessId,
+  currentColor,
   onSelectThickness,
-  currentColor
+  onIncreaseThickness,
+  onDecreaseThickness
 }) => {
   const thickness = thicknesses[thicknessId]
 
@@ -29,6 +33,13 @@ export default ({
           </div>
         ))}
       </div>
+
+      <Mousetrap
+        bindings={{
+          ']': () => onIncreaseThickness(),
+          '[': () => onDecreaseThickness()
+        }}
+      />
     </div>
   )
 }
