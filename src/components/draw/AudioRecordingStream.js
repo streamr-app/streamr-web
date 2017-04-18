@@ -17,7 +17,7 @@ export default class AudioRecordingStream extends React.Component {
   }
 
   componentDidMount () {
-    this.visualizerDrawLoop = requestAnimationFrame(() => this.redrawVisualizer())
+    this.visualizerFrame = requestAnimationFrame(() => this.redrawVisualizer())
   }
 
   componentWillReceiveProps (nextProps) {
@@ -41,7 +41,7 @@ export default class AudioRecordingStream extends React.Component {
 
     if (nextProps.streamEnding) {
       this.client && this.client.close()
-      cancelAnimationFrame(this.visualizerDrawLoop)
+      clearTimeout(this.visualizerTimeout)
       this.setState({ fft: new Uint8Array(NUM_FFT_BARS) })
     }
   }
@@ -50,7 +50,8 @@ export default class AudioRecordingStream extends React.Component {
     this.stream && this.stream.end()
     this.client && this.client.close()
     this.audioStream.getTracks()[0].stop()
-    cancelAnimationFrame(() => this.visualizerDrawLoop())
+    clearTimeout(this.visualizerTimeout)
+    cancelAnimationFrame(this.visualizerFrame)
   }
 
   gotStream (stream) {
@@ -106,7 +107,9 @@ export default class AudioRecordingStream extends React.Component {
 
   redrawVisualizer () {
     this.setState({ fft: this.fft }, () => {
-      this.visualizerDrawLoop = requestAnimationFrame(() => this.redrawVisualizer())
+      this.visualizerTimeout = setTimeout(() => {
+        this.visualizerFrame = requestAnimationFrame(() => this.redrawVisualizer())
+      }, 50)
     })
   }
 
@@ -131,4 +134,4 @@ export default class AudioRecordingStream extends React.Component {
   }
 }
 
-/* global AudioContext, Int16Array, requestAnimationFrame, cancelAnimationFrame */
+/* global AudioContext, Int16Array, requestAnimationFrame */
