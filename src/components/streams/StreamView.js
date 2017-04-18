@@ -9,6 +9,7 @@ import StreamCommentsContainer from '../comments/StreamCommentsContainer'
 export default ({
   colors,
   stream = {},
+  topic = {},
   streamData,
   loading
 }) => {
@@ -16,7 +17,7 @@ export default ({
     <div className={cx('container', { loading })}>
       <Helmet title={stream.title} />
       <StreamPlayer {...{ stream, streamData, colors, loading }} />
-      <StreamDetails {...{ stream }} />
+      <StreamDetails {...{ stream, topic }} />
 
       {stream.id &&
         <StreamCommentsContainer streamId={stream.id} />}
