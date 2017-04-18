@@ -15,7 +15,7 @@ function mapStateToProps (state, ownProps) {
 function mapDispatchToProps (dispatch, ownProps) {
   return {
     onSubmit (data) {
-      dispatch(createUser(data))
+      return dispatch(createUser(data))
         .then(() => dispatch(push('/')))
     }
   }
