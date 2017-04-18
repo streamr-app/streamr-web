@@ -5,6 +5,7 @@ import { BinaryClient } from '../../vendor/binary'
 import Recorder from 'react-recorder'
 
 const FFT_SIZE = 512
+const NUM_FFT_BARS = 100
 
 export default class AudioRecordingStream extends React.Component {
   constructor (props) {
@@ -15,39 +16,39 @@ export default class AudioRecordingStream extends React.Component {
     }
   }
 
-  componentWillMount () {
-    this.client = new BinaryClient(process.env.RECORDING_SERVICE_URL)
-
-    this.clientOpenPromise = new Promise((resolve, reject) => {
-      this.client.on('open', () => {
-        resolve()
-      })
-    })
-  }
-
   componentDidMount () {
     this.visualizerDrawLoop = requestAnimationFrame(() => this.redrawVisualizer())
   }
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.streamId && !this.streamSetup) {
-      this.clientOpenPromise.then(() => {
-        this.setState({ recording: true })
+      this.client = new BinaryClient(process.env.RECORDING_SERVICE_URL)
 
+      this.client.on('open', () => {
         this.stream = this.client.createStream({
           streamId: this.props.streamId,
           authToken: this.props.authToken,
           sampleRate: this.sampleRate
         })
+
+        this.props.onAudioReady()
+        this.setState({ recording: true })
+        this.recording = true
       })
 
       this.streamSetup = true
+    }
+
+    if (nextProps.streamEnding) {
+      this.client && this.client.close()
+      cancelAnimationFrame(this.visualizerDrawLoop)
+      this.setState({ fft: new Uint8Array(NUM_FFT_BARS) })
     }
   }
 
   componentWillUnmount () {
     this.stream && this.stream.end()
-    this.client.close()
+    this.client && this.client.close()
     this.audioStream.getTracks()[0].stop()
     cancelAnimationFrame(() => this.visualizerDrawLoop())
   }
@@ -80,14 +81,14 @@ export default class AudioRecordingStream extends React.Component {
   }
 
   recorderProcess (event) {
-    if (!this.stream || this.props.streamEnding) return null
+    if (!this.recording || this.props.streamEnding) return null
 
     var left = event.inputBuffer.getChannelData(0)
     this.stream.write(this.float32to16(left))
   }
 
   analysisProcess (event) {
-    const data = new Uint8Array(100)
+    const data = new Uint8Array(NUM_FFT_BARS)
     this.analyzer.getByteFrequencyData(data)
     this.fft = data
   }

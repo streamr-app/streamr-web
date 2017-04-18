@@ -49,14 +49,26 @@ export default class StreamPlayer extends React.Component {
 
     this.manager = new DrawManager(this.svg)
     this.manager.on('POSITION_CHANGE', this.positionChange.bind(this))
-    this.manager.on('READY', () => this.manager.play())
     this.manager.on('PLAY', () => this.play())
     this.manager.on('PAUSE', () => this.pause())
+    this.managerPromise = new Promise((resolve) => {
+      this.manager.on('READY', () => resolve())
+    })
 
     this.audio = new Audio(stream.audioDataUrl)
+    this.audioPromise = new Promise((resolve) => {
+      this.audio.addEventListener('canplay', () => resolve())
+    })
+
+    this.enqueueAutoplay()
+
     this.manager.prepare(stream, streamData, colors)
 
     this.prepared = true
+  }
+
+  enqueueAutoplay () {
+    Promise.all([ this.managerPromise, this.audioPromise ]).then(() => this.manager.play())
   }
 
   componentWillUnmount () {
