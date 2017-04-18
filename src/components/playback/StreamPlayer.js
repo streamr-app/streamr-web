@@ -55,7 +55,9 @@ export default class StreamPlayer extends React.Component {
       this.manager.on('READY', () => resolve())
     })
 
-    this.audio = new Audio(stream.audioDataUrl)
+    this.audio = new Audio()
+    this.audio.currentTime = this.props.initialPosition / 1000
+    this.audio.src = stream.audioDataUrl
     this.audioPromise = new Promise((resolve) => {
       this.audio.addEventListener('canplay', () => resolve())
     })
@@ -68,7 +70,10 @@ export default class StreamPlayer extends React.Component {
   }
 
   enqueueAutoplay () {
-    Promise.all([ this.managerPromise, this.audioPromise ]).then(() => this.manager.play())
+    Promise.all([ this.managerPromise, this.audioPromise ]).then(() => {
+      this.manager.setPosition(this.props.initialPosition)
+      this.manager.play()
+    })
   }
 
   componentWillUnmount () {
