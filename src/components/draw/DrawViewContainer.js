@@ -8,7 +8,8 @@ function mapStateToProps (state, ownProps) {
   const streamId = state.drawing.currentStreamId
   const currentLine = state.drawing.currentLine
   const currentColor = (state.color[state.drawing.currentColor] || {}).hex
-  const currentThickness = state.drawing.brushThickness
+  const thicknesses = state.drawing.thicknesses
+  const currentThickness = thicknesses[state.drawing.brushThickness]
   const undoneLines = state.drawing.undoneLines
 
   return {
