@@ -21,6 +21,7 @@ export default class PasswordStrengthIndicator extends React.Component {
 
     return (
       <div className={`password-strength-indicator score-${score}`}>
+        <div className={cx('strength-bar', { filled: this.props.password })} />
         <div className={cx('strength-bar', { filled: score >= 1 })} />
         <div className={cx('strength-bar', { filled: score >= 2 })} />
         <div className={cx('strength-bar', { filled: score >= 3 })} />
