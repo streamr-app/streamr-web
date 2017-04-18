@@ -120,8 +120,9 @@ export default class DrawManager {
     }
 
     this._performUndos()
+    this._performClears()
 
-    if (!this.playing && this._isUndo()) {
+    if (!this.playing && (this._isUndo() || this._isClear())) {
       return this._draw()
     }
 
@@ -157,7 +158,7 @@ export default class DrawManager {
       this._nextLine()
     }
 
-    if (!this.playing && this._isUndo()) {
+    if (!this.playing && (this._isUndo() || this._isClear())) {
       return this._draw()
     }
 
@@ -173,8 +174,19 @@ export default class DrawManager {
     }
   }
 
+  _performClears () {
+    while (this.currentLine && this._isClear() && this.currentLine.time <= this.position) {
+      this.svg.selectAll('*').remove()
+      this._nextLine()
+    }
+  }
+
   _isUndo () {
     return this.currentLine && this.currentLine.type === 'undo'
+  }
+
+  _isClear () {
+    return this.currentLine && this.currentLine.type === 'clear'
   }
 
   _isLine () {

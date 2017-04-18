@@ -1,25 +1,21 @@
 import { connect } from 'react-redux'
 
-import UndoButton from './UndoButton'
+import ClearButton from './ClearButton'
 
 import { persistCurrentLine } from '../../actions/lines'
 
 function mapStateToProps (state, ownProps) {
-  const disabled = state.drawing.undoHistory.length === 0
-
-  return {
-    disabled
-  }
+  return {}
 }
 
 function mapDispatchToProps (dispatch, ownProps) {
   return {
     onClick () {
-      dispatch({ type: 'UNDO_LINE' })
+      dispatch({ type: 'CLEAR_SCREEN' })
       dispatch(persistCurrentLine())
       setTimeout(() => dispatch({ type: 'LINE_END' }), 0)
     }
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(UndoButton)
+export default connect(mapStateToProps, mapDispatchToProps)(ClearButton)

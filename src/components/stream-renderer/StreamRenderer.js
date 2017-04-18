@@ -19,13 +19,13 @@ export default class StreamRenderer extends React.Component {
     this.svg = d3.select(canvas).append('svg')
       .attr('viewBox', `0 0 ${WIDTH} ${HEIGHT}`)
 
+    this.svg.append('rect')
+      .attr('x', 0).attr('y', 0).attr('width', WIDTH).attr('height', HEIGHT)
+      .attr('fill', 'rgb(33, 37, 43)')
+
     this.group = this.svg.append('g')
       .attr('stroke-linecap', 'round')
       .attr('fill', 'none')
-
-    this.group.append('rect')
-      .attr('x', 0).attr('y', 0).attr('width', WIDTH).attr('height', HEIGHT)
-      .attr('fill', 'rgb(33, 37, 43)')
   }
 
   componentWillReceiveProps (nextProps) {
@@ -39,6 +39,11 @@ export default class StreamRenderer extends React.Component {
       const lines = document.querySelectorAll(`.line-${lineId}`)
 
       lines.forEach((line) => { line.style.display = 'none' })
+      return
+    }
+
+    if (nextProps.currentLine.type === 'clear') {
+      this.group.selectAll('*').remove()
       return
     }
 
