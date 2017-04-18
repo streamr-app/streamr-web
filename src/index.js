@@ -8,6 +8,7 @@ import Root from './Root'
 import './config/moment.config.js'
 
 import 'normalize.css/normalize.css'
+import 'rc-tooltip/assets/bootstrap.css'
 import './styles/index.styl'
 
 const render = (Component) => {

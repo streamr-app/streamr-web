@@ -28,7 +28,7 @@ export default class SearchField extends React.Component {
     return (
       <div className='search'>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Field name='search' ref={(search) => { this.search = search }} placeholder='Search...' component={searchField} />
+          <Field name='search' ref={(search) => { this.search = search }} placeholder='Press / to search...' component={searchField} />
           <input type='submit' style={{ display: 'none' }} />
         </form>
 

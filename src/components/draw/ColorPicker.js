@@ -16,7 +16,8 @@ export default ({
         key={color.id}
         className={cx('color-well', { selected: selectedColor === color.id })}
         style={{ backgroundColor: color.hex }}
-        onClick={() => onSelectColor(color.id)} />
+        onClick={() => onSelectColor(color.id)}
+      />
     ))}
 
     <Mousetrap
