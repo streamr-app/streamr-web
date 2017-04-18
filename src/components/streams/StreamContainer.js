@@ -47,11 +47,13 @@ function mapDispatchToProps (dispatch, ownProps) {
 export default connect(mapStateToProps, mapDispatchToProps)(StreamView)
 
 function parseTime (timeDescription) {
-  if (!timeDescription) {
+  const timeRegex = /^(\d+)m(\d+)s$/
+
+  if (!timeDescription || !timeRegex.test(timeDescription)) {
     return 0
   }
 
-  const [ , minutes, seconds ] = timeDescription.match(/(\d+)m(\d+)s/).map((a) => parseInt(a))
+  const [ , minutes, seconds ] = timeDescription.match(timeRegex).map((a) => parseInt(a))
 
   return (minutes * 60 + seconds) * 1000
 }
