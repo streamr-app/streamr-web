@@ -9,7 +9,7 @@ import StreamCommentsContainer from '../comments/StreamCommentsContainer'
 export default ({
   colors,
   stream = {},
-  topic = {},
+  topic,
   streamData,
   loading
 }) => {
