@@ -3,6 +3,7 @@ import Helmet from 'react-helmet'
 import { Link } from 'react-router-dom'
 
 import { Banner } from '../common/banners'
+import UserCardContainer from '../users/UserCardContainer'
 
 import { Field } from 'redux-form'
 
@@ -16,44 +17,46 @@ import {
 } from '../forms'
 
 import {
-  TextField,
+  CreatePasswordField,
   reduxFormWrapper
 } from '../fields'
 
-const emailField = reduxFormWrapper(<TextField id='email' label='Email Address' />)
-const passwordField = reduxFormWrapper(<TextField type='password' id='password' label='Password' />)
+const passwordField = reduxFormWrapper(<CreatePasswordField id='password' label='New Password' />)
 
 export default ({
+  user,
   error,
   handleSubmit,
   onSubmit,
   submitting,
-  valid
+  submitSucceeded,
+  invalid,
+  ...rest
 }) => (
   <div className='login'>
-    <Helmet title='Log In' />
+    <Helmet title='Reset your Password' />
 
     <Banner>
-      <h2>Log In</h2>
+      <h2>Reset your Password</h2>
     </Banner>
 
     <form onSubmit={handleSubmit(onSubmit)}>
+      {user &&
+        <UserCardContainer userId={user.id} />}
+
       {error &&
         <FormError>{error}</FormError>}
 
-      <FormRow>
-        <Field name='email' component={emailField} />
-      </FormRow>
+      {submitSucceeded &&
+        <p className='success'>Success! Go ahead and <Link to='/login'>log in</Link>.</p>}
 
       <FormRow>
         <Field name='password' component={passwordField} />
       </FormRow>
 
       <FormRow>
-        <Button disabled={submitting || !valid}>Log In</Button>
+        <Button disabled={submitting || submitSucceeded || invalid}>Reset my Password</Button>
       </FormRow>
-
-      <p className='subtle'>Or, <Link to='signup'>sign up</Link>. Did you <Link to='/forgot'>forget your password</Link>?</p>
     </form>
   </div>
 )
