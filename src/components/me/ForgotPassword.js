@@ -21,39 +21,39 @@ import {
 } from '../fields'
 
 const emailField = reduxFormWrapper(<TextField id='email' label='Email Address' />)
-const passwordField = reduxFormWrapper(<TextField type='password' id='password' label='Password' />)
 
 export default ({
   error,
   handleSubmit,
   onSubmit,
   submitting,
-  valid
+  submitSucceeded,
+  invalid,
+  ...rest
 }) => (
   <div className='login'>
-    <Helmet title='Log In' />
+    <Helmet title='Forgot Password' />
 
     <Banner>
-      <h2>Log In</h2>
+      <h2>Request a Password Reset</h2>
     </Banner>
 
     <form onSubmit={handleSubmit(onSubmit)}>
       {error &&
         <FormError>{error}</FormError>}
 
+      {submitSucceeded &&
+        <p className='success'>Great! We've sent you an email with instructions.</p>}
+
       <FormRow>
         <Field name='email' component={emailField} />
       </FormRow>
 
       <FormRow>
-        <Field name='password' component={passwordField} />
+        <Button disabled={submitting || submitSucceeded || invalid}>Reset my Password</Button>
       </FormRow>
 
-      <FormRow>
-        <Button disabled={submitting || !valid}>Log In</Button>
-      </FormRow>
-
-      <p className='subtle'>Or, <Link to='signup'>sign up</Link>. Did you <Link to='/forgot'>forget your password</Link>?</p>
+      <p className='subtle'>Suddenly remembered? <Link to='/login'>Login</Link>.</p>
     </form>
   </div>
 )

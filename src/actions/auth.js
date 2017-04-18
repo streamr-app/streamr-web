@@ -1,4 +1,4 @@
-import { fetch } from './index'
+import { fetch, createResource } from './index'
 import { CALL_API } from 'redux-api-middleware'
 
 export const API_ENDPOINT = `${process.env.API_ENDPOINT || ''}`
@@ -37,5 +37,34 @@ export function logout () {
     })
 
     window.location = '/'
+  }
+}
+
+export function requestPasswordReset (email) {
+  return {
+    [CALL_API]: {
+      endpoint: `${API_ENDPOINT}password_reset`,
+      method: 'POST',
+      types: ['REQUEST_PASSWORD_RESET_REQUEST', 'REQUEST_PASSWORD_RESET_SUCCESS', 'REQUEST_PASSWORD_RESET_FAILURE'],
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email
+      })
+    }
+  }
+}
+
+export function resetPassword ({ token, password }) {
+  return {
+    [CALL_API]: {
+      endpoint: `${API_ENDPOINT}password_reset`,
+      method: 'PUT',
+      types: ['RESET_PASSWORD_REQUEST', 'RESET_PASSWORD_SUCCESS', 'RESET_PASSWORD_FAILURE'],
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        token,
+        password
+      })
+    }
   }
 }

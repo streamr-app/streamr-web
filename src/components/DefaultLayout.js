@@ -11,6 +11,8 @@ import LoginContainer from './auth/LoginContainer'
 import PublishStreamContainer from './streams/PublishStreamContainer'
 import RecordLayout from './RecordLayout'
 import SearchResultsContainer from './search/SearchResultsContainer'
+import ForgotPasswordContainer from './me/ForgotPasswordContainer'
+import PasswordResetContainer from './me/PasswordResetContainer'
 import SignupContainer from './auth/SignupContainer'
 import MeContainer from './me/MeContainer'
 import StreamContainer from './streams/StreamContainer'
@@ -29,6 +31,9 @@ export default () => (
         <Route path='/me' component={MeContainer} />
 
         <Route path='/profile/:userId' component={ChannelContainer} />
+
+        <Route path='/forgot' component={ForgotPasswordContainer} />
+        <Route path='/password-reset' component={PasswordResetContainer} />
 
         <Route path='/record' component={RecordLayout} />
 
