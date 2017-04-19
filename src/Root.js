@@ -8,8 +8,15 @@ import { Route } from 'react-router-dom'
 
 import Application, { history } from './components/Application'
 
+const store = configureStore(history)
+
+;(function () {
+  const { change } = require('redux-form')
+  window.changeForm = (...args) => store.dispatch(change(...args))
+})()
+
 export default () => (
-  <Provider store={configureStore(history)}>
+  <Provider store={store}>
     <ConnectedRouter history={history}>
       <Route path='/' component={Application} />
     </ConnectedRouter>
