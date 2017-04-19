@@ -14,6 +14,13 @@ export default ({
     <div className='thumbnail-wrapper'>
       <StreamThumbnail stream={stream} />
 
+      <p className='pulse'>
+        <span><i className='fa fa-thumbs-up' /> {stream.votesCount}</span>
+
+        {!isNaN(stream.commentsCount) &&
+          <span><i className='fa fa-comments' /> {stream.commentsCount}</span>}
+      </p>
+
       <p className='duration'>{formatDuration(stream.duration)}</p>
     </div>
 
