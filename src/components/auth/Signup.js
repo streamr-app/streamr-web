@@ -5,9 +5,6 @@ import { Banner } from '../common/banners'
 
 import { Field } from 'redux-form'
 
-const SIGNUP_DISABLED = true
-const EMAIL = 'streamr@googlegroups.com'
-
 import {
   Button
 } from '../buttons'
@@ -21,6 +18,9 @@ import {
   CreatePasswordField,
   reduxFormWrapper
 } from '../fields'
+
+const SIGNUP_DISABLED = false
+const EMAIL = 'streamr@googlegroups.com'
 
 const nameField = reduxFormWrapper(<TextField id='name' label='Name' />)
 const emailField = reduxFormWrapper(<TextField id='email' label='Email Address' />)
@@ -53,15 +53,15 @@ export default ({
       <div className='login-form'>
         <form onSubmit={handleSubmit(onSubmit)}>
           <FormRow>
-            <Field disabled name='name' component={nameField} />
+            <Field disabled={SIGNUP_DISABLED} name='name' component={nameField} />
           </FormRow>
 
           <FormRow>
-            <Field disabled name='email' component={emailField} />
+            <Field disabled={SIGNUP_DISABLED} name='email' component={emailField} />
           </FormRow>
 
           <FormRow>
-            <Field disabled name='password' component={passwordField} />
+            <Field disabled={SIGNUP_DISABLED} name='password' component={passwordField} />
           </FormRow>
 
           <FormRow>

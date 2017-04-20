@@ -1,5 +1,7 @@
 import React from 'react'
-import moment from 'moment'
+
+import Bundle from '../Bundle'
+import loadMoment from 'bundle-loader!moment'
 
 import { Link } from 'react-router-dom'
 
@@ -16,10 +18,6 @@ export default class Comment extends React.Component {
 
   componentWillUnmount () {
     clearInterval(this.interval)
-  }
-
-  timeAgo (dateTime) {
-    return moment(dateTime).fromNow(true)
   }
 
   render () {
@@ -41,7 +39,9 @@ export default class Comment extends React.Component {
 
         <div>
           <p className='ago' title={comment.insertedAt}>
-            {this.timeAgo(comment.insertedAt)}
+            <Bundle load={loadMoment}>
+              {(moment) => moment(comment.insertedAt).fromNow(true)}
+            </Bundle>
           </p>
         </div>
       </div>

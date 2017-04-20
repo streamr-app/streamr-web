@@ -2,8 +2,10 @@ import React from 'react'
 
 import { Route } from 'react-router'
 import { Link } from 'react-router-dom'
+import AsyncRoute from './AsyncRoute'
+
 import NavigationContainer from './NavigationContainer'
-import StreamOptionsContainer from './streams/StreamOptionsContainer'
+import loadStreamOptionsContainer from 'bundle-loader!./streams/StreamOptionsContainer'
 import SearchFieldContainer from './search/SearchFieldContainer'
 
 export default () => (
@@ -21,6 +23,6 @@ export default () => (
       <NavigationContainer />
     </div>
 
-    <Route path='/record' component={StreamOptionsContainer} />
+    <AsyncRoute path='/record' component={loadStreamOptionsContainer} />
   </header>
 )

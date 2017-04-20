@@ -1,6 +1,8 @@
 import React from 'react'
 import cx from 'classnames'
 
+import waitForZxcvbn from 'bundle-loader!zxcvbn'
+
 export default class PasswordStrengthIndicator extends React.Component {
   constructor (props) {
     super(props)
@@ -11,8 +13,8 @@ export default class PasswordStrengthIndicator extends React.Component {
   }
 
   componentDidMount () {
-    require.ensure(['zxcvbn'], () => {
-      this.setState({ zxcvbn: require('zxcvbn') })
+    waitForZxcvbn((zxcvbn) => {
+      this.setState({ zxcvbn })
     })
   }
 

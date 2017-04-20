@@ -2,9 +2,11 @@ import React from 'react'
 
 import Helmet from 'react-helmet'
 
+import Bundle from './Bundle'
+
 import DefaultLayout from './DefaultLayout'
 
-import ColorLoader from './draw/ColorLoader'
+import loadColorLoader from 'bundle-loader!./draw/ColorLoader'
 import createHistory from 'history/createBrowserHistory'
 
 export const history = createHistory()
@@ -35,7 +37,9 @@ export default class Application extends React.Component {
 
         <DefaultLayout />
 
-        <ColorLoader />
+        <Bundle load={loadColorLoader}>
+          {(ColorLoader) => ColorLoader ? <ColorLoader /> : null}
+        </Bundle>
       </div>
     )
   }

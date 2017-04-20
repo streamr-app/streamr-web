@@ -826,7 +826,9 @@
       "version": "3.0.0"
     },
     "bundle-loader": {
-      "version": "0.5.5"
+      "version": "0.5.5",
+      "from": "bundle-loader@>=0.5.5 <0.6.0",
+      "resolved": "https://registry.npmjs.org/bundle-loader/-/bundle-loader-0.5.5.tgz"
     },
     "bytes": {
       "version": "2.3.0"
