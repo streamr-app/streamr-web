@@ -5,6 +5,9 @@ import { Banner } from '../common/banners'
 
 import { Field } from 'redux-form'
 
+const SIGNUP_DISABLED = true
+const EMAIL = 'streamr@googlegroups.com'
+
 import {
   Button
 } from '../buttons'
@@ -34,23 +37,35 @@ export default ({
       <h2>Create an Account</h2>
     </Banner>
 
+    {SIGNUP_DISABLED &&
+      <div className='container'>
+        <div className='form-error'>
+          <p>Signups are temporarily disabled due to recent vandalism.</p>
+
+          <p>
+            If you're on our panel and would like an account, please{' '}
+            <a target='_blank' href={`mailto:${EMAIL}`}>email us</a> and we'll get you set up right away.
+          </p>
+        </div>
+      </div>}
+
     <div className='login-split container'>
       <div className='login-form'>
         <form onSubmit={handleSubmit(onSubmit)}>
           <FormRow>
-            <Field name='name' component={nameField} />
+            <Field disabled name='name' component={nameField} />
           </FormRow>
 
           <FormRow>
-            <Field name='email' component={emailField} />
+            <Field disabled name='email' component={emailField} />
           </FormRow>
 
           <FormRow>
-            <Field name='password' component={passwordField} />
+            <Field disabled name='password' component={passwordField} />
           </FormRow>
 
           <FormRow>
-            <Button disabled={submitting || !valid}>Sign Up</Button>
+            <Button disabled={SIGNUP_DISABLED || submitting || !valid}>Sign Up</Button>
           </FormRow>
 
           <p className='subtle'>Or, <Link to='login'>log in</Link>.</p>
