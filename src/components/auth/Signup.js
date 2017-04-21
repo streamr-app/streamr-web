@@ -19,7 +19,7 @@ import {
   reduxFormWrapper
 } from '../fields'
 
-const SIGNUP_DISABLED = true
+const SIGNUP_DISABLED = false
 const EMAIL = 'streamr@googlegroups.com'
 
 const nameField = reduxFormWrapper(<TextField id='name' label='Name' />)
