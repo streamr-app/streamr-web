@@ -1,5 +1,4 @@
 import { CALL_API } from 'redux-api-middleware'
-import { reset as resetForm } from 'redux-form'
 
 import {
   fetch,
