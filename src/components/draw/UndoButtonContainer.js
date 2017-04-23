@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 
 import UndoButton from './UndoButton'
 
-import { persistCurrentEvent } from '../../actions/lines'
+import { persistCurrentEvent } from '../../actions/events'
 
 function mapStateToProps (state, ownProps) {
   const disabled = state.drawing.undoHistory.length === 0

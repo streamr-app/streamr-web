@@ -7,9 +7,8 @@ const initialState = {
   thicknesses: [2, 3, 4, 6, 8],
   brushThickness: 2,
   currentStreamId: null,
-  isRecording: false,
+  recording: false,
   undoHistory: [],
-  undoneLine: [],
   streamEnding: false,
   audioAPIsUnavailable: false
 }
@@ -93,7 +92,7 @@ export default function (
       return {
         ...state,
         currentStreamId: action.payload,
-        isRecording: true
+        recording: true
       }
     case 'AUDIO_READY':
       return {
@@ -114,6 +113,7 @@ export default function (
     case 'AUDIO_UNAVAILABLE':
       return {
         ...state,
+        error: true,
         audioAPIsUnavailable: true
       }
   }

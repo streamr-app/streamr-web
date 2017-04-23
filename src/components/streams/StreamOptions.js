@@ -7,7 +7,7 @@ import AudioRecordingStreamContainer from '../draw/AudioRecordingStreamContainer
 
 export default (props) => (
   <form className={cx('stream-options', { pristine: props.pristine })} onSubmit={props.handleSubmit(props.onSubmit)}>
-    <AudioRecordingStreamContainer streamEnding={props.streamEnding} />
+    <AudioRecordingStreamContainer />
 
     {getRecordingControls(props)}
   </form>

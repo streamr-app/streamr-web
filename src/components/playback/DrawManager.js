@@ -13,7 +13,7 @@ export default class DrawManager {
 
     this.eventCursor = 0
     this.needsRedraw = false
-    this.parsedLines = []
+    this.parsedEvents = []
     this.pointCursor = 0
     this.position = 0
     this.ready = false
@@ -145,7 +145,7 @@ export default class DrawManager {
       }
 
       this._redrawLine()
-      this._nextLine()
+      this._nextEvent()
     }
 
     while (this.currentEvent && this._isLine() && !this._doneDrawingLine() && this._currentPointIsInPast()) {
@@ -155,7 +155,7 @@ export default class DrawManager {
     }
 
     if (this.currentEvent && this._isLine() && this._doneDrawingLine()) {
-      this._nextLine()
+      this._nextEvent()
     }
 
     if (!this.playing && (this._isUndo() || this._isClear())) {
@@ -170,14 +170,14 @@ export default class DrawManager {
       const lineId = this.currentEvent.line_id
       const lines = document.querySelectorAll(`.line-${lineId}`)
       lines.forEach((line) => { line.style.display = 'none' })
-      this._nextLine()
+      this._nextEvent()
     }
   }
 
   _performClears () {
     while (this.currentEvent && this._isClear() && this.currentEvent.time <= this.position) {
       this.svg.selectAll('*').remove()
-      this._nextLine()
+      this._nextEvent()
     }
   }
 
@@ -193,21 +193,21 @@ export default class DrawManager {
     return this.currentEvent && this.currentEvent.type === 'line'
   }
 
-  _getParsedLine (index) {
-    if (!this.parsedLines[index]) {
-      this.parsedLines[index] = JSON.parse(this.events[index] || 'null')
+  _getParsedEvent (index) {
+    if (!this.parsedEvents[index]) {
+      this.parsedEvents[index] = JSON.parse(this.events[index] || 'null')
     }
 
-    return this.parsedLines[index]
+    return this.parsedEvents[index]
   }
 
-  _nextLine () {
+  _nextEvent () {
     this.eventCursor++
     this.pointCursor = 0
     this._setUpLine()
 
     while (this.currentEvent && this.currentEvent.points && this.currentEvent.points.length === 0) {
-      this._nextLine()
+      this._nextEvent()
     }
   }
 
@@ -216,7 +216,7 @@ export default class DrawManager {
   }
 
   _setUpLine () {
-    this.currentEvent = this._getParsedLine(this.eventCursor)
+    this.currentEvent = this._getParsedEvent(this.eventCursor)
 
     if (this.currentEvent && this.currentEvent.type === 'line') {
       this.color = this.currentEvent.color_id
