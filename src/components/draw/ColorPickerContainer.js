@@ -11,7 +11,7 @@ function mapStateToProps (state, ownProps) {
 
   return {
     selectedColor: state.drawing.currentColor,
-    disabled: state.drawing.currentLine != null,
+    disabled: state.drawing.currentEvent != null,
     colors: sortedColors
   }
 }

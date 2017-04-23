@@ -1,8 +1,8 @@
 import last from 'lodash/last'
 
 const initialState = {
-  lines: [],
-  currentLine: null,
+  eventCount: 0,
+  currentEvent: null,
   currentColor: 1,
   thicknesses: [2, 3, 4, 6, 8],
   brushThickness: 2,
@@ -30,32 +30,32 @@ export default function (
     case 'LINE_START':
       return {
         ...state,
-        currentLine: {
+        currentEvent: {
           time,
           type: 'line',
-          lineId: state.lines.length + 1,
+          lineId: state.eventCount + 1,
           colorId: state.currentColor,
           thickness: state.thicknesses[state.brushThickness],
           points: [ { ...action.payload, time } ]
         }
       }
-    case 'LINE_END':
-      if (!state.currentLine) return state
+    case 'EVENT_END':
+      if (!state.currentEvent) return state
 
       return {
         ...state,
-        lines: state.lines.concat([ state.currentLine ]),
-        undoHistory: state.currentLine.type === 'line'
-          ? state.undoHistory.concat([ state.currentLine.lineId ])
+        undoHistory: state.currentEvent.type === 'line'
+          ? state.undoHistory.concat([ state.currentEvent.lineId ])
           : state.undoHistory,
-        currentLine: null
+        eventCount: state.eventCount + 1,
+        currentEvent: null
       }
     case 'POINT_CREATE':
       return {
         ...state,
-        currentLine: {
-          ...state.currentLine,
-          points: state.currentLine.points.concat([
+        currentEvent: {
+          ...state.currentEvent,
+          points: state.currentEvent.points.concat([
             { ...action.payload, time }
           ])
         }
@@ -70,14 +70,14 @@ export default function (
 
       return {
         ...state,
-        currentLine: { time, type: 'undo', lineId },
+        currentEvent: { time, type: 'undo', lineId },
         undoHistory: state.undoHistory.slice(0, -1)
       }
     case 'CLEAR_SCREEN':
       return {
         ...state,
         undoHistory: [],
-        currentLine: { time, type: 'clear' }
+        currentEvent: { time, type: 'clear' }
       }
     case 'COLOR_SET':
       return {

@@ -13,7 +13,7 @@ export default ({
   onLineStart,
   onLineEnd,
   onPointCreate,
-  currentLine,
+  currentEvent,
   currentColor,
   currentThickness,
   undoneLines,
@@ -28,7 +28,7 @@ export default ({
     <DrawingSidebar />
 
     <div className='draw-container'>
-      <StreamRenderer {...{ currentLine, currentColor, currentThickness, undoneLines }} />
+      <StreamRenderer {...{ currentEvent, currentColor, currentThickness, undoneLines }} />
       <MouseDrawingHandler {...{ enabled, onCursorMove, onLineStart, onLineEnd, onPointCreate }} />
 
       {audioAPIsUnavailable &&

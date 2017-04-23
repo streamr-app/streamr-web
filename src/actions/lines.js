@@ -1,8 +1,8 @@
 import { createResource } from './index'
 
-export function persistCurrentLine () {
+export function persistCurrentEvent () {
   return (dispatch, getState) => {
-    const line = getState().drawing.currentLine
+    const line = getState().drawing.currentEvent
 
     if (!line) return
 

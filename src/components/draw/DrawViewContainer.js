@@ -2,11 +2,11 @@ import { connect } from 'react-redux'
 
 import DrawView from './DrawView'
 
-import { persistCurrentLine } from '../../actions/lines'
+import { persistCurrentEvent } from '../../actions/lines'
 
 function mapStateToProps (state, ownProps) {
   const streamId = state.drawing.currentStreamId
-  const currentLine = state.drawing.currentLine
+  const currentEvent = state.drawing.currentEvent
   const currentColor = (state.color[state.drawing.currentColor] || {}).hex
   const thicknesses = state.drawing.thicknesses
   const currentThickness = thicknesses[state.drawing.brushThickness]
@@ -15,7 +15,7 @@ function mapStateToProps (state, ownProps) {
 
   return {
     streamId,
-    currentLine,
+    currentEvent,
     currentColor,
     currentThickness,
     undoneLines,
@@ -39,10 +39,10 @@ function mapDispatchToProps (dispatch, ownProps) {
       })
     },
     onLineEnd (coordinates) {
-      dispatch(persistCurrentLine())
+      dispatch(persistCurrentEvent())
 
       dispatch({
-        type: 'LINE_END'
+        type: 'EVENT_END'
       })
     },
     onPointCreate (coordinates) {

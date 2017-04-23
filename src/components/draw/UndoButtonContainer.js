@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 
 import UndoButton from './UndoButton'
 
-import { persistCurrentLine } from '../../actions/lines'
+import { persistCurrentEvent } from '../../actions/lines'
 
 function mapStateToProps (state, ownProps) {
   const disabled = state.drawing.undoHistory.length === 0
@@ -16,8 +16,8 @@ function mapDispatchToProps (dispatch, ownProps) {
   return {
     onClick () {
       dispatch({ type: 'UNDO_LINE' })
-      dispatch(persistCurrentLine())
-      setTimeout(() => dispatch({ type: 'LINE_END' }), 0)
+      dispatch(persistCurrentEvent())
+      setTimeout(() => dispatch({ type: 'EVENT_END' }), 0)
     }
   }
 }

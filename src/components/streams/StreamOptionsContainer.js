@@ -9,7 +9,7 @@ import { push } from 'react-router-redux'
 function mapStateToProps (state, ownProps) {
   const streamId = state.drawing.currentStreamId
   const recording = !!streamId
-  const canStopRecording = state.drawing.lines && state.drawing.lines.length
+  const canStopRecording = state.drawing.eventCount > 0
   const streamEnding = state.drawing.streamEnding
   const audioAPIsUnavailable = state.drawing.audioAPIsUnavailable
 
