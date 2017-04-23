@@ -9,11 +9,11 @@ function mapStateToProps (state, ownProps) {
     currentEvent,
     thicknesses,
     recording
-  } = state.drawing
+  } = state.recording
 
-  const streamId = state.drawing.currentStreamId
-  const currentColor = (state.color[state.drawing.currentColor] || {}).hex
-  const currentThickness = thicknesses[state.drawing.brushThickness]
+  const streamId = state.recording.currentStreamId
+  const currentColor = (state.color[state.recording.currentColor] || {}).hex
+  const currentThickness = thicknesses[state.recording.brushThickness]
 
   return {
     streamId,

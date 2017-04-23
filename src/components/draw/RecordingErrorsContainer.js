@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import RecordingErrors from './RecordingErrors'
 
 function mapStateToProps (state, ownProps) {
-  return state.drawing
+  return state.recording
 }
 
 function mapDispatchToProps (dispatch, ownProps) {

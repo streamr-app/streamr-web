@@ -10,8 +10,8 @@ function mapStateToProps (state, ownProps) {
   const sortedColors = sortBy(values(state.color), 'order')
 
   return {
-    selectedColor: state.drawing.currentColor,
-    disabled: state.drawing.currentEvent != null,
+    selectedColor: state.recording.currentColor,
+    disabled: state.recording.currentEvent != null,
     colors: sortedColors
   }
 }

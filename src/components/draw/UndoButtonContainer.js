@@ -5,7 +5,7 @@ import UndoButton from './UndoButton'
 import { persistCurrentEvent } from '../../actions/events'
 
 function mapStateToProps (state, ownProps) {
-  const disabled = state.drawing.undoHistory.length === 0
+  const disabled = state.recording.undoHistory.length === 0
 
   return {
     disabled

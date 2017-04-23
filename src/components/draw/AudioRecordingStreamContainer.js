@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 import AudioRecordingStream from './AudioRecordingStream'
 
 function mapStateToProps (state, ownProps) {
-  const streamId = state.drawing.currentStreamId
+  const streamId = state.recording.currentStreamId
   const authToken = state.auth.access_token
-  const streamEnding = state.drawing.streamEnding
+  const streamEnding = state.recording.streamEnding
 
   return {
     streamId,
