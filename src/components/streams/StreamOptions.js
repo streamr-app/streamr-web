@@ -5,26 +5,23 @@ import { Button } from '../buttons'
 
 import AudioRecordingStreamContainer from '../draw/AudioRecordingStreamContainer'
 
-export default ({
-  streamId,
-  recording,
-  onStopRecording,
-  canStopRecording,
-  submitting,
-  pristine,
-  valid,
-  handleSubmit,
-  streamEnding,
-  onSubmit
-}) => (
-  <form className={cx('stream-options', { pristine })} onSubmit={handleSubmit(onSubmit)}>
-    <AudioRecordingStreamContainer streamEnding={streamEnding} />
+export default (props) => (
+  <form className={cx('stream-options', { pristine: props.pristine })} onSubmit={props.handleSubmit(props.onSubmit)}>
+    <AudioRecordingStreamContainer streamEnding={props.streamEnding} />
 
-    {getRecordingControls({ recording, submitting, valid, streamEnding, onStopRecording, canStopRecording })}
+    {getRecordingControls(props)}
   </form>
 )
 
-function getRecordingControls ({ recording, submitting, valid, streamEnding, onStopRecording, canStopRecording }) {
+function getRecordingControls ({
+  recording,
+  submitting,
+  valid,
+  streamEnding,
+  onStopRecording,
+  canStopRecording,
+  audioAPIsUnavailable
+}) {
   if (recording) {
     return (
       <div className='record-control-buttons'>
@@ -43,7 +40,7 @@ function getRecordingControls ({ recording, submitting, valid, streamEnding, onS
   } else {
     return (
       <div className='record-control-buttons'>
-        <Button className='-record' disabled={submitting || !valid}>Start Recording</Button>
+        <Button className='-record' disabled={audioAPIsUnavailable || submitting || !valid}>Start Recording</Button>
       </div>
     )
   }

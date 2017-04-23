@@ -10,7 +10,8 @@ const initialState = {
   isRecording: false,
   undoHistory: [],
   undoneLine: [],
-  streamEnding: false
+  streamEnding: false,
+  audioAPIsUnavailable: false
 }
 
 export default function (
@@ -108,6 +109,12 @@ export default function (
       return {
         ...state,
         ...initialState
+      }
+
+    case 'AUDIO_UNAVAILABLE':
+      return {
+        ...state,
+        audioAPIsUnavailable: true
       }
   }
 

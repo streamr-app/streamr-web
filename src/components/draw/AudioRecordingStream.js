@@ -49,7 +49,7 @@ export default class AudioRecordingStream extends React.Component {
   componentWillUnmount () {
     this.stream && this.stream.end()
     this.client && this.client.close()
-    this.audioStream.getTracks()[0].stop()
+    this.audioStream && this.audioStream.getTracks()[0].stop()
     clearTimeout(this.visualizerTimeout)
     cancelAnimationFrame(this.visualizerFrame)
   }
@@ -127,6 +127,7 @@ export default class AudioRecordingStream extends React.Component {
         <Recorder
           onStop={this.onStop}
           gotStream={(stream) => this.gotStream(stream)}
+          onMissingAPIs={this.props.onMissingAPIs}
           onError={this.onError}
         />
       </div>

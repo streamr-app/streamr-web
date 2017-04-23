@@ -11,6 +11,7 @@ function mapStateToProps (state, ownProps) {
   const thicknesses = state.drawing.thicknesses
   const currentThickness = thicknesses[state.drawing.brushThickness]
   const undoneLines = state.drawing.undoneLines
+  const audioAPIsUnavailable = state.drawing.audioAPIsUnavailable
 
   return {
     streamId,
@@ -18,6 +19,7 @@ function mapStateToProps (state, ownProps) {
     currentColor,
     currentThickness,
     undoneLines,
+    audioAPIsUnavailable,
     enabled: state.drawing.isRecording
   }
 }

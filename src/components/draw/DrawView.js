@@ -17,6 +17,7 @@ export default ({
   currentColor,
   currentThickness,
   undoneLines,
+  audioAPIsUnavailable,
   enabled
 }) => (
   <div className={cx('draw-view', { disabled: !enabled })}>
@@ -29,6 +30,12 @@ export default ({
     <div className='draw-container'>
       <StreamRenderer {...{ currentLine, currentColor, currentThickness, undoneLines }} />
       <MouseDrawingHandler {...{ enabled, onCursorMove, onLineStart, onLineEnd, onPointCreate }} />
+
+      {audioAPIsUnavailable &&
+        <p className='recording-notice unable-to-record'>
+          Your browser doesn't support audio recording. Please use Google Chrome or Firefox.
+        </p>
+      }
     </div>
   </div>
 )
