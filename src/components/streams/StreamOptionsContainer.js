@@ -11,12 +11,14 @@ function mapStateToProps (state, ownProps) {
   const recording = !!streamId
   const canStopRecording = state.drawing.lines && state.drawing.lines.length
   const streamEnding = state.drawing.streamEnding
+  const audioAPIsUnavailable = state.drawing.audioAPIsUnavailable
 
   return {
     streamId,
     recording,
     canStopRecording,
     streamEnding,
+    audioAPIsUnavailable,
     initialValues: {
       title: 'stream'
     }

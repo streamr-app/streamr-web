@@ -12,6 +12,7 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = {
   entry: [
+    'babel-polyfill',
     'react-hot-loader/patch',
     './src/index.js'
   ],

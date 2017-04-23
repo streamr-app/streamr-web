@@ -81,6 +81,7 @@ export function fetchStreamData (streamId) {
           [CALL_API]: {
             endpoint,
             method: 'GET',
+            headers: {},
             types: [
               'STREAM_DATA_REQUEST',
               {

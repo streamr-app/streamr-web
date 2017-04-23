@@ -15,8 +15,11 @@ function mapStateToProps (state, ownProps) {
 function mapDispatchToProps (dispatch, ownProps) {
   return {
     onAudioReady () {
-      console.log('Audio ready')
       dispatch({ type: 'AUDIO_READY' })
+    },
+
+    onMissingAPIs () {
+      dispatch({ type: 'AUDIO_UNAVAILABLE' })
     }
   }
 }
