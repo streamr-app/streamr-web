@@ -1,34 +1,33 @@
-# Streamr Web Application
+# Streamr Web
 
 [![Standard - JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
-[![CircleCI](https://circleci.com/gh/zebras-filming-videos/streamr-web.svg?style=shield)](https://circleci.com/gh/zebras-filming-videos/streamr-web)
+[![CircleCI](https://circleci.com/gh/streamr-app/streamr-web.svg?style=shield)](https://circleci.com/gh/zebras-filming-videos/streamr-web)
+
+![Streamr Screenshot](screenshot.png)
+
+Streamr is a React-Redux SPA deployed to Heroku.
 
 ## Up and Running
 
 ```
-npm install -g yarn
-yarn
-yarn start
+npm install
+npm run dev
 ```
 
 Then visit [localhost:5000](http://localhost:5000).
 
+## Production
+
+In production, the site runs on Express and just uses the history API fallback middleware. To run in production:
+
+```
+export NODE_ENV=production
+npm run dist
+npm start
+```
+
 ## Testing
 
 ```
-yarn test
+npm test
 ```
-
-Note that running the test command will also lint the project using `standard`.
-
-## Storybook
-
-This project uses [React Storybook](https://getstorybook.io) to provide a staging area for testing out reusable components. To view it, run
-
-```
-yarn run storybook
-```
-
-## Contributing
-
-This project uses [Yarn](https://yarnpkg.com) to lock dependencies. Please avoid installing dependencies directly through NPM.
