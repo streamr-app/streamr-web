@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Route, Switch } from 'react-router-dom'
+import { Switch } from 'react-router-dom'
 
 import loadChannelContainer from 'bundle-loader!./ChannelContainer'
 import loadFeedContainer from 'bundle-loader!./FeedContainer'

@@ -134,4 +134,4 @@ export default class AudioRecordingStream extends React.Component {
   }
 }
 
-/* global AudioContext, Int16Array, requestAnimationFrame */
+/* global AudioContext, Int16Array, requestAnimationFrame, cancelAnimationFrame */
