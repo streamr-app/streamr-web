@@ -7,12 +7,14 @@ import { Prompt } from 'react-router-dom'
 import DrawingSidebar from './sidebar/DrawingSidebar'
 import StreamRendererContainer from './StreamRendererContainer'
 import MouseDrawingHandlerContainer from './MouseDrawingHandlerContainer'
+
+import PreambleMessageContainer from './PreambleMessageContainer'
 import RecordingErrorsContainer from './RecordingErrorsContainer'
 
 export default ({
   recording
 }) => (
-  <div className={cx('draw-view', { disabled: !recording })}>
+  <div className={cx('draw-view')}>
     <Helmet htmlAttributes={{ class: 'recording' }} />
 
     <Prompt
@@ -24,6 +26,8 @@ export default ({
     <div className='draw-container'>
       <StreamRendererContainer />
       <MouseDrawingHandlerContainer />
+
+      <PreambleMessageContainer />
       <RecordingErrorsContainer />
     </div>
   </div>

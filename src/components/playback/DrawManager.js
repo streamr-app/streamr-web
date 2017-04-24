@@ -27,6 +27,7 @@ export default class DrawManager {
 
     this._setUpLine()
     this.ready = true
+    this._draw()
     this.emit('READY')
   }
 

@@ -6,7 +6,7 @@ import loadChannelContainer from 'bundle-loader!./ChannelContainer'
 import loadFeedContainer from 'bundle-loader!./FeedContainer'
 import loadLoginContainer from 'bundle-loader!./auth/LoginContainer'
 import loadPublishStreamContainer from 'bundle-loader!./streams/PublishStreamContainer'
-import loadDrawView from 'bundle-loader!./recording/DrawView'
+import loadDrawViewContainer from 'bundle-loader!./recording/DrawViewContainer'
 import loadSearchResultsContainer from 'bundle-loader!./search/SearchResultsContainer'
 import loadForgotPasswordContainer from 'bundle-loader!./me/ForgotPasswordContainer'
 import loadPasswordResetContainer from 'bundle-loader!./me/PasswordResetContainer'
@@ -33,7 +33,7 @@ export default () => (
 
     <AsyncRoute path='/password-reset' component={loadPasswordResetContainer} />
 
-    <AsyncRoute path='/record' component={loadDrawView} />
+    <AsyncRoute path='/record' component={loadDrawViewContainer} />
 
     <AsyncRoute path='/topics/:topicId' component={loadTopicContainer} />
 

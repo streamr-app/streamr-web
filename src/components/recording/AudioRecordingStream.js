@@ -21,7 +21,7 @@ export default class AudioRecordingStream extends React.Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    if (nextProps.streamId && !this.streamSetup) {
+    if (nextProps.recordingStarted && !this.streamSetup) {
       this.client = new BinaryClient(process.env.RECORDING_SERVICE_URL)
 
       this.client.on('open', () => {
