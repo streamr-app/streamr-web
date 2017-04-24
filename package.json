@@ -9,14 +9,11 @@
     "start": "node server.js",
     "dev": "webpack-dev-server --config webpack.config.js --inline --hot",
     "test": "jest && npm run lint",
-    "lint": "eslint .",
-    "storybook": "start-storybook -p 6006 --config-dir src/components/.storybook",
-    "build-storybook": "build-storybook"
+    "lint": "eslint ."
   },
   "author": "Steven Petryk <me@stevenpetryk.com>",
   "license": "MIT",
   "devDependencies": {
-    "@kadira/storybook": "^2.21.0",
     "dotenv": "^4.0.0",
     "eslint": "^3.10.2",
     "eslint-config-standard": "^10.2.1",
