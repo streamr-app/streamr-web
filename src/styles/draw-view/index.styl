@@ -5,19 +5,13 @@ sidebar-width = 90px
   background darken(rgb(33, 37, 43), 30%)
   height calc(100vh - 100px)
 
-  &.disabled
-    cursor not-allowed
-
-    .mouse-drawing-handler
-      cursor not-allowed
-
-  .recording-error
+  .recording-notice, .recording-error
     position absolute
     top 50%
     left 50%
     transform translate(-50%, -50%)
     width 100%
-    max-width 350px
+    max-width 450px
 
   .drawing-sidebar
     position absolute

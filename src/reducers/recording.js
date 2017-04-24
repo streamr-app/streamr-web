@@ -3,6 +3,7 @@ import last from 'lodash/last'
 
 const initialState = {
   currentStreamId: null,
+  streamStart: null,
 
   eventCount: 0,
   currentEvent: null,
@@ -13,6 +14,7 @@ const initialState = {
   thicknessId: 2,
 
   recording: false,
+  recordingStarted: false,
   recordingStopped: false,
   error: null,
 
@@ -23,7 +25,7 @@ export default function (
   state = initialState,
   action
 ) {
-  var time = 0
+  var time = -1
 
   if (isNumber(state.streamStart)) {
     time = Math.round(performance.now() - state.streamStart)
@@ -40,6 +42,12 @@ export default function (
       return {
         ...state,
         thicknessId: action.payload
+      }
+
+    case 'START_STREAM':
+      return {
+        ...state,
+        recordingStarted: true
       }
 
     case 'LINE_START':
@@ -98,10 +106,10 @@ export default function (
         currentEvent: null
       }
 
-    case 'START_STREAM':
+    case 'CREATE_STREAM_SUCCESS':
       return {
         ...state,
-        currentStreamId: action.payload
+        currentStreamId: action.payload.result.stream[0]
       }
 
     case 'END_STREAM_REQUEST':
@@ -119,6 +127,7 @@ export default function (
     case 'AUDIO_READY':
       return {
         ...state,
+        recordingStarted: false,
         recording: true,
         streamStart: performance.now()
       }
