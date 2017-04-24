@@ -2,8 +2,8 @@
   size = 40px
 
   display flex
-  flex-direction column
   justify-content center
+  flex-wrap wrap
 
   .color-well
     height size
@@ -28,6 +28,12 @@
     &.selected
       border-color white
       opacity 1
+
+  @media (max-height 600px)
+    .color-well
+      height 28px
+      width 28px
+      margin 5px 3px
 
   &.disabled
     pointer-events none
