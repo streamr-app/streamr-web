@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import values from 'lodash/values'
 import sortBy from 'lodash/sortBy'
 
-import { setColor, setColorByOrder } from '../../actions/colors'
+import { setColor, setColorByOrder } from '../../../actions/colors'
 
 import ColorPicker from './ColorPicker'
 

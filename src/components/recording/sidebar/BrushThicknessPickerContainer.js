@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 
 import BrushThicknessPicker from './BrushThicknessPicker'
 
-import { setThickness, increaseThickness, decreaseThickness } from '../../actions/thickness'
+import { setThickness, increaseThickness, decreaseThickness } from '../../../actions/thickness'
 
 function mapStateToProps (state, ownProps) {
   const thicknesses = state.recording.thicknesses

@@ -1,7 +1,7 @@
 import React from 'react'
 import cx from 'classnames'
 
-import Mousetrap from '../Mousetrap'
+import Mousetrap from '../../Mousetrap'
 
 export default ({
   colors,

@@ -4,7 +4,7 @@ import cx from 'classnames'
 import Helmet from 'react-helmet'
 import { Prompt } from 'react-router-dom'
 
-import DrawingSidebar from './DrawingSidebar'
+import DrawingSidebar from './sidebar/DrawingSidebar'
 import StreamRendererContainer from './StreamRendererContainer'
 import MouseDrawingHandlerContainer from './MouseDrawingHandlerContainer'
 import RecordingErrorsContainer from './RecordingErrorsContainer'
