@@ -13,6 +13,7 @@ const initialState = {
 
   recording: false,
   recordingStopped: false,
+  error: null,
 
   undoHistory: []
 }
@@ -65,12 +66,11 @@ export default function (
       }
 
     case 'UNDO_LINE':
-      let lineId = last(state.undoHistory)
-      if (!lineId) return state
-
       if (state.undoHistory.length === 0) {
         return state
       }
+
+      let lineId = last(state.undoHistory)
 
       return {
         ...state,
