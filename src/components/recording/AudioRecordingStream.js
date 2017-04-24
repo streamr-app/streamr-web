@@ -36,10 +36,14 @@ export default class AudioRecordingStream extends React.Component {
         this.recording = true
       })
 
+      this.client.on('error', () => {
+        this.props.onWebsocketFailure()
+      })
+
       this.streamSetup = true
     }
 
-    if (nextProps.streamEnding) {
+    if (nextProps.recordingStopped) {
       this.client && this.client.close()
       clearTimeout(this.visualizerTimeout)
       this.setState({ fft: new Uint8Array(NUM_FFT_BARS) })
@@ -82,7 +86,7 @@ export default class AudioRecordingStream extends React.Component {
   }
 
   recorderProcess (event) {
-    if (!this.recording || this.props.streamEnding) return null
+    if (!this.recording || this.props.recordingStopped) return null
 
     var left = event.inputBuffer.getChannelData(0)
     this.stream.write(this.float32to16(left))
@@ -118,7 +122,7 @@ export default class AudioRecordingStream extends React.Component {
 
     return (
       <div className='recorder'>
-        <div className={cx('visualizer', { recording: this.state.recording && !this.props.streamEnding })}>
+        <div className={cx('visualizer', { recording: this.state.recording && !this.props.recordingStopped })}>
           {fft.map((bar, i) => (
             <div className='bar' key={i} style={{ height: `${bar / 255 * 100}%` }} />
           ))}

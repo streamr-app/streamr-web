@@ -1,11 +1,11 @@
 import React from 'react'
 import cx from 'classnames'
 
-import Mousetrap from '../Mousetrap'
+import Mousetrap from '../../Mousetrap'
 
 export default ({
   colors,
-  selectedColor,
+  selectedColorId,
   onSelectColor,
   onSelectColorOrder,
   disabled
@@ -14,7 +14,7 @@ export default ({
     {colors.map(color => (
       <div
         key={color.id}
-        className={cx('color-well', { selected: selectedColor === color.id })}
+        className={cx('color-well', { selected: selectedColorId === color.id })}
         style={{ backgroundColor: color.hex }}
         onClick={() => onSelectColor(color.id)}
       />

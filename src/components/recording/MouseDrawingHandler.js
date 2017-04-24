@@ -26,7 +26,7 @@ export default class MouseDrawingHandler extends React.Component {
   }
 
   mouseDownCallback (event, measurements) {
-    if (!this.props.enabled) return
+    if (!this.props.recording) return
 
     this.props.onLineStart(this.getRelativePosition(event, measurements))
 
@@ -34,7 +34,7 @@ export default class MouseDrawingHandler extends React.Component {
   }
 
   mouseUpCallback (event, measurements) {
-    if (!this.props.enabled) return
+    if (!this.props.recording) return
 
     if (this.state.drawing) {
       this.throttledPointCreate.cancel()
@@ -45,7 +45,7 @@ export default class MouseDrawingHandler extends React.Component {
   }
 
   mouseMoveCallback (event, measurements) {
-    if (!this.props.enabled) return
+    if (!this.props.recording) return
 
     if (this.state.drawing) {
       this.throttledPointCreate(this.getRelativePosition(event, measurements))
@@ -55,7 +55,7 @@ export default class MouseDrawingHandler extends React.Component {
   }
 
   mouseLeaveCallback (event, measurement) {
-    if (!this.props.enabled) return
+    if (!this.props.recording) return
 
     this.setState({ drawing: false })
     if (this.state.drawing) {

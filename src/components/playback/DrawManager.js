@@ -11,9 +11,9 @@ export default class DrawManager {
     this.svg = d3.select(svg)
     this.lineFunction = d3.svg.line().x(d => d.x * WIDTH).y(d => d.y * HEIGHT).interpolate('cardinal')
 
-    this.lineCursor = 0
+    this.eventCursor = 0
     this.needsRedraw = false
-    this.parsedLines = []
+    this.parsedEvents = []
     this.pointCursor = 0
     this.position = 0
     this.ready = false
@@ -22,7 +22,7 @@ export default class DrawManager {
 
   prepare (stream, streamData, colors) {
     this.duration = stream.duration * 1000
-    this.lines = streamData.split('\n').filter(l => l)
+    this.events = streamData.split('\n').filter(l => l)
     this.colors = colors
 
     this._setUpLine()
@@ -113,8 +113,8 @@ export default class DrawManager {
 
     if (
       !this.playing &&
-      this.currentLine &&
-      this.currentLine.time > this.position
+      this.currentEvent &&
+      this.currentEvent.time > this.position
     ) {
       return true
     }
@@ -138,24 +138,24 @@ export default class DrawManager {
       }
     }
 
-    while (this.currentLine && this._isLine() && this.position > last(this.currentLine.points).time) {
+    while (this.currentEvent && this._isLine() && this.position > last(this.currentEvent.points).time) {
       while (!this._doneDrawingLine()) {
         this._addCurrentPoint()
         this._nextPoint()
       }
 
       this._redrawLine()
-      this._nextLine()
+      this._nextEvent()
     }
 
-    while (this.currentLine && this._isLine() && !this._doneDrawingLine() && this._currentPointIsInPast()) {
+    while (this.currentEvent && this._isLine() && !this._doneDrawingLine() && this._currentPointIsInPast()) {
       this._addCurrentPoint()
       this._redrawLine()
       this._nextPoint()
     }
 
-    if (this.currentLine && this._isLine() && this._doneDrawingLine()) {
-      this._nextLine()
+    if (this.currentEvent && this._isLine() && this._doneDrawingLine()) {
+      this._nextEvent()
     }
 
     if (!this.playing && (this._isUndo() || this._isClear())) {
@@ -166,48 +166,48 @@ export default class DrawManager {
   }
 
   _performUndos () {
-    while (this.currentLine && this._isUndo() && this.currentLine.time <= this.position) {
-      const lineId = this.currentLine.line_id
+    while (this.currentEvent && this._isUndo() && this.currentEvent.time <= this.position) {
+      const lineId = this.currentEvent.line_id
       const lines = document.querySelectorAll(`.line-${lineId}`)
       lines.forEach((line) => { line.style.display = 'none' })
-      this._nextLine()
+      this._nextEvent()
     }
   }
 
   _performClears () {
-    while (this.currentLine && this._isClear() && this.currentLine.time <= this.position) {
+    while (this.currentEvent && this._isClear() && this.currentEvent.time <= this.position) {
       this.svg.selectAll('*').remove()
-      this._nextLine()
+      this._nextEvent()
     }
   }
 
   _isUndo () {
-    return this.currentLine && this.currentLine.type === 'undo'
+    return this.currentEvent && this.currentEvent.type === 'undo'
   }
 
   _isClear () {
-    return this.currentLine && this.currentLine.type === 'clear'
+    return this.currentEvent && this.currentEvent.type === 'clear'
   }
 
   _isLine () {
-    return this.currentLine && this.currentLine.type === 'line'
+    return this.currentEvent && this.currentEvent.type === 'line'
   }
 
-  _getParsedLine (index) {
-    if (!this.parsedLines[index]) {
-      this.parsedLines[index] = JSON.parse(this.lines[index] || 'null')
+  _getParsedEvent (index) {
+    if (!this.parsedEvents[index]) {
+      this.parsedEvents[index] = JSON.parse(this.events[index] || 'null')
     }
 
-    return this.parsedLines[index]
+    return this.parsedEvents[index]
   }
 
-  _nextLine () {
-    this.lineCursor++
+  _nextEvent () {
+    this.eventCursor++
     this.pointCursor = 0
     this._setUpLine()
 
-    while (this.currentLine && this.currentLine.points && this.currentLine.points.length === 0) {
-      this._nextLine()
+    while (this.currentEvent && this.currentEvent.points && this.currentEvent.points.length === 0) {
+      this._nextEvent()
     }
   }
 
@@ -216,11 +216,11 @@ export default class DrawManager {
   }
 
   _setUpLine () {
-    this.currentLine = this._getParsedLine(this.lineCursor)
+    this.currentEvent = this._getParsedEvent(this.eventCursor)
 
-    if (this.currentLine && this.currentLine.type === 'line') {
-      this.color = this.currentLine.color_id
-      this.thickness = this.currentLine.thickness
+    if (this.currentEvent && this.currentEvent.type === 'line') {
+      this.color = this.currentEvent.color_id
+      this.thickness = this.currentEvent.thickness
       this._buildPath()
     }
   }
@@ -230,19 +230,19 @@ export default class DrawManager {
   }
 
   _currentPoint () {
-    return this.currentLine.points[this.pointCursor]
+    return this.currentEvent.points[this.pointCursor]
   }
 
   _doneDrawingLine () {
-    return this.pointCursor >= this.currentLine.points.length
+    return this.pointCursor >= this.currentEvent.points.length
   }
 
   _currentPointIsInPast () {
-    return this.currentLine.points[this.pointCursor].time <= this.position
+    return this.currentEvent.points[this.pointCursor].time <= this.position
   }
 
   _doneDrawing () {
-    return this.lineCursor >= this.lines.length
+    return this.eventCursor >= this.events.length
   }
 
   _buildPath (lineId) {
@@ -252,7 +252,7 @@ export default class DrawManager {
       .attr('stroke-width', this.thickness)
       .attr('stroke-linecap', 'round')
       .attr('fill', 'none')
-      .attr('class', `line-${this.currentLine.line_id}`)
+      .attr('class', `line-${this.currentEvent.line_id}`)
   }
 
   _redrawLine () {
@@ -262,9 +262,9 @@ export default class DrawManager {
   _clear () {
     this.svg.selectAll('*').remove()
     this.needsRedraw = false
-    this.lineCursor = 0
+    this.eventCursor = 0
     this.pointCursor = 0
-    this.currentLine = null
+    this.currentEvent = null
     this.path = null
   }
 }

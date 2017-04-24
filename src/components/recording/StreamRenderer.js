@@ -29,20 +29,20 @@ export default class StreamRenderer extends React.Component {
   }
 
   componentWillReceiveProps (nextProps) {
-    if (!nextProps.currentLine) {
+    if (!nextProps.currentEvent) {
       setTimeout(() => this.setState({ currentPath: null }))
       return
     }
 
-    if (nextProps.currentLine.type === 'undo') {
-      const lineId = nextProps.currentLine.lineId
+    if (nextProps.currentEvent.type === 'undo') {
+      const lineId = nextProps.currentEvent.lineId
       const lines = document.querySelectorAll(`.line-${lineId}`)
 
       lines.forEach((line) => { line.style.display = 'none' })
       return
     }
 
-    if (nextProps.currentLine.type === 'clear') {
+    if (nextProps.currentEvent.type === 'clear') {
       this.group.selectAll('*').remove()
       return
     }
@@ -50,11 +50,11 @@ export default class StreamRenderer extends React.Component {
     if (this.state.currentPath) {
       var path = this.state.currentPath
     } else {
-      path = this.buildPath(nextProps.currentLine.lineId)
+      path = this.buildPath(nextProps.currentEvent.lineId)
       setTimeout(() => this.setState({ currentPath: path }))
     }
 
-    this.redrawLine(path, nextProps.currentLine)
+    this.redrawLine(path, nextProps.currentEvent)
   }
 
   buildPath (lineId) {

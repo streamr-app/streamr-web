@@ -100,9 +100,10 @@ export function fetchStreamData (streamId) {
     })
   }
 }
-export function setCurrentStream (streamId) {
+
+export function startStream (streamId) {
   return {
-    type: 'SET_CURRENT_STREAM',
+    type: 'START_STREAM',
     payload: streamId
   }
 }
@@ -110,7 +111,7 @@ export function setCurrentStream (streamId) {
 export function endCurrentStream () {
   return (dispatch, getState) => {
     return dispatch(performActionOnResource({
-      url: `streams/${getState().drawing.currentStreamId}`,
+      url: `streams/${getState().recording.currentStreamId}`,
       action: 'end',
       types: [ 'END_STREAM_REQUEST', 'END_STREAM_SUCCESS', 'END_STREAM_FAILURE' ],
       authenticated: true
