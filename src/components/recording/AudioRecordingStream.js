@@ -4,8 +4,8 @@ import cx from 'classnames'
 import { BinaryClient } from '../../vendor/binary'
 import Recorder from 'react-recorder'
 
-const FFT_SIZE = 512
-const NUM_FFT_BARS = 100
+const FFT_SIZE = 64
+const NUM_FFT_BARS = 32
 
 export default class AudioRecordingStream extends React.Component {
   constructor (props) {
@@ -73,7 +73,7 @@ export default class AudioRecordingStream extends React.Component {
     }
 
     this.analyzer = this.audioContext.createAnalyser()
-    this.analyzer.smoothingTimeConstant = 0.1
+    this.analyzer.smoothingTimeConstant = 0.2
     this.analyzer.fftSize = FFT_SIZE
 
     audioInput.connect(recorder)
@@ -113,7 +113,7 @@ export default class AudioRecordingStream extends React.Component {
     this.setState({ fft: this.fft }, () => {
       this.visualizerTimeout = setTimeout(() => {
         this.visualizerFrame = requestAnimationFrame(() => this.redrawVisualizer())
-      }, 50)
+      }, 10)
     })
   }
 
