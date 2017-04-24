@@ -10,7 +10,7 @@ function mapStateToProps (state, ownProps) {
   const sortedColors = sortBy(values(state.color), 'order')
 
   return {
-    selectedColor: state.recording.currentColor,
+    selectedColorId: state.recording.colorId,
     disabled: state.recording.currentEvent != null,
     colors: sortedColors
   }

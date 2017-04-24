@@ -15,7 +15,7 @@ export function loadColors () {
 
 export function setColor (colorId) {
   return {
-    type: 'COLOR_SET',
+    type: 'SET_COLOR',
     payload: colorId.toString()
   }
 }

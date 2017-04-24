@@ -3,14 +3,10 @@ import { connect } from 'react-redux'
 import AudioRecordingStream from './AudioRecordingStream'
 
 function mapStateToProps (state, ownProps) {
-  const streamId = state.recording.currentStreamId
-  const authToken = state.auth.access_token
-  const streamEnding = state.recording.streamEnding
-
   return {
-    streamId,
-    authToken,
-    streamEnding
+    authToken: state.auth.access_token,
+    streamId: state.recording.currentStreamId,
+    recordingStopped: state.recording.recordingStopped
   }
 }
 
@@ -18,6 +14,10 @@ function mapDispatchToProps (dispatch, ownProps) {
   return {
     onAudioReady () {
       dispatch({ type: 'AUDIO_READY' })
+    },
+
+    onWebsocketFailure () {
+      dispatch({ type: 'RECORDING_SERVICE_UNAVAILABLE' })
     },
 
     onMissingAPIs () {

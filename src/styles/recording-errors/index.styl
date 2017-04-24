@@ -1,0 +1,24 @@
+.recording-error
+  display none
+  transform-style preserve-3d
+  perspective 2000px
+
+  .error
+    color rgba(255, 255, 255, 0.9)
+    text-align center
+    border 1px solid $red
+    padding 15px
+    border-radius 5px
+    line-height 1.5
+
+  &.visible
+    display block
+
+  .error-enter
+    opacity 0
+    transform rotateX(-45deg) translateY(50px)
+
+  .error-enter.error-enter-active
+    transition all 500ms cubic-bezier(0.165, 0.84, 0.44, 1)
+    opacity 1
+    transform rotateX(0deg) translateY(0px)

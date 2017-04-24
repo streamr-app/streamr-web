@@ -6,10 +6,10 @@ import { setThickness, increaseThickness, decreaseThickness } from '../../action
 
 function mapStateToProps (state, ownProps) {
   const thicknesses = state.recording.thicknesses
-  const currentColor = (state.color[state.recording.currentColor] || {}).hex
+  const currentColor = (state.color[state.recording.colorId] || {}).hex
 
   return {
-    thicknessId: state.recording.brushThickness,
+    thicknessId: state.recording.thicknessId,
     currentColor,
     thicknesses
   }

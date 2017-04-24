@@ -17,19 +17,18 @@ export default ({
   currentEvent,
   currentColor,
   currentThickness,
-  audioAPIsUnavailable,
-  enabled
+  recording
 }) => (
-  <div className={cx('draw-view', { disabled: !enabled })}>
+  <div className={cx('draw-view', { disabled: !recording })}>
     <Prompt
-      when={enabled}
+      when={recording}
       message='Are you sure you want to leave? Your recording will be cancelled.' />
 
     <DrawingSidebar />
 
     <div className='draw-container'>
       <StreamRenderer {...{ currentEvent, currentColor, currentThickness }} />
-      <MouseDrawingHandler {...{ enabled, onCursorMove, onLineStart, onLineEnd, onPointCreate }} />
+      <MouseDrawingHandler {...{ recording, onCursorMove, onLineStart, onLineEnd, onPointCreate }} />
 
       <RecordingErrorsContainer />
     </div>

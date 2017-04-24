@@ -1,16 +1,20 @@
+import isNumber from 'lodash/isNumber'
 import last from 'lodash/last'
 
 const initialState = {
+  currentStreamId: null,
+
   eventCount: 0,
   currentEvent: null,
-  currentColor: 1,
+  colorId: 1,
+
   thicknesses: [2, 3, 4, 6, 8],
-  brushThickness: 2,
-  currentStreamId: null,
+  thicknessId: 2,
+
   recording: false,
-  undoHistory: [],
-  streamEnding: false,
-  audioAPIsUnavailable: false
+  recordingStopped: false,
+
+  undoHistory: []
 }
 
 export default function (
@@ -19,13 +23,23 @@ export default function (
 ) {
   var time = 0
 
-  if (!isNaN(state.streamStart)) {
+  if (isNumber(state.streamStart)) {
     time = Math.round(performance.now() - state.streamStart)
   }
 
   switch (action.type) {
-    case 'CURSOR_MOVE':
-      break
+    case 'SET_COLOR':
+      return {
+        ...state,
+        colorId: action.payload
+      }
+
+    case 'SET_THICKNESS':
+      return {
+        ...state,
+        thicknessId: action.payload
+      }
+
     case 'LINE_START':
       return {
         ...state,
@@ -33,22 +47,12 @@ export default function (
           time,
           type: 'line',
           lineId: state.eventCount + 1,
-          colorId: state.currentColor,
-          thickness: state.thicknesses[state.brushThickness],
+          colorId: state.colorId,
+          thickness: state.thicknesses[state.thicknessId],
           points: [ { ...action.payload, time } ]
         }
       }
-    case 'EVENT_END':
-      if (!state.currentEvent) return state
 
-      return {
-        ...state,
-        undoHistory: state.currentEvent.type === 'line'
-          ? state.undoHistory.concat([ state.currentEvent.lineId ])
-          : state.undoHistory,
-        eventCount: state.eventCount + 1,
-        currentEvent: null
-      }
     case 'POINT_CREATE':
       return {
         ...state,
@@ -59,6 +63,7 @@ export default function (
           ])
         }
       }
+
     case 'UNDO_LINE':
       let lineId = last(state.undoHistory)
       if (!lineId) return state
@@ -72,49 +77,56 @@ export default function (
         currentEvent: { time, type: 'undo', lineId },
         undoHistory: state.undoHistory.slice(0, -1)
       }
+
     case 'CLEAR_SCREEN':
       return {
         ...state,
         undoHistory: [],
         currentEvent: { time, type: 'clear' }
       }
-    case 'COLOR_SET':
+
+    case 'EVENT_END':
+      if (!state.currentEvent) return state
+
       return {
         ...state,
-        currentColor: action.payload
+        undoHistory: state.currentEvent.type === 'line'
+          ? state.undoHistory.concat([ state.currentEvent.lineId ])
+          : state.undoHistory,
+        eventCount: state.eventCount + 1,
+        currentEvent: null
       }
-    case 'SET_THICKNESS':
+
+    case 'START_STREAM':
       return {
         ...state,
-        brushThickness: action.payload
+        currentStreamId: action.payload
       }
-    case 'SET_CURRENT_STREAM':
-      return {
-        ...state,
-        currentStreamId: action.payload,
-        recording: true
-      }
-    case 'AUDIO_READY':
-      return {
-        ...state,
-        streamStart: performance.now()
-      }
+
     case 'END_STREAM_REQUEST':
       return {
         ...state,
-        streamEnding: true
+        recordingStopped: true
       }
+
     case 'END_STREAM_SUCCESS':
       return {
         ...state,
         ...initialState
       }
 
-    case 'AUDIO_UNAVAILABLE':
+    case 'AUDIO_READY':
       return {
         ...state,
-        error: true,
-        audioAPIsUnavailable: true
+        recording: true,
+        streamStart: performance.now()
+      }
+
+    case 'AUDIO_UNAVAILABLE':
+    case 'RECORDING_SERVICE_UNAVAILABLE':
+      return {
+        ...state,
+        error: action.type
       }
   }
 

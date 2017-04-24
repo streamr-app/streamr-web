@@ -12,8 +12,8 @@ function mapStateToProps (state, ownProps) {
   } = state.recording
 
   const streamId = state.recording.currentStreamId
-  const currentColor = (state.color[state.recording.currentColor] || {}).hex
-  const currentThickness = thicknesses[state.recording.brushThickness]
+  const currentColor = (state.color[state.recording.colorId] || {}).hex
+  const currentThickness = thicknesses[state.recording.thicknessId]
 
   return {
     streamId,

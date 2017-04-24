@@ -3,22 +3,20 @@ import { reduxForm } from 'redux-form'
 
 import StreamOptions from './StreamOptions'
 
-import { createStream, setCurrentStream, endCurrentStream } from '../../actions/stream'
+import { createStream, startStream, endCurrentStream } from '../../actions/stream'
 import { push } from 'react-router-redux'
 
 function mapStateToProps (state, ownProps) {
   const streamId = state.recording.currentStreamId
-  const recording = !!streamId
+  const recording = state.recording.recording
   const canStopRecording = state.recording.eventCount > 0
-  const streamEnding = state.recording.streamEnding
-  const audioAPIsUnavailable = state.recording.audioAPIsUnavailable
 
   return {
     streamId,
     recording,
     canStopRecording,
-    streamEnding,
-    audioAPIsUnavailable,
+    recordingStopped: state.recording.recordingStopped,
+    recordingError: !!state.recording.error,
     initialValues: {
       title: 'stream'
     }
@@ -29,7 +27,7 @@ function mapDispatchToProps (dispatch, ownProps) {
   return {
     onSubmit (data) {
       return dispatch(createStream(data))
-        .then((action) => dispatch(setCurrentStream(action.payload.result.stream[0])))
+        .then((action) => dispatch(startStream(action.payload.result.stream[0])))
     },
 
     onStopRecording (event) {
