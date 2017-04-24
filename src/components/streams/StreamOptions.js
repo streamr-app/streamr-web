@@ -3,7 +3,7 @@ import cx from 'classnames'
 
 import { Button } from '../buttons'
 
-import AudioRecordingStreamContainer from '../draw/AudioRecordingStreamContainer'
+import AudioRecordingStreamContainer from '../recording/AudioRecordingStreamContainer'
 
 export default (props) => (
   <form className={cx('stream-options', { pristine: props.pristine })} onSubmit={props.handleSubmit(props.onSubmit)}>

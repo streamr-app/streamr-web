@@ -3,7 +3,7 @@ import React from 'react'
 import Helmet from 'react-helmet'
 
 import { Route } from 'react-router-dom'
-import DrawViewContainer from './draw/DrawViewContainer'
+import DrawViewContainer from './recording/DrawViewContainer'
 
 export default ({
   children

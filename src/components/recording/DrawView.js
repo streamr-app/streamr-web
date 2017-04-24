@@ -3,7 +3,7 @@ import cx from 'classnames'
 
 import { Prompt } from 'react-router-dom'
 
-import MouseDrawingHandler from '../draw/MouseDrawingHandler'
+import MouseDrawingHandler from './MouseDrawingHandler'
 import StreamRenderer from '../stream-renderer/StreamRenderer'
 import DrawingSidebar from './DrawingSidebar'
 import RecordingErrorsContainer from './RecordingErrorsContainer'

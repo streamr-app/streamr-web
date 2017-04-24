@@ -6,6 +6,7 @@ const initialState = {
 
   eventCount: 0,
   currentEvent: null,
+
   colorId: 1,
 
   thicknesses: [2, 3, 4, 6, 8],

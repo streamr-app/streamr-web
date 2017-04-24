@@ -6,7 +6,7 @@ import Bundle from './Bundle'
 
 import DefaultLayout from './DefaultLayout'
 
-import loadColorLoader from 'bundle-loader!./draw/ColorLoader'
+import loadColorLoader from 'bundle-loader!./recording/ColorLoader'
 import createHistory from 'history/createBrowserHistory'
 
 export const history = createHistory()
