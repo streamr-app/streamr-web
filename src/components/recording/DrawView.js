@@ -3,20 +3,12 @@ import cx from 'classnames'
 
 import { Prompt } from 'react-router-dom'
 
-import MouseDrawingHandler from './MouseDrawingHandler'
-import StreamRenderer from '../stream-renderer/StreamRenderer'
+import MouseDrawingHandlerContainer from './MouseDrawingHandlerContainer'
+import StreamRendererContainer from './StreamRendererContainer'
 import DrawingSidebar from './DrawingSidebar'
 import RecordingErrorsContainer from './RecordingErrorsContainer'
 
 export default ({
-  streamId,
-  onCursorMove,
-  onLineStart,
-  onLineEnd,
-  onPointCreate,
-  currentEvent,
-  currentColor,
-  currentThickness,
   recording
 }) => (
   <div className={cx('draw-view', { disabled: !recording })}>
@@ -27,8 +19,8 @@ export default ({
     <DrawingSidebar />
 
     <div className='draw-container'>
-      <StreamRenderer {...{ currentEvent, currentColor, currentThickness }} />
-      <MouseDrawingHandler {...{ recording, onCursorMove, onLineStart, onLineEnd, onPointCreate }} />
+      <StreamRendererContainer />
+      <MouseDrawingHandlerContainer />
 
       <RecordingErrorsContainer />
     </div>
