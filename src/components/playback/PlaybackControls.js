@@ -5,13 +5,15 @@ export default ({
   playing,
   position,
   duration,
+  fullscreen,
 
   onTogglePlayPause,
-  onPositionChange
+  onPositionChange,
+  onRequestFullscreen
 }) => (
   <div className='playback-controls'>
     <div className='flip-container'>
-      <a href='#' onClick={(event) => { event.preventDefault(); onTogglePlayPause() }}>
+      <a href='#' className='play-pause' onClick={(event) => { event.preventDefault(); onTogglePlayPause() }}>
         {playPauseButton(playing)}
       </a>
 
@@ -25,9 +27,21 @@ export default ({
           </div>
         )}
       </Measure>
+
+      <a href='#' onClick={(event) => { event.preventDefault(); onRequestFullscreen() }}>
+        {fullscreenIcon(fullscreen)}
+      </a>
     </div>
   </div>
 )
+
+function fullscreenIcon (fullscreen) {
+  if (fullscreen) {
+    return <img src={require('../../images/minimize.svg')} />
+  } else {
+    return <img src={require('../../images/fullscreen.svg')} />
+  }
+}
 
 function clickHandler (onPositionChange, duration, { width, left }) {
   return (event) => {

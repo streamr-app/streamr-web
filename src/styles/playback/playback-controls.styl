@@ -1,19 +1,23 @@
 .playback-controls
   user-select none
-  padding-right 20px
 
   .flip-container
     display flex
     align-items stretch
 
   a
-    margin-right 10px
     cursor pointer
     display flex
     align-items center
     padding 0 15px
     transition all 0.2s ease
     box-sizing border-box
+
+    &.play-pause
+      margin-right 10px
+
+    &.fullscreen
+      margin-left 10px
 
     &:hover
       transform scale(1.1)
@@ -27,6 +31,7 @@
     flex 1
     color white
     cursor pointer
+    margin-right 10px
 
     .current-progress, .duration
       position absolute
