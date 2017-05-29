@@ -1,4 +1,4 @@
-export default function(state = {}, action) {
+export default function (state = {}, action) {
   switch (action.type) {
     case 'COMMENT_UPVOTE_SUCCESS':
       return {
