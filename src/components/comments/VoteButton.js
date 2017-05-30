@@ -11,7 +11,7 @@ export default ({
   return (
     <div
       className={cx('vote-button', { active: userHasVoted, disabled: !isSignedIn })}
-      onClick={(e) => isSignedIn && (userHasVoted ? onUnvote() : onUpvote())}
+      onClick={() => (isSignedIn && userHasVoted) ? onUnvote() : onUpvote()}
     >
       <i className='fa fa-thumbs-up' />
       <span>{numVotes}</span>
