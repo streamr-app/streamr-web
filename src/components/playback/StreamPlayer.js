@@ -10,7 +10,8 @@ export default class StreamPlayer extends React.Component {
 
     this.state = {
       position: 0,
-      loading: true
+      loading: true,
+      fullscreen: false
     }
   }
 
@@ -81,12 +82,41 @@ export default class StreamPlayer extends React.Component {
     this.audio.pause()
   }
 
+  toggleFullscreen () {
+    if (this.state.fullscreen) {
+      this.exitFullscreen()
+    } else {
+      this.requestFullscreen()
+    }
+
+    this.setState({ fullscreen: !this.state.fullscreen })
+  }
+
+  exitFullscreen () {
+    (
+      document.exitFullscreen ||
+      document.mozCancelFullscreen ||
+      document.webkitExitFullscreen ||
+      (() => {})
+    ).call(document)
+  }
+
+  requestFullscreen () {
+    (
+      this.refs.streamPlayer.requestFullscreen ||
+      this.refs.streamPlayer.mozRequestFullscreen ||
+      this.refs.streamPlayer.webkitRequestFullscreen ||
+      this.refs.streamPlayer.msRequestFullscreen ||
+      (() => {})
+    ).call(this.refs.streamPlayer)
+  }
+
   render () {
     if (!this.manager) this.manager = {}
     const playing = this.manager.playing
 
     return (
-      <div className={cx('stream-player', { paused: !playing })}>
+      <div className={cx('stream-player', { paused: !playing })} ref='streamPlayer' >
         <svg viewBox='0 0 1920 1080' ref={(svg) => { this.svg = svg }} />
 
         <PlaybackControls
@@ -94,7 +124,10 @@ export default class StreamPlayer extends React.Component {
           position={this.manager.position}
           duration={this.manager.duration}
           onTogglePlayPause={() => this.manager.toggle()}
-          onPositionChange={(position) => this.manager.setPosition(position)} />
+          onPositionChange={(position) => this.manager.setPosition(position)}
+          onRequestFullscreen={() => this.toggleFullscreen()}
+          fullscreen={this.state.fullscreen}
+        />
       </div>
     )
   }
