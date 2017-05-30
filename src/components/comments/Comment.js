@@ -5,6 +5,7 @@ import moment from 'moment'
 import { Link } from 'react-router-dom'
 
 import ProfileImage from '../users/ProfileImage'
+import VoteButtonContainer from './VoteButtonContainer'
 
 export default class Comment extends React.Component {
   tick () {
@@ -34,6 +35,7 @@ export default class Comment extends React.Component {
         <div className='content'>
           <Link to={`/profile/${user.id}`} className='profile-link'>{user.name}</Link>
           <p className='body'>{comment.body}</p>
+          <VoteButtonContainer commentId={comment.id} />
         </div>
 
         <div>

@@ -20,3 +20,21 @@ export function unvoteStream (streamId) {
     authenticated: true
   })
 }
+
+export function upvoteComment (commentId) {
+  return createResource({
+    url: `comments/${commentId}/my_vote`,
+    types: [ 'COMMENT_UPVOTE_REQUEST', 'COMMENT_UPVOTE_SUCCESS', 'COMMENT_UPVOTE_FAILURE' ],
+    responseInterceptor: (response) => ({ ...response, commentId }),
+    authenticated: true
+  })
+}
+
+export function unvoteComment (commentId) {
+  return deleteResource({
+    url: `comments/${commentId}/my_vote`,
+    types: [ 'COMMENT_UNVOTE_REQUEST', 'COMMENT_UNVOTE_SUCCESS', 'COMMENT_UNVOTE_FAILURE' ],
+    responseInterceptor: (response) => ({ ...response, commentId }),
+    authenticated: true
+  })
+}
