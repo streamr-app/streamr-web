@@ -93,25 +93,22 @@ export default class StreamPlayer extends React.Component {
   }
 
   exitFullscreen () {
-    if (document.exitFullscreen) {
-      document.exitFullscreen()
-    } else if (document.mozCancelFullScreen) {
-      document.mozCancelFullScreen()
-    } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen()
-    }
+    (
+      document.exitFullscreen ||
+      document.mozCancelFullscreen ||
+      document.webkitExitFullscreen ||
+      (() => {})
+    ).call(document)
   }
 
   requestFullscreen () {
-    if (this.refs.streamPlayer.requestFullscreen) {
-      this.refs.streamPlayer.requestFullscreen()
-    } else if (this.refs.streamPlayer.mozRequestFullScreen) {
-      this.refs.streamPlayer.mozRequestFullScreen()
-    } else if (this.refs.streamPlayer.webkitRequestFullscreen) {
-      this.refs.streamPlayer.webkitRequestFullscreen()
-    } else if (this.refs.streamPlayer.msRequestFullscreen) {
-      this.refs.streamPlayer.msRequestFullscreen()
-    }
+    (
+      this.refs.streamPlayer.requestFullscreen ||
+      this.refs.streamPlayer.mozRequestFullscreen ||
+      this.refs.streamPlayer.webkitRequestFullscreen ||
+      this.refs.streamPlayer.msRequestFullscreen ||
+      (() => {})
+    ).call(this.refs.streamPlayer)
   }
 
   render () {
