@@ -1,5 +1,7 @@
 import { connect } from 'react-redux'
 
+import { createStream } from '../../actions/stream'
+
 import DrawView from './DrawView'
 
 function mapStateToProps (state, ownProps) {
@@ -8,4 +10,10 @@ function mapStateToProps (state, ownProps) {
   }
 }
 
-export default connect(mapStateToProps)(DrawView)
+function mapDispatchToProps (dispatch, ownProps) {
+  dispatch(createStream({ title: 'Stream' }))
+
+  return {}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(DrawView)

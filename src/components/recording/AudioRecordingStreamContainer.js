@@ -6,6 +6,7 @@ function mapStateToProps (state, ownProps) {
   return {
     authToken: state.auth.access_token,
     streamId: state.recording.currentStreamId,
+    recordingStarted: state.recording.recordingStarted,
     recordingStopped: state.recording.recordingStopped
   }
 }

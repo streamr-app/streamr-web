@@ -18,11 +18,11 @@ export default class MouseDrawingHandler extends React.Component {
     this.throttledPointCreate = throttle(this.props.onPointCreate, 20, { leading: true, trailing: true })
     this.throttledCursorMove = throttle(this.props.onCursorMove, 50, { leading: true, trailing: true })
 
-    this.measurer = setInterval(() => this.refs.measure.measure(), 100)
+    this.measurer = setTimeout(() => this.refs.measure.measure(), 400)
   }
 
   componentWillUnmount () {
-    clearInterval(this.measurer)
+    clearTimeout(this.measurer)
   }
 
   mouseDownCallback (event, measurements) {

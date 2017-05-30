@@ -4,34 +4,32 @@ sidebar-width = 90px
   position relative
   background darken(rgb(33, 37, 43), 30%)
   height calc(100vh - 100px)
+  display flex
+  align-items center
 
-  &.disabled
-    cursor not-allowed
-
-    .mouse-drawing-handler
-      cursor not-allowed
-
-  .recording-error
+  .recording-notice, .recording-error
     position absolute
     top 50%
     left 50%
     transform translate(-50%, -50%)
     width 100%
-    max-width 350px
+    max-width 450px
 
   .drawing-sidebar
-    position absolute
-    top 0
-    bottom 0
     width sidebar-width
-    z-index 100
+    position relative
+    z-index 2
 
-  .mouse-drawing-handler, .stream-renderer
-    position absolute
-    right 0
-    top calc(((100vh - 100px) - (100vw - 90px) * 1080 / 1920) / 2)
-    min-width calc(100vw - 90px)
-    min-height calc((100vw - 90px) * 1080 / 1920)
+  .draw-container
+    flex-grow 1
+    display flex
+    justify-content space-around
+    position relative
+    z-index 1
+
+    > div
+      flex 1
+      position relative
 
   .mouse-drawing-handler
     cursor crosshair

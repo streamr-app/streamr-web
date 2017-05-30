@@ -11,10 +11,10 @@ export default ({ error }) => {
         transitionLeaveTimeout={500}
       >
         {error === 'AUDIO_UNAVAILABLE' &&
-          <p className='error'>Your browser doesn't support audio recording. Please use Google Chrome or Firefox.</p>}
+          <div className='error'>Your browser doesn't support audio recording. Please use Google Chrome or Firefox.</div>}
 
         {error === 'RECORDING_SERVICE_UNAVAILABLE' &&
-          <p className='error'>Streamr's audio recording service is currently unavailable.</p>}
+          <div className='error'>Streamr's audio recording service is currently unavailable.</div>}
       </ReactCSSTransitionGroup>
     </div>
   )
