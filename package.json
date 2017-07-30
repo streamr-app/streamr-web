@@ -82,6 +82,7 @@
     "redux-devtools-extension": "^2.13.0",
     "redux-form": "^6.2.0",
     "redux-thunk": "^2.1.0",
+    "screenfull": "^3.3.1",
     "store": "^2.0.4",
     "style-loader": "^0.16.1",
     "stylus": "^0.54.5",

@@ -1,11 +1,15 @@
 import React from 'react'
 import Measure from 'react-measure'
 
+import FullscreenButton from './FullscreenButton'
+
 export default ({
   playing,
   position,
   duration,
   fullscreen,
+
+  playerRef,
 
   onTogglePlayPause,
   onPositionChange,
@@ -28,20 +32,10 @@ export default ({
         )}
       </Measure>
 
-      <a href='#' onClick={(event) => { event.preventDefault(); onRequestFullscreen() }}>
-        {fullscreenIcon(fullscreen)}
-      </a>
+      <FullscreenButton fullScreenElement={playerRef} />
     </div>
   </div>
 )
-
-function fullscreenIcon (fullscreen) {
-  if (fullscreen) {
-    return <img src={require('../../images/minimize.svg')} />
-  } else {
-    return <img src={require('../../images/fullscreen.svg')} />
-  }
-}
 
 function clickHandler (onPositionChange, duration, { width, left }) {
   return (event) => {

@@ -39,6 +39,11 @@ export default class StreamPlayer extends React.Component {
     }
   }
 
+  componentWillUnmount () {
+    this.manager.stop()
+    this.audio.pause()
+  }
+
   componentWillReceiveProps (nextProps) {
     if (!nextProps.loading) {
       this.prepare(nextProps)
@@ -77,46 +82,15 @@ export default class StreamPlayer extends React.Component {
     })
   }
 
-  componentWillUnmount () {
-    this.manager.stop()
-    this.audio.pause()
-  }
-
-  toggleFullscreen () {
-    if (this.state.fullscreen) {
-      this.exitFullscreen()
-    } else {
-      this.requestFullscreen()
-    }
-
-    this.setState({ fullscreen: !this.state.fullscreen })
-  }
-
-  exitFullscreen () {
-    (
-      document.exitFullscreen ||
-      document.mozCancelFullscreen ||
-      document.webkitExitFullscreen ||
-      (() => {})
-    ).call(document)
-  }
-
-  requestFullscreen () {
-    (
-      this.refs.streamPlayer.requestFullscreen ||
-      this.refs.streamPlayer.mozRequestFullscreen ||
-      this.refs.streamPlayer.webkitRequestFullscreen ||
-      this.refs.streamPlayer.msRequestFullscreen ||
-      (() => {})
-    ).call(this.refs.streamPlayer)
-  }
-
   render () {
     if (!this.manager) this.manager = {}
     const playing = this.manager.playing
 
     return (
-      <div className={cx('stream-player', { paused: !playing })} ref='streamPlayer' >
+      <div
+        className={cx('stream-player', { paused: !playing })}
+        ref={(player) => { this.player = player }}
+      >
         <svg viewBox='0 0 1920 1080' ref={(svg) => { this.svg = svg }} />
 
         <PlaybackControls
@@ -125,8 +99,7 @@ export default class StreamPlayer extends React.Component {
           duration={this.manager.duration}
           onTogglePlayPause={() => this.manager.toggle()}
           onPositionChange={(position) => this.manager.setPosition(position)}
-          onRequestFullscreen={() => this.toggleFullscreen()}
-          fullscreen={this.state.fullscreen}
+          playerRef={this.player}
         />
       </div>
     )
