@@ -5,6 +5,7 @@
   "scripts": {
     "build": "webpack --config webpack.config.js",
     "dist": "webpack -p --config webpack.config.js",
+    "postinstall": "npm run dist",
     "start": "node server.js",
     "dev": "webpack-dev-server --config webpack.config.js --inline --hot",
     "test": "jest && npm run lint",
