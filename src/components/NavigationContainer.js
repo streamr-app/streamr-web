@@ -10,4 +10,4 @@ function mapStateToProps (state, ownProps) {
   }
 }
 
-export default connect(mapStateToProps)(Navigation)
+export default connect(mapStateToProps, null, null, { pure: false })(Navigation)
