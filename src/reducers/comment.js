@@ -5,20 +5,16 @@ export default function (state = {}, action) {
     case 'COMMENT_UPVOTE_SUCCESS':
       return update(state, {
         [action.payload.commentId]: {
-          $merge: {
-            currentUserVoted: true,
-            votesCount: state[action.payload.commentId].votesCount + 1
-          }
+          currentUserVoted: { $set: true },
+          votesCount: { $apply: (value) => value + 1 }
         }
       })
 
     case 'COMMENT_UNVOTE_SUCCESS':
       return update(state, {
         [action.payload.commentId]: {
-          $merge: {
-            currentUserVoted: false,
-            votesCount: state[action.payload.commentId].votesCount - 1
-          }
+          currentUserVoted: { $set: false },
+          votesCount: { $apply: (value) => value - 1 }
         }
       })
 
