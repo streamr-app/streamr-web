@@ -1,20 +1,19 @@
+import update from 'immutability-helper'
+
 export default function (state = {}, action) {
   switch (action.type) {
     case 'TOPICS_SUCCESS': {
-      return {
-        ...state,
-        ids: action.payload.result.topic
-      }
+      return update(state, {
+        ids: { $set: action.payload.result.topic }
+      })
     }
 
     case 'TOPIC_STREAMS_SUCCESS': {
-      return {
-        ...state,
+      return update(state, {
         [action.payload.topicId]: {
-          ...state[action.payload.topicId],
-          streams: action.payload.result.stream
+          streams: { $set: action.payload.result.stream }
         }
-      }
+      })
     }
   }
 

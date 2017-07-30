@@ -1,72 +1,65 @@
+import update from 'immutability-helper'
+
 export default function (state = {
   fromSubscriptions: [],
   trending: []
 }, action) {
   switch (action.type) {
+    case 'STREAMS_SEARCH_REQUEST': {
+      return update(state, { searchResults: { $set: [] } })
+    }
+
     case 'STREAMS_SEARCH_SUCCESS': {
-      return {
-        ...state,
-        searchResults: action.payload.result.stream
-      }
+      return update(state, {
+        searchResults: { $set: action.payload.result.stream }
+      })
     }
 
     case 'FETCH_COMMENTS_SUCCESS': {
-      return {
-        ...state,
+      return update(state, {
         [action.payload.streamId]: {
-          ...state[action.payload.streamId],
-          comments: action.payload.result.comment
+          comments: { $set: action.payload.result.comment }
         }
-      }
+      })
     }
 
     case 'CREATE_COMMENT_SUCCESS': {
-      return {
-        ...state,
+      return update(state, {
         [action.payload.streamId]: {
-          ...state[action.payload.streamId],
-          comments: [
-            ...action.payload.result.comment,
-            ...(state[action.payload.streamId].comments || [])
-          ]
+          comments: {
+            $apply: (value) => ([
+              ...action.payload.result.comment,
+              ...(value || [])
+            ])
+          }
         }
-      }
+      })
     }
 
     case 'SUBSCRIPTION_STREAMS_SUCCESS': {
-      return {
-        ...state,
-        fromSubscriptions: action.payload.result.stream
-      }
+      return update(state, { fromSubscriptions: { $set: action.payload.result.stream } })
     }
 
     case 'TRENDING_STREAMS_SUCCESS': {
-      return {
-        ...state,
-        trending: action.payload.result.stream
-      }
+      return update(state, { trending: { $set: action.payload.result.stream } })
     }
 
     case 'STREAM_UPVOTE_SUCCESS': {
-      return {
-        ...state,
+      return update(state, {
         [action.payload.streamId]: {
-          ...state[action.payload.streamId],
-          currentUserVoted: true,
-          votesCount: state[action.payload.streamId].votesCount + 1
+          currentUserVoted: { $set: true },
+          votesCount: { $apply: (value) => value + 1 }
         }
-      }
+      })
     }
 
     case 'STREAM_UNVOTE_SUCCESS': {
-      return {
-        ...state,
+      return update(state, {
         [action.payload.streamId]: {
-          ...state[action.payload.streamId],
-          currentUserVoted: false,
-          votesCount: state[action.payload.streamId].votesCount - 1
+          currentUserVoted: { $set: true },
+          votesCount: { $apply: (value) => value - 1 }
         }
-      }
+      })
     }
   }
 

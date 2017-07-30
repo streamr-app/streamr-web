@@ -1,3 +1,4 @@
+import update from 'immutability-helper'
 import isNumber from 'lodash/isNumber'
 import last from 'lodash/last'
 
@@ -33,46 +34,34 @@ export default function (
 
   switch (action.type) {
     case 'SET_COLOR':
-      return {
-        ...state,
-        colorId: action.payload
-      }
+      return update(state, { colorId: { $set: action.payload } })
 
     case 'SET_THICKNESS':
-      return {
-        ...state,
-        thicknessId: action.payload
-      }
+      return update(state, { thicknessId: { $set: action.payload } })
 
     case 'START_STREAM':
-      return {
-        ...state,
-        recordingStarted: true
-      }
+      return update(state, { recordingStarted: { $set: true } })
 
     case 'LINE_START':
-      return {
-        ...state,
+      return update(state, {
         currentEvent: {
-          time,
-          type: 'line',
-          lineId: state.eventCount + 1,
-          colorId: state.colorId,
-          thickness: state.thicknesses[state.thicknessId],
-          points: [ { ...action.payload, time } ]
+          $set: {
+            time,
+            type: 'line',
+            lineId: state.eventCount + 1,
+            colorId: state.colorId,
+            thickness: state.thicknesses[state.thicknessId],
+            points: [ { ...action.payload, time } ]
+          }
         }
-      }
+      })
 
     case 'POINT_CREATE':
-      return {
-        ...state,
+      return update(state, {
         currentEvent: {
-          ...state.currentEvent,
-          points: state.currentEvent.points.concat([
-            { ...action.payload, time }
-          ])
+          points: { $push: [{ ...action.payload, time }] }
         }
-      }
+      })
 
     case 'UNDO_LINE':
       if (state.undoHistory.length === 0) {
@@ -81,63 +70,57 @@ export default function (
 
       let lineId = last(state.undoHistory)
 
-      return {
-        ...state,
-        currentEvent: { time, type: 'undo', lineId },
-        undoHistory: state.undoHistory.slice(0, -1)
-      }
+      return update(state, {
+        currentEvent: { $set: { time, type: 'undo', lineId } },
+        undoHistory: { $splice: [[0, -1]] }
+      })
 
     case 'CLEAR_SCREEN':
-      return {
-        ...state,
-        undoHistory: [],
-        currentEvent: { time, type: 'clear' }
-      }
+      return state(update, {
+        undoHistory: { $set: [] },
+        currentEvent: { $set: { time, type: 'clear' } }
+      })
 
     case 'EVENT_END':
-      if (!state.currentEvent) return state
+      let lastEvent = state.currentEvent
 
-      return {
-        ...state,
-        undoHistory: state.currentEvent.type === 'line'
-          ? state.undoHistory.concat([ state.currentEvent.lineId ])
-          : state.undoHistory,
-        eventCount: state.eventCount + 1,
-        currentEvent: null
-      }
+      if (!lastEvent) return state
+
+      return update(state, {
+        undoHistory: { $apply: (value) => (
+          lastEvent.type === 'line'
+            ? value.concat([ lastEvent.lineId ])
+            : value
+        )},
+        currentEvent: { $set: null },
+        eventCount: { $apply: (value) => value + 1 }
+      })
 
     case 'CREATE_STREAM_SUCCESS':
-      return {
-        ...state,
-        currentStreamId: action.payload.result.stream[0]
-      }
+      return update(state, {
+        currentStreamId: { $set: action.payload.result.stream[0] }
+      })
 
     case 'END_STREAM_REQUEST':
-      return {
-        ...state,
-        recordingStopped: true
-      }
+      return update(state, {
+        recordingStopped: { $set: true }
+      })
 
     case 'END_STREAM_SUCCESS':
-      return {
-        ...state,
-        ...initialState
-      }
+      return update(state, { $set: initialState })
 
     case 'AUDIO_READY':
-      return {
-        ...state,
-        recordingStarted: false,
-        recording: true,
-        streamStart: performance.now()
-      }
+      return update(state, {
+        recordingStarted: { $set: false },
+        recording: { $set: true },
+        streamStart: { $set: performance.now() }
+      })
 
     case 'AUDIO_UNAVAILABLE':
     case 'RECORDING_SERVICE_UNAVAILABLE':
-      return {
-        ...state,
-        error: action.type
-      }
+      return update(state, {
+        error: { $set: action.type }
+      })
   }
 
   return state
