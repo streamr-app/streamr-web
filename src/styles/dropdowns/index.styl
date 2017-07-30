@@ -1,0 +1,60 @@
+dropdownBoxShadow = rgba(0, 0, 0, 0.4)
+
+.dropdown
+  opacity 0
+  transform rotateX(-25deg)
+  transform-origin 50% 0
+  transition all 0.3s ease
+
+.dropdown-inner
+  background white
+  border-radius 5px
+  box-shadow 0 1px 3px dropdownBoxShadow
+  padding 10px
+
+  &:after, &:before
+    content ''
+    display block
+    position absolute
+    border-radius 3px 0 0 0
+    top -6px
+    right 20px
+    width 15px
+    height 15px
+    transform rotate(45deg)
+
+  &:after
+    background white
+
+  &:before
+    z-index -1
+    box-shadow 0.7px 0.7px 3px dropdownBoxShadow
+
+  ul
+    list-style none
+    padding 0
+    margin-top 10px
+
+    a
+      display block
+      padding 15px
+      transition all 0.2s ease
+      color #444
+      margin 0 -10px
+
+      &:hover
+        background #eee
+
+.dropdown-trigger
+  position relative
+
+  .dropdown
+    position absolute
+    top 100%
+    right 0
+    pointer-events none
+
+  &:hover .dropdown
+    opacity 1
+    transform rotateX(0)
+    pointer-events all

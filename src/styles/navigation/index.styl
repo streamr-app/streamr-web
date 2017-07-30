@@ -1,12 +1,12 @@
 nav-link-padding = 30px 40px
 
 nav[role='main']
-  ul
+  > ul
     list-style none
     display flex
     align-items center
 
-  li:not(.profile-preview)
+  > ul > li:not(.profile-preview)
     a
       padding nav-link-padding
       color $navigation-link-color
@@ -35,20 +35,9 @@ nav[role='main']
         transform scaleY(1)
 
   .profile-preview
-    padding 0 nav-link-padding
-    position relative
-    height 0
+    padding nav-link-padding
 
-    .profile-link
-      color black
-      display block
-      font-size 1.3rem
-      margin 0
-      transition color 0.2s
-
-      &:hover
-        color $navigation-link-color
-        cursor pointer
-
-    a
-      font-size 0.8rem
+    .dropdown
+      min-width 300px
+      right nav-link-padding[1]
+      top "calc(100% - %s)" % (nav-link-padding[0] - 15px)
