@@ -18,7 +18,7 @@ module.exports = {
   ],
   output: {
     path: path.resolve(__dirname, 'build'),
-    filename: 'bundle-[hash].js'
+    filename: 'bundle-[chunkhash].js'
   },
   devServer: {
     port: 5000,

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import moment from 'moment'
+import distanceInWordsToNow from 'date-fns/distance_in_words_to_now'
 
 import { Link } from 'react-router-dom'
 
@@ -40,7 +40,7 @@ export default class Comment extends React.Component {
 
         <div>
           <p className='ago' title={comment.insertedAt}>
-            {moment(comment.insertedAt).fromNow(true)}
+            {distanceInWordsToNow(new Date(), new Date(comment.insertedAt))} ago
           </p>
         </div>
       </div>
