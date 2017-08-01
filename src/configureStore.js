@@ -5,6 +5,7 @@ import thunk from 'redux-thunk'
 
 import { routerMiddleware } from 'react-router-redux'
 import { composeWithDevTools } from 'redux-devtools-extension'
+import authSync from './middlewares/authSync'
 import userSync from './middlewares/userSync'
 
 export default function configureStore (history) {
@@ -14,6 +15,7 @@ export default function configureStore (history) {
       applyMiddleware(
         thunk,
         apiMiddleware,
+        authSync,
         userSync,
         routerMiddleware(history)
       )
