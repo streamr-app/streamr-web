@@ -1,7 +1,6 @@
 import update from 'immutability-helper'
-import store from 'store'
 
-export default function (state = store.get('user') || {}, action) {
+export default function (state = {}, action) {
   switch (action.type) {
     case 'CURRENT_USER_SUCCESS': {
       const userId = action.payload.result.user[0]

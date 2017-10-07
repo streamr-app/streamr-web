@@ -9,38 +9,28 @@ import DefaultLayout from './DefaultLayout'
 import loadColorLoader from 'bundle-loader!./common/ColorLoader'
 import createHistory from 'history/createBrowserHistory'
 
+import loadScrollToTop from 'bundle-loader!./ScrollToTop'
+
 export const history = createHistory()
 
-export default class Application extends React.Component {
-  componentDidMount () {
-    this.historyUnlisten = history.listen(() => this.scrollToTop())
-  }
+export default () => (
+  <div className='application'>
+    <Helmet
+      titleTemplate='Streamr — %s'
+      defaultTitle='Streamr — Learn by Doodling'
+      link={[
+        { rel: 'shortcut icon', href: require('../images/favicon.ico') }
+      ]}
+     />
 
-  componentWillUnmount () {
-    this.historyUnlisten()
-  }
+    <DefaultLayout />
 
-  scrollToTop () {
-    window.scrollTo(0, 0)
-  }
+    <Bundle load={loadColorLoader}>
+      {(ColorLoader) => ColorLoader ? <ColorLoader /> : null}
+    </Bundle>
 
-  render () {
-    return (
-      <div className='application'>
-        <Helmet
-          titleTemplate='Streamr — %s'
-          defaultTitle='Streamr — Learn by Doodling'
-          link={[
-            { rel: 'shortcut icon', href: require('../images/favicon.ico') }
-          ]}
-         />
-
-        <DefaultLayout />
-
-        <Bundle load={loadColorLoader}>
-          {(ColorLoader) => ColorLoader ? <ColorLoader /> : null}
-        </Bundle>
-      </div>
-    )
-  }
-}
+    <Bundle load={loadScrollToTop}>
+      {(ScrollToTop) => ScrollToTop ? <ScrollToTop /> : null}
+    </Bundle>
+  </div>
+)
